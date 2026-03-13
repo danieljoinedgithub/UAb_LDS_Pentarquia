@@ -31,3 +31,30 @@ Desenvolver uma app xxxxxxxxx
   push
   ↓
   pull request para main
+
+
+
+  ## Provisório:
+  projeto/
+  │
+  ├── README.md
+  ├── CONTRIBUTING.md
+  ├── .gitignore
+  │
+  ├── docs/
+  │   ├── relatorio.md
+  │   ├── arquitetura.md
+  │   └── diagramas/
+  │
+  ├── src/
+  │   ├── main/
+  │   ├── modules/
+  │   └── utils/
+  │
+  ├── tests/
+  │
+  ├── data/
+  │
+  └── assets/
+      ├── images/
+      └── diagrams/
