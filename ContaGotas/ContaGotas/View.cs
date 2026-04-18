@@ -4,17 +4,19 @@ public class View
 {
     private Controller controller;
     private Model model;
+    
     public View(Controller c,Model m)
     {
         controller = c;
         model = m;
         
-        m.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
+        //Subscrição dos eventos necessarios entre View-Model
+        model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
     }
 
     public void AtivarInterfaceComOpcoes()
     {
-        //TODO Ciclo menu?
+        //Fluxo fechado do menu enquanto não selecionar a opção de sair
         while (true)
         {
             Console.WriteLine("MENU:");
@@ -27,18 +29,17 @@ public class View
     }
     public void SelecionarOpcao()
     {
-        //TODO Input do utilizador e validações,
-        // se valido, chama controller.OpcaoSelecionada(opcao)
+        //Obter input do utilizador
         Console.Write("Escolha opção: ");
         string input = Console.ReadLine();
-        if (int.TryParse(input, out int opcao))
-        {
+
+        //Validações da opção selecionada (se 0 ou inválida)
+        if (int.TryParse(input, out int opcao)) {
             if (opcao == 0)
                 Environment.Exit(0);
+            //Notificar o controller da opção selecionada
             controller.OpcaoSelecionada(opcao);
-        }
-        else
-        {
+        } else {
             Console.WriteLine("Entrada inválida!");
         }
     }
@@ -46,6 +47,7 @@ public class View
 
     private void ApresentarTiposCombustivel(List<string> tipos)
     {
+        //Apresentar os tipos de combustível
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
         for (int i = 0; i < tipos.Count; i++)
         {
