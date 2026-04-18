@@ -11,7 +11,7 @@ Programa desenvolvido durante a integração na Esimprogramming
 - Pedro (Revisor)
 
 ## Objetivo
-Desenvolver uma app xxxxxxxxx
+Desenvolver app Conta-Gotas que permite consultar e acompanhar os valores dos combustiveis Nacionais
 
 ## Estrutura do projeto (por alterar
 /src - código principal
