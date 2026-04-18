@@ -1,0 +1,15 @@
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/ContaGotas
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/ContaGotas.deps.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/ContaGotas.runtimeconfig.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/ContaGotas.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/ContaGotas.pdb
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.AssemblyInfoInputs.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.AssemblyInfo.cs
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.csproj.CoreCompileInputs.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.sourcelink.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/refint/ContaGotas.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.pdb
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.genruntimeconfig.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ref/ContaGotas.dll
