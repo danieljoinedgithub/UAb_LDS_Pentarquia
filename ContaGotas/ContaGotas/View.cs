@@ -4,8 +4,8 @@ public class View
 {
     private Controller controller;
     private Model model;
-    public View(Controller c, Model m) {
-        controller = c;
+    internal View(Model m)
+    {
         model = m;
     }
 }
