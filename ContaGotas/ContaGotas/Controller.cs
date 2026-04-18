@@ -7,11 +7,30 @@ public class Controller
 
     public Controller()
     {
-        view = new View(model);
-        model = new Model(view);
+        model = new Model(); //Model(view)
+        view = new View(this, model);
     }
     
-    public void iniciarAplicacao() {
-        Console.WriteLine("Bem vindo!");
+    public void IniciarAplicacao()
+    {
+        view.AtivarInterfaceComOpcoes();
+    }
+
+    public void OpcaoSelecionada(int opcao)
+    {
+        switch (opcao)
+        {
+            case 1: // Ver médias
+                //model.ObterMedias();
+                break;
+
+            case 2: // Pesquisar postos
+                model.ObterTiposDeCombustivel();
+                break;
+
+            default:
+                Console.WriteLine("Opção inválida");
+                break;
+        }
     }
 }
