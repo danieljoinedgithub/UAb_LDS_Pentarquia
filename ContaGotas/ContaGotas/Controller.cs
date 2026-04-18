@@ -34,14 +34,17 @@ public class Controller
                 //model.ObterMedias();
                 break;
 
-            case 2: // Pesquisar postos
-                model.ObterTiposDeCombustivel();
-                break;
-            
-            case 3: //Pesquisa Distrital
+            case 2: // Pesquisar distrital
                 //view.atualizarInterface();
                 model.ObterTiposDeCombustivel();
-                //model.ObterListaDistritos();
+                //model.ObterDistritos();
+                // model.PesquisaDistrital(distrito, id);
+                break;
+            
+            case 3: //Estatisticas
+                //view.atualizarInterface();
+                model.ObterTiposDeCombustivel();
+                //model.ObterDistritos();
                 break;
             
             default:
@@ -52,9 +55,7 @@ public class Controller
     
     public void PesquisaDistrital(int distrito,int id)
     {
-        
-        model.PesquisaDgeg(distrito, id);
-        
+        model.PesquisarDistritos(distrito, id);
     }
     
 }

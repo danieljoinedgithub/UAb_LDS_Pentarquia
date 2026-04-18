@@ -12,6 +12,7 @@ public class View
         
         //Subscrição dos eventos necessarios entre View-Model
         model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
+        model.NotificarDistritos += ApresentarDistritos;
     }
     
     
@@ -38,8 +39,8 @@ public class View
         {
             Console.WriteLine("MENU:");
             Console.WriteLine("1 - Ver médias");
-            Console.WriteLine("2 - Pesquisar postos");
-            Console.WriteLine("3 - Pesquisar Distrital");
+            Console.WriteLine("2 - Pesquisar distrital");
+            Console.WriteLine("3 - Estatisticas");
             Console.WriteLine("0 - Sair");
 
             SelecionarOpcao();
@@ -70,5 +71,22 @@ public class View
         {
             Console.WriteLine($"{i + 1} - {tipos[i]}");
         }
+        Console.WriteLine($"99 - Todos os tipos de combustivel");
+        
+        //TODO selecionar
     }
+    
+    private void ApresentarDistritos(List<string> distritos)
+    {
+        //Apresentar os Distritos
+        Console.WriteLine("\nDISTRITOS:");
+        for (int i = 0; i < distritos.Count; i++)
+        {
+            Console.WriteLine($"{i + 1} - {distritos[i]}");
+        }
+        Console.WriteLine($"99 - Todos os distritos");
+
+        //TODO selecionar
+    }
+    
 }

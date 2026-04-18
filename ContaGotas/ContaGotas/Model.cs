@@ -11,14 +11,12 @@ public class Model
         this.controller = controller;
     }
     
-    public void PesquisaDgeg(int distrito,int id)
+    public void PesquisarDistritos(int distrito,int id)
     {
-        //DGEG
+        //DGEG.getPostosFilttrados(distrito, id)
         //json
         
     }
-    
-    
     
     public event Action<List<string>> NotificarTiposDeCombustivel;
     public void ObterTiposDeCombustivel()
@@ -26,5 +24,13 @@ public class Model
         var listaTipos = new List<string> { "Gasolina", "Gasóleo" };
         //Chamada do evento após obter a lista atualizada
         NotificarTiposDeCombustivel?.Invoke(listaTipos);
+    }
+    
+    public event Action<List<string>> NotificarDistritos;
+    public void ObterDistritos()
+    {
+        var distritos = new List<string> { "Lisboa", "Porto" };
+        //Chamada do evento após obter a lista atualizada
+        NotificarDistritos?.Invoke(distritos);
     }
 }
