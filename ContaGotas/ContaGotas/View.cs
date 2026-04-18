@@ -34,9 +34,8 @@ public class View
         string input = Console.ReadLine();
 
         //Validações da opção selecionada (se 0 ou inválida)
-        if (int.TryParse(input, out int opcao)) {
-            if (opcao == 0)
-                Environment.Exit(0);
+        if (int.TryParse(input, out int opcao))
+        {
             //Notificar o controller da opção selecionada
             controller.OpcaoSelecionada(opcao);
         } else {

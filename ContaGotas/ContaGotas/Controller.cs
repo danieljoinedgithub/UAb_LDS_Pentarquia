@@ -15,6 +15,10 @@ public class Controller
     {
         view.AtivarInterfaceComOpcoes();
     }
+    public void TerminarAplicacao()
+    {
+        Environment.Exit(0);
+    }
 
     public void OpcaoSelecionada(int opcao)
     {
@@ -27,7 +31,10 @@ public class Controller
             case 2: // Pesquisar postos
                 model.ObterTiposDeCombustivel();
                 break;
-
+            
+            case 0:
+                TerminarAplicacao();
+                break;
             default:
                 Console.WriteLine("Opção inválida");
                 break;
