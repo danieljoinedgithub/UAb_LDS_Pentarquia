@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "/Users/brunogoncalves/.nuget/packages/": {}
+    "C:\\Users\\Diogo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj",
+      "projectUniqueName": "E:\\UAB\\Git\\UAB\\2 ano\\2 Semestre\\Laboratório de Desenvolvimento de Software\\teste\\UAb_LDS_Pentarquia\\ContaGotas\\ContaGotas\\ContaGotas.csproj",
       "projectName": "ContaGotas",
-      "projectPath": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj",
-      "packagesPath": "/Users/brunogoncalves/.nuget/packages/",
-      "outputPath": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/",
+      "projectPath": "E:\\UAB\\Git\\UAB\\2 ano\\2 Semestre\\Laboratório de Desenvolvimento de Software\\teste\\UAb_LDS_Pentarquia\\ContaGotas\\ContaGotas\\ContaGotas.csproj",
+      "packagesPath": "C:\\Users\\Diogo\\.nuget\\packages\\",
+      "outputPath": "E:\\UAB\\Git\\UAB\\2 ano\\2 Semestre\\Laboratório de Desenvolvimento de Software\\teste\\UAb_LDS_Pentarquia\\ContaGotas\\ContaGotas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/brunogoncalves/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Diogo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -44,7 +44,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.106/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

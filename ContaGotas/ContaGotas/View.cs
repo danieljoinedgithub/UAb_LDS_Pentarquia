@@ -13,6 +13,23 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
     }
+    
+    
+    //Eventos
+    public event Action<int, int>? Pesquisa;
+    
+    //utilizador clica no butao pesquisa
+    public void OnPesquisa()
+    {
+        //int tipo=campo1.getv
+        //int distrito=campo2.getv
+        
+        int tipo=1;
+        int distrito = 1;
+        
+        Pesquisa?.Invoke(tipo, distrito);
+    }
+    
 
     public void AtivarInterfaceComOpcoes()
     {
@@ -22,6 +39,7 @@ public class View
             Console.WriteLine("MENU:");
             Console.WriteLine("1 - Ver médias");
             Console.WriteLine("2 - Pesquisar postos");
+            Console.WriteLine("3 - Pesquisar Distrital");
             Console.WriteLine("0 - Sair");
 
             SelecionarOpcao();

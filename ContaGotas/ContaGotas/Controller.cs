@@ -7,8 +7,10 @@ public class Controller
 
     public Controller()
     {
-        model = new Model(); //Model(view)
+        model = new Model(this,view); //Model(view)
         view = new View(this, model);
+        
+        view.Pesquisa += PesquisaDistrital;
     }
     
     public void IniciarAplicacao()
@@ -24,6 +26,10 @@ public class Controller
     {
         switch (opcao)
         {
+            case 0:
+                TerminarAplicacao();
+                break;
+            
             case 1: // Ver médias
                 //model.ObterMedias();
                 break;
@@ -32,12 +38,23 @@ public class Controller
                 model.ObterTiposDeCombustivel();
                 break;
             
-            case 0:
-                TerminarAplicacao();
+            case 3: //Pesquisa Distrital
+                //view.atualizarInterface();
+                model.ObterTiposDeCombustivel();
+                //model.ObterListaDistritos();
                 break;
+            
             default:
                 Console.WriteLine("Opção inválida");
                 break;
         }
     }
+    
+    public void PesquisaDistrital(int distrito,int id)
+    {
+        
+        model.PesquisaDgeg(distrito, id);
+        
+    }
+    
 }
