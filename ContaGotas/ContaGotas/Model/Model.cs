@@ -1,5 +1,9 @@
 namespace ContaGotas;
 
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+
 public class Model
 {
     View view;
@@ -10,6 +14,29 @@ public class Model
         this.view = view;
         this.controller = controller;
     }
+    
+    // inicio de esqueleto de processo de obter dados média em model
+    public event Action OnMudancaEstado;
+    
+    private List<double> _listaMedias = new List<double>();
+
+    public void ActualizarMediasNacionais()
+    {
+        // Corresponde ao "CarregarDados()" no UML
+        // Simulação de carregamento de dados da API
+        _listaMedias = new List<double> { 1.55, 1.62, 1.48 }; 
+        
+        // Notifica a View que algo mudou
+        OnMudancaEstado?.Invoke(); 
+    }
+
+    public List<double> ObterDadosMedias()
+    {
+        // Corresponde ao retorno "listaMedias" no UML
+        return _listaMedias;
+    }
+    }
+    // final de esqueleto de processo de obter dados média em model
     
     public void PesquisarDistritos(int distrito,int id)
     {

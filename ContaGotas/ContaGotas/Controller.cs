@@ -13,6 +13,18 @@ public class Controller
         view.Pesquisa += PesquisaDistrital;
     }
     
+    
+    // inicio de esqueleto de processo de obter dados média em controller
+    public void SelecionarOpcao(string opcao)
+    {
+        if (opcao == "Medias nacionais")
+        {
+            // Dispara o processo
+            _model.ActualizarMediasNacionais();
+        }
+    }
+    // final de esqueleto de processo de obter dados média em controller
+    
     public void IniciarAplicacao()
     {
         view.AtivarInterfaceComOpcoes();

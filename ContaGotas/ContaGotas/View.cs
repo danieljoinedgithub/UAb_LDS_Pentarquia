@@ -31,6 +31,25 @@ public class View
         Pesquisa?.Invoke(tipo, distrito);
     }
     
+    // inicio de esqueleto de processo de obter dados média em view
+        _model.OnMudancaEstado += NotificarMudancaEstado;
+    
+
+    
+    private void NotificarMudancaEstado()
+    {
+        // A View faz o "Pull" (puxa os dados)
+        var dados = _model.ObterDadosMedias();
+        MostrarDados(dados);
+    }
+
+    private void MostrarDados(List<double> dados)
+    {
+        Console.WriteLine("Médias obtidas:");
+        foreach (var d in dados) Console.WriteLine(d);
+    }
+    // final de esqueleto de processo de obter dados média em views
+    
 
     public void AtivarInterfaceComOpcoes()
     {
