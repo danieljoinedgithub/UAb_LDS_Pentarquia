@@ -1,63 +1,55 @@
 namespace ContaGotas;
 
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 public class Model
 {
-    View view;
-    Controller controller;
-    
-    public Model(Controller controller,View view)
-    {
-        this.view = view;
-        this.controller = controller;
-    }
-    
-    // inicio de esqueleto de processo de obter dados média em model
-    public event Action OnMudancaEstado;
-    
-    private List<double> _listaMedias = new List<double>();
+    private ICombustivelService _service;
 
-    public void ActualizarMediasNacionais()
+    public event Action? OnMudancaEstado;
+
+    private List<PrecoMedio> _medias = new();
+
+    // --- CONSTRUTOR LIMPO ---
+    public Model(ICombustivelService service)
     {
-        // Corresponde ao "CarregarDados()" no UML
-        // Simulação de carregamento de dados da API
-        _listaMedias = new List<double> { 1.55, 1.62, 1.48 }; 
-        
-        // Notifica a View que algo mudou
-        OnMudancaEstado?.Invoke(); 
+        _service = service;
     }
 
-    public List<double> ObterDadosMedias()
+    // --- MÉDIAS (ligado ao Service) ---
+    public async Task AtualizarMedias()
     {
-        // Corresponde ao retorno "listaMedias" no UML
-        return _listaMedias;
+        _medias = await _service.ObterMediasAsync();
+        OnMudancaEstado?.Invoke();
     }
-    }
-    // final de esqueleto de processo de obter dados média em model
-    
-    public void PesquisarDistritos(int distrito,int id)
+
+    public List<PrecoMedio> ObterMedias()
     {
-        //DGEG.getPostosFilttrados(distrito, id)
-        //json
-        
+        return _medias;
     }
-    
-    public event Action<List<string>> NotificarTiposDeCombustivel;
+
+    // --- OUTRAS FUNCIONALIDADES ---
+
+    public event Action<List<string>>? NotificarTiposDeCombustivel;
+
     public void ObterTiposDeCombustivel()
     {
         var listaTipos = new List<string> { "Gasolina", "Gasóleo" };
-        //Chamada do evento após obter a lista atualizada
         NotificarTiposDeCombustivel?.Invoke(listaTipos);
     }
-    
-    public event Action<List<string>> NotificarDistritos;
+
+    public event Action<List<string>>? NotificarDistritos;
+
     public void ObterDistritos()
     {
         var distritos = new List<string> { "Lisboa", "Porto" };
-        //Chamada do evento após obter a lista atualizada
         NotificarDistritos?.Invoke(distritos);
+    }
+
+    public void PesquisarDistritos(int distrito, int id)
+    {
+        // Aqui vais depois usar o service para ir à API
+        // Exemplo futuro:
+        // var dados = await _service.ObterPostosAsync(distrito, id);
     }
 }

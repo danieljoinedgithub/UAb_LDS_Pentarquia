@@ -7,7 +7,8 @@ public class Controller
 
     public Controller()
     {
-        model = new Model(this,view); //Model(view)
+        var service = new CombustivelApiService();
+        model = new Model(service);
         view = new View(this, model);
         
         view.Pesquisa += PesquisaDistrital;
@@ -20,7 +21,7 @@ public class Controller
         if (opcao == "Medias nacionais")
         {
             // Dispara o processo
-            _model.ActualizarMediasNacionais();
+            model.AtualizarMedias();
         }
     }
     // final de esqueleto de processo de obter dados média em controller
@@ -34,7 +35,7 @@ public class Controller
         Environment.Exit(0);
     }
 
-    public void OpcaoSelecionada(int opcao)
+    public async void OpcaoSelecionada(int opcao)
     {
         switch (opcao)
         {
@@ -43,7 +44,7 @@ public class Controller
                 break;
             
             case 1: // Ver médias
-                //model.ObterMedias();
+                await model.AtualizarMedias(); //
                 break;
 
             case 2: // Pesquisar distrital

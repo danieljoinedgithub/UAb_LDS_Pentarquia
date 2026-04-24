@@ -13,6 +13,7 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
         model.NotificarDistritos += ApresentarDistritos;
+        model.OnMudancaEstado += NotificarMudancaEstado;
     }
     
     
@@ -31,25 +32,23 @@ public class View
         Pesquisa?.Invoke(tipo, distrito);
     }
     
-    // inicio de esqueleto de processo de obter dados média em view
-        _model.OnMudancaEstado += NotificarMudancaEstado;
-    
+    // --- MÉDIAS ---
 
-    
     private void NotificarMudancaEstado()
     {
-        // A View faz o "Pull" (puxa os dados)
-        var dados = _model.ObterDadosMedias();
+        var dados = model.ObterMedias();
         MostrarDados(dados);
     }
 
-    private void MostrarDados(List<double> dados)
+    private void MostrarDados(List<PrecoMedio> dados)
     {
         Console.WriteLine("Médias obtidas:");
-        foreach (var d in dados) Console.WriteLine(d);
+
+        foreach (var d in dados)
+        {
+            Console.WriteLine(d.Valor);
+        }
     }
-    // final de esqueleto de processo de obter dados média em views
-    
 
     public void AtivarInterfaceComOpcoes()
     {
