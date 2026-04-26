@@ -51,26 +51,22 @@ public class CombustivelApiService : ICombustivelService
                 // 2. Vamos diretos à "gaveta" chamada "resultado" (que é onde está a lista no JSON deles)
                 JsonElement gavetaResultado = documento.RootElement.GetProperty("resultado");
 
-                // 3. Convertemos APENAS essa gaveta para a nossa lista de postos
+                // 3. Retorna as propriedades JSON que satisfaça a igualdade do tipo de dados introduzido
                 return JsonSerializer.Deserialize<T>(gavetaResultado.GetRawText(), opcoes);
 
 
             }
-            // quando estas sem internet ou URL invalido
-            catch (HttpRequestException  e) when (e.Message.Contains("443"))
+            // Exception Quando estas sem internet ou URL invalido
+            catch (HttpRequestException  e)
             {
-                    
-                    
-                Console.WriteLine(e.Message+"\n");
                 if (tentativas == maxTentativas)
                 {
-                    continuar = false;
                     Console.WriteLine("Servidor não encontrado");
+                    throw;  
                 }
                 
             }
-        }
-        return default;
+        }return default;
     }
     
 
