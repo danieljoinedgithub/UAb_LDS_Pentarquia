@@ -93,9 +93,9 @@ public class CombustivelApiService : ICombustivelService
         await Task.Delay(500);
         return new List<PrecoMedio>
         {
-            new PrecoMedio(1.55, "Gasolina", "Lisboa"),
-            new PrecoMedio(1.62, "Gasóleo", "Porto"),
-            new PrecoMedio(1.48, "Gasolina", "Coimbra")
+            new PrecoMedio("1.55 €", "Gasolina", "Lisboa"),
+            new PrecoMedio("1.62 €", "Gasóleo", "Porto"),
+            new PrecoMedio("1.48 €", "Gasolina", "Coimbra")
         };
     }
     
@@ -107,15 +107,20 @@ public class CombustivelApiService : ICombustivelService
 
 public class PrecoMedio
 {
-    public double Valor { get; set; }
-    public string Combustivel { get; set; }
-    public string Distrito { get; set; }
+    [System.Text.Json.Serialization.JsonPropertyName("PrecoMedio")]
+    public string valor { get; set; }
 
-    public PrecoMedio(double valor, string combustivel, string distrito)
+    [System.Text.Json.Serialization.JsonPropertyName("TipoCombustivel")]
+    public string combustivel { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("Distrito")]
+    public string distrito { get; set; }
+
+    public PrecoMedio(string valor, string combustivel, string distrito)
     {
-        Valor = valor;
-        Combustivel = combustivel;
-        Distrito = distrito;
+        this.valor = valor;
+        this.combustivel = combustivel;
+        this.distrito = distrito;
     }
 }
 

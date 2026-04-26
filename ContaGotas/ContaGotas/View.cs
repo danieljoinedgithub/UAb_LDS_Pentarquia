@@ -46,7 +46,7 @@ public class View
 
         foreach (var d in dados)
         {
-            Console.WriteLine(d.Valor);
+            Console.WriteLine(d.combustivel +" "+ d.valor);
         }
     }
 
