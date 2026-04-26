@@ -14,6 +14,7 @@ public class CombustivelApiService : ICombustivelService
 {
     private static readonly HttpClient _client = new HttpClient();
     
+    private static readonly String baseUrl = "https://precoscombustiveis.dgeg.gov.pt/api/";
     //Contrutor
     public CombustivelApiService()
     {
@@ -25,7 +26,7 @@ public class CombustivelApiService : ICombustivelService
     }
     
     // chamada e processo da resposta da API DGEG
-    public async Task<T?> ObterDadosDgegAsync<T>(string urlDestino)
+    public async Task<T?> chamarDGEG<T>(string urlDestino)
     {
         //tentativas de connecção
         int tentativas = 0;
@@ -40,21 +41,31 @@ public class CombustivelApiService : ICombustivelService
                 HttpResponseMessage resposta = await _client.GetAsync(urlDestino);
                 resposta.EnsureSuccessStatusCode(); 
 
-                string textoJson = await resposta.Content.ReadAsStringAsync();
+                string jsonResponse = await resposta.Content.ReadAsStringAsync();
 
                 JsonSerializerOptions opcoes = new JsonSerializerOptions();
                 opcoes.PropertyNameCaseInsensitive = true;
 
                 // 1. Lemos o documento JSON inteiro de forma dinâmica
-                JsonDocument documento = JsonDocument.Parse(textoJson);
-            
+                JsonDocument response = JsonDocument.Parse(jsonResponse);
+                //Console.WriteLine("JSON RECEBIDO: " + jsonResponse);
+
+                //TODO validar se a propriedade status existe
+                //if (documento.RootElement.TryGetProperty("status", out JsonElement statusElement))
+
+                bool status = response.RootElement.GetProperty("status").GetBoolean();
+                if (!status) {
+                    //Devolve valor padrão - null para a lista
+                   return default;
+                } 
+                
+                //TODO validar se a propriedade resultado existe
+                
                 // 2. Vamos diretos à "gaveta" chamada "resultado" (que é onde está a lista no JSON deles)
-                JsonElement gavetaResultado = documento.RootElement.GetProperty("resultado");
+                JsonElement resultado = response.RootElement.GetProperty("resultado");
 
                 // 3. Retorna as propriedades JSON que satisfaça a igualdade do tipo de dados introduzido
-                return JsonSerializer.Deserialize<T>(gavetaResultado.GetRawText(), opcoes);
-
-
+                return JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
             }
             // Exception Quando estas sem internet ou URL invalido
             catch (HttpRequestException  e)
@@ -73,6 +84,12 @@ public class CombustivelApiService : ICombustivelService
     
     public async Task<List<PrecoMedio>> ObterMediasAsync()
     {
+        String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
+        String paramData = "dataIni=2026/03/01";
+        String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&&" + paramData;
+        List<PrecoMedio> listaMedias = await chamarDGEG<List<PrecoMedio>>(url);
+        return listaMedias ?? new List<PrecoMedio>();
+        
         await Task.Delay(500);
         return new List<PrecoMedio>
         {
