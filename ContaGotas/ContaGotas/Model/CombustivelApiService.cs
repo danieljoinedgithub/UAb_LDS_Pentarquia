@@ -28,12 +28,11 @@ public class CombustivelApiService : ICombustivelService
     // chamada e processo da resposta da API DGEG
     public async Task<T?> chamarDGEG<T>(string urlDestino)
     {
-        //tentativas de connecção
         int tentativas = 0;
         const int maxTentativas = 3;
-        bool continuar = true;
 
-        while (continuar)
+        // Simplificámos o while!
+        while (tentativas < maxTentativas)
         {
             try
             {
@@ -46,62 +45,60 @@ public class CombustivelApiService : ICombustivelService
                 JsonSerializerOptions opcoes = new JsonSerializerOptions();
                 opcoes.PropertyNameCaseInsensitive = true;
 
-                // 1. Lemos o documento JSON inteiro de forma dinâmica
                 JsonDocument response = JsonDocument.Parse(jsonResponse);
-                //Console.WriteLine("JSON RECEBIDO: " + jsonResponse);
 
-                //TODO validar se a propriedade status existe
-                //if (documento.RootElement.TryGetProperty("status", out JsonElement statusElement))
-
-                bool status = response.RootElement.GetProperty("status").GetBoolean();
-                if (!status) {
-                    //Devolve valor padrão - null para a lista
+                // CORREÇÃO DO BUG: Validar a existência das propriedades de forma segura (sem estourar)
+                // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
+                // este GetProperty vai disparar uma KeyNotFoundException
+                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) || !statusElement.GetBoolean()) 
+                {
                    return default;
                 } 
                 
-                //TODO validar se a propriedade resultado existe
-                
-                // 2. Vamos diretos à "gaveta" chamada "resultado" (que é onde está a lista no JSON deles)
-                JsonElement resultado = response.RootElement.GetProperty("resultado");
+                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado)) 
+                {
+                   return default;
+                }
 
-                // 3. Retorna as propriedades JSON que satisfaça a igualdade do tipo de dados introduzido
                 return JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
             }
-            // Exception Quando estas sem internet ou URL invalido
-            catch (HttpRequestException  e)
+            // Falha de Internet ou Servidor da DGEG
+            catch (HttpRequestException e)
             {
                 if (tentativas == maxTentativas)
                 {
-                    Console.WriteLine("Servidor não encontrado");
-                    throw;  
+                    // Lança o erro para cima, o Controller try-catch vai apanhar!
+                    throw new Exception("Servidor da DGEG não encontrado após várias tentativas.");  
                 }
-                
+                // CORREÇÃO DO BUG: Esperar 2 segundos antes de tentar de novo
+                // Ia fazer 3 pedidos à DGEG numa fração de segundo, o que não dá tempo para a internet voltar.
+                await Task.Delay(2000); 
             }
-        }return default;
+            // Qualquer outro erro (ex: o JSON vinha estragado)
+            catch (Exception e)
+            {
+                // Qualquer erro inesperado é capturado aqui para não crashar a app
+                throw new Exception($"Erro inesperado ao ler dados da DGEG: {e.Message}");
+            }
+        }
+        return default;
     }
-    
-
     
     public async Task<List<PrecoMedio>> ObterMediasAsync()
     {
         String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
-        String paramData = "dataIni=2026/03/01";
+        // No futuro isto talvez deve de ser dinâmico
+        String paramData = "dataIni=2026/03/01"; 
+        
         String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&&" + paramData;
         List<PrecoMedio> listaMedias = await chamarDGEG<List<PrecoMedio>>(url);
-        return listaMedias ?? new List<PrecoMedio>();
         
-        await Task.Delay(500);
-        return new List<PrecoMedio>
-        {
-            new PrecoMedio("1.55 €", "Gasolina", "Lisboa"),
-            new PrecoMedio("1.62 €", "Gasóleo", "Porto"),
-            new PrecoMedio("1.48 €", "Gasolina", "Coimbra")
-        };
+        // CORREÇÃO: O código morto foi todo apagado. Só fica isto!
+        // Já não precisam de dados simulados
+        return listaMedias ?? new List<PrecoMedio>();
     }
     
 }
-
-
 
 
 

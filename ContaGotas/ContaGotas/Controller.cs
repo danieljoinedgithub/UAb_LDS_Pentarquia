@@ -2,18 +2,13 @@ namespace ContaGotas;
 
 public class Controller
 {
-    Model model;
-    View view;
+    private Model model;
 
-    public Controller()
+    // O Controller agora só recebe o Model já pronto
+    public Controller(Model m)
     {
-        var service = new CombustivelApiService();
-        model = new Model(service);
-        view = new View(this, model);
-        
-        view.Pesquisa += PesquisaDistrital;
+        model = m;
     }
-    
     
     // inicio de esqueleto de processo de obter dados média em controller
     public void SelecionarOpcao(string opcao)
@@ -26,10 +21,6 @@ public class Controller
     }
     // final de esqueleto de processo de obter dados média em controller
     
-    public void IniciarAplicacao()
-    {
-        view.AtivarInterfaceComOpcoes();
-    }
     public void TerminarAplicacao()
     {
         Environment.Exit(0);
