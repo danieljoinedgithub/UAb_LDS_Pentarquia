@@ -50,31 +50,32 @@ public class View
         }
     }
 
-    public void AtivarInterfaceComOpcoes()
+    // Passa a async Task
+    // Temos de dizer à View para "esperar" (await) que o Controller acabe 
+    // de falar com a API antes de imprimir o menu de novo
+    public async Task AtivarInterfaceComOpcoes()
     {
-        //Fluxo fechado do menu enquanto não selecionar a opção de sair
         while (true)
         {
-            Console.WriteLine("MENU:");
+            Console.WriteLine("\nMENU:");
             Console.WriteLine("1 - Ver médias");
             Console.WriteLine("2 - Pesquisar distrital");
             Console.WriteLine("3 - Estatisticas");
             Console.WriteLine("0 - Sair");
 
-            SelecionarOpcao();
+            await SelecionarOpcao();
         }
     }
-    public void SelecionarOpcao()
+
+    // Passa a async Task
+    public async Task SelecionarOpcao()
     {
-        //Obter input do utilizador
         Console.Write("Escolha opção: ");
         string input = Console.ReadLine();
 
-        //Validações da opção selecionada (se 0 ou inválida)
         if (int.TryParse(input, out int opcao))
         {
-            //Notificar o controller da opção selecionada
-            controller.OpcaoSelecionada(opcao);
+            await controller.OpcaoSelecionada(opcao);
         } else {
             Console.WriteLine("Entrada inválida!");
         }
