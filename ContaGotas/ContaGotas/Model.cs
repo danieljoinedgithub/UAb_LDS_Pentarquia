@@ -8,7 +8,7 @@ public class Model
 
     public event Action? OnMudancaEstado;
 
-    private List<PrecoMedio> _medias = new();
+    private List<PrecoMedioModel> _medias = new();
 
     // --- CONSTRUTOR LIMPO ---
     public Model(ICombustivelService service)
@@ -23,7 +23,7 @@ public class Model
         OnMudancaEstado?.Invoke();
     }
 
-    public List<PrecoMedio> ObterMedias()
+    public List<PrecoMedioModel> ObterMedias()
     {
         return _medias;
     }

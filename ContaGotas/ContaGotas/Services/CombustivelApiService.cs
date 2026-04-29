@@ -5,7 +5,7 @@ namespace ContaGotas;
 
 public interface ICombustivelService
 {
-    Task<List<PrecoMedio>> ObterMediasAsync();
+    Task<List<PrecoMedioModel>> ObterMediasAsync();
     
 }
 
@@ -84,41 +84,18 @@ public class CombustivelApiService : ICombustivelService
         return default;
     }
     
-    public async Task<List<PrecoMedio>> ObterMediasAsync()
+    public async Task<List<PrecoMedioModel>> ObterMediasAsync()
     {
         String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
         // No futuro isto talvez deve de ser dinâmico
         String paramData = "dataIni=2026/03/01"; 
         
         String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&&" + paramData;
-        List<PrecoMedio> listaMedias = await chamarDGEG<List<PrecoMedio>>(url);
-        
-        // CORREÇÃO: O código morto foi todo apagado. Só fica isto!
+        List<PrecoMedioModel> listaMedias = await chamarDGEG<List<PrecoMedioModel>>(url);
+
         // Já não precisam de dados simulados
-        return listaMedias ?? new List<PrecoMedio>();
+        return listaMedias ?? new List<PrecoMedioModel>();
     }
     
 }
-
-
-
-public class PrecoMedio
-{
-    [System.Text.Json.Serialization.JsonPropertyName("PrecoMedio")]
-    public string valor { get; set; }
-
-    [System.Text.Json.Serialization.JsonPropertyName("TipoCombustivel")]
-    public string combustivel { get; set; }
-
-    [System.Text.Json.Serialization.JsonPropertyName("Distrito")]
-    public string distrito { get; set; }
-
-    public PrecoMedio(string valor, string combustivel, string distrito)
-    {
-        this.valor = valor;
-        this.combustivel = combustivel;
-        this.distrito = distrito;
-    }
-}
-
 

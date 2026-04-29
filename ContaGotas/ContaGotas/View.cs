@@ -40,7 +40,7 @@ public class View
         MostrarDados(dados);
     }
 
-    private void MostrarDados(List<PrecoMedio> dados)
+    private void MostrarDados(List<PrecoMedioModel> dados)
     {
         Console.WriteLine("Médias obtidas:");
 
