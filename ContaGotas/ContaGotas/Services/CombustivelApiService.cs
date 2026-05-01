@@ -5,7 +5,7 @@ namespace ContaGotas;
 
 public interface ICombustivelService
 {
-    Task<List<PrecoMedioModel>> ObterMediasAsync();
+    Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7);
     
 }
 
@@ -38,7 +38,7 @@ public class CombustivelApiService : ICombustivelService
             {
                 tentativas++;
                 HttpResponseMessage resposta = await _client.GetAsync(urlDestino);
-                resposta.EnsureSuccessStatusCode(); 
+                resposta.EnsureSuccessStatusCode();
 
                 string jsonResponse = await resposta.Content.ReadAsStringAsync();
 
@@ -50,14 +50,15 @@ public class CombustivelApiService : ICombustivelService
                 // CORREÇÃO DO BUG: Validar a existência das propriedades de forma segura (sem estourar)
                 // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
                 // este GetProperty vai disparar uma KeyNotFoundException
-                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) || !statusElement.GetBoolean()) 
+                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) ||
+                    !statusElement.GetBoolean())
                 {
-                   return default;
-                } 
-                
-                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado)) 
+                    return default;
+                }
+
+                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado))
                 {
-                   return default;
+                    return default;
                 }
 
                 return JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
@@ -68,11 +69,23 @@ public class CombustivelApiService : ICombustivelService
                 if (tentativas == maxTentativas)
                 {
                     // Lança o erro para cima, o Controller try-catch vai apanhar!
-                    throw new Exception("Servidor da DGEG não encontrado após várias tentativas.");  
+                    throw new Exception("Servidor da DGEG não encontrado após várias tentativas.");
                 }
+
                 // CORREÇÃO DO BUG: Esperar 2 segundos antes de tentar de novo
                 // Ia fazer 3 pedidos à DGEG numa fração de segundo, o que não dá tempo para a internet voltar.
-                await Task.Delay(2000); 
+                await Task.Delay(2000);
+            }
+            // Validação do timeout da chamada
+            catch (TaskCanceledException e)
+            {
+                if (tentativas == maxTentativas)
+                    throw new Exception("Timeout ao chamar a API da DGEG.");
+            }
+            // Validação dos dados JSON recebidos
+            catch (JsonException)
+            {
+                throw new Exception("Dados inválidos obtidos da API da DGEG.");
             }
             // Qualquer outro erro (ex: o JSON vinha estragado)
             catch (Exception e)
@@ -84,16 +97,18 @@ public class CombustivelApiService : ICombustivelService
         return default;
     }
     
-    public async Task<List<PrecoMedioModel>> ObterMediasAsync()
+    public async Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7)
     {
         String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
-        // No futuro isto talvez deve de ser dinâmico
-        String paramData = "dataIni=2026/03/01"; 
+
+        // Obter as médias com a data dinâmica
+        if (diasAntes > 0)
+            diasAntes = -diasAntes;
+        string paramData = $"dataIni={DateTime.Now.AddDays(diasAntes):yyyy/MM/dd}";
         
-        String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&&" + paramData;
+        String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&" + paramData;
         List<PrecoMedioModel> listaMedias = await chamarDGEG<List<PrecoMedioModel>>(url);
 
-        // Já não precisam de dados simulados
         return listaMedias ?? new List<PrecoMedioModel>();
     }
     
