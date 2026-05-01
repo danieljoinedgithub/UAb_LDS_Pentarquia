@@ -1,21 +1,99 @@
 namespace ContaGotas;
 
-public class View
+using ZedGraph;
+using System.Drawing;
+using System;
+using System.Threading;          
+using System.Windows.Forms;
+using System.Threading.Tasks;
+
+public class View : Form
 {
     private Controller controller;
     private Model model;
+    private string opcao = "";
+    
+    private ZedGraphControl zedGraphControl;
+    private bool _isUpdating = false; //para prevenir crash de clicar muitas vezes
     
     public View(Controller c,Model m)
     {
         controller = c;
         model = m;
         
+        // Inicialização do componente gráfico
+        zedGraphControl = new ZedGraphControl();
+        zedGraphControl.Dock = DockStyle.Fill; 
+        this.Controls.Add(zedGraphControl);
+        ConfigurarEstiloGrafico();
+        
         //Subscrição dos eventos necessarios entre View-Model
         model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
         model.NotificarDistritos += ApresentarDistritos;
         model.OnMudancaEstado += NotificarMudancaEstado;
+        
+        // em caso de erro de dados
+        model.OnErroDados += MostrarMensagemErro;
+        
+        
+        
+        
+        
+        // --- TESTE DO ZEDGRAPH ---
+        // Injetamos aqui para ver se o motor gráfico está a funcionar
+        var dadosTeste = new List<PrecoMedioModel> {
+            new PrecoMedioModel("1.75", "Gasolina 95", "Lisboa"),
+            new PrecoMedioModel("1.62", "Gasóleo", "Porto"),
+            new PrecoMedioModel("1.89", "Gasolina 98", "Coimbra")
+        };
+
+        AtualizarGrafico(dadosTeste);
+        // -------------------------
+        
     }
     
+    private void ConfigurarEstiloGrafico()
+    {
+        GraphPane myPane = zedGraphControl.GraphPane;
+        myPane.Title.Text = "Evolução de Preços Médios";
+        myPane.XAxis.Title.Text = "Combustível";
+        myPane.YAxis.Title.Text = "Preço (€)";
+        
+        // Risco: Eixo mal configurado -> Forçar escala a começar no zero
+        myPane.YAxis.Scale.Min = 0;
+    }
+    
+    private void AtualizarGrafico(List<PrecoMedioModel> dados)
+    {
+        GraphPane myPane = zedGraphControl.GraphPane;
+        
+        // Risco: Crash ao redesenhar -> Limpar sempre antes de adicionar
+        myPane.CurveList.Clear();
+
+        // Recomendação: Validar se há dados (Tarefa 2)
+        if (dados.Count == 0)
+        {
+            Console.WriteLine("[Aviso Gráfico] Sem pontos para desenhar.");
+            return;
+        }
+
+        PointPairList listaPontos = new PointPairList();
+        double x = 1;
+
+        foreach (var d in dados)
+        {
+            // Forçamos a conversão para double aqui
+            listaPontos.Add(x, (double)d.valor); 
+            x++;
+        }
+
+        // Criar a curva (Barras ou Linhas)
+        LineItem minhaCurva = myPane.AddCurve("Preço", listaPontos, Color.Blue, SymbolType.Circle);
+        
+        // Risco: Gráfico sem pontos -> Avisar o componente para recalcular escalas
+        zedGraphControl.AxisChange();
+        Console.WriteLine("[ZedGraph] Gráfico atualizado com sucesso.");
+    }
     
     //Eventos
     public event Action<int, int>? Pesquisa;
@@ -37,7 +115,22 @@ public class View
     private void NotificarMudancaEstado()
     {
         var dados = model.ObterMedias();
+        
+        // Mostrar na consola
         MostrarDados(dados);
+        
+        // Mostrar no Gráfico
+        AtualizarGrafico(dados);
+        
+        _isUpdating = false; // Libertar bloqueio (Tarefa 1)
+    }
+    
+    private void MostrarMensagemErro(string mensagem)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"\n[ERRO]: {mensagem}");
+        Console.ResetColor();
+        _isUpdating = false; // Libertar bloqueio em caso de falha
     }
 
     private void MostrarDados(List<PrecoMedioModel> dados)
@@ -61,23 +154,72 @@ public class View
             Console.WriteLine("1 - Ver médias");
             Console.WriteLine("2 - Pesquisar distrital");
             Console.WriteLine("3 - Estatisticas");
+            Console.WriteLine("4 - grafico"); //iremos alterar de lugar depois, só para testar
             Console.WriteLine("0 - Sair");
 
-            await SelecionarOpcao();
+            string? leitura = Console.ReadLine();
+            this.opcao = leitura ?? "";
+            
+            if (this.opcao == "4") 
+            {
+                Console.WriteLine("A preparar ambiente gráfico... Aguarde.");
+    
+                Thread t = new Thread(() => {
+                    try 
+                    {
+                        // Criamos uma NOVA instância da View para o modo gráfico
+                        // Isso evita conflitos com o que a consola está a fazer
+                        View formGrafico = new View(this.controller, this.model);
+            
+                        Application.EnableVisualStyles();
+                        // Inicia o loop de mensagens nesta thread específica
+                        Application.Run(formGrafico); 
+                    }
+                    catch (Exception ex) {
+                        Console.WriteLine("\n[Erro]: " + ex.Message);
+                    }
+                });
+
+                t.SetApartmentState(ApartmentState.STA);
+                t.IsBackground = true; // Garante que a thread fecha se a consola fechar
+                t.Start();
+            }
+        
+            if (this.opcao == "0") break;
         }
     }
 
     // Passa a async Task
     public async Task SelecionarOpcao()
     {
+        if (_isUpdating) 
+        {
+            Console.WriteLine("\nAguarde, o pedido anterior ainda está a ser processado...");
+            return;
+        }
+        
         Console.Write("Escolha opção: ");
         string input = Console.ReadLine();
 
         if (int.TryParse(input, out int opcao))
         {
-            await controller.OpcaoSelecionada(opcao);
-        } else {
-            Console.WriteLine("Entrada inválida!");
+            // Ativamos o bloqueio antes de chamar o controller
+            _isUpdating = true; 
+        
+            try 
+            {
+                await controller.OpcaoSelecionada(opcao);
+            }
+            catch (Exception ex)
+            {
+                // Se algo falhar no controller/API, garantimos que o bloqueio é libertado
+                MostrarMensagemErro("Erro inesperado no processamento.");
+                _isUpdating = false;
+            }
+        } 
+        else 
+        {
+            Console.WriteLine("Entrada inválida! Por favor, insira um número.");
         }
     }
 

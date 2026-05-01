@@ -1,24 +1,27 @@
-﻿using System.Text.Json;
+﻿using System.Text.Json.Serialization;
+using System.Globalization;
 
 namespace ContaGotas;
 
 public class PrecoMedioModel
 {
-    [System.Text.Json.Serialization.JsonPropertyName("PrecoMedio")]
-    public string valor { get; set; }
+    [JsonPropertyName("PrecoMedio")]
+    public string valorTexto { get; set; } = string.Empty;
 
-    [System.Text.Json.Serialization.JsonPropertyName("TipoCombustivel")]
-    public string combustivel { get; set; }
+    [JsonPropertyName("TipoCombustivel")]
+    public string combustivel { get; set; } = string.Empty;
 
-    [System.Text.Json.Serialization.JsonPropertyName("Distrito")]
-    public string distrito { get; set; }
+    [JsonPropertyName("Distrito")]
+    public string distrito { get; set; } = string.Empty;
 
-    public PrecoMedioModel(string valor, string combustivel, string distrito)
+    // conversao de string para numero para utilizaçao do view
+    public double valor => double.TryParse(valorTexto?.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out var res) ? res : 0;
+
+    // Construtor atualizado para usar valorTexto
+    public PrecoMedioModel(string valorTexto, string combustivel, string distrito)
     {
-        this.valor = valor;
+        this.valorTexto = valorTexto;
         this.combustivel = combustivel;
         this.distrito = distrito;
     }
 }
-
-

@@ -1,12 +1,16 @@
 namespace ContaGotas;
 
 using System.Threading.Tasks;
+using System.Linq;
 
 public class Model
 {
     private ICombustivelService _service;
 
     public event Action? OnMudancaEstado;
+    
+    // evento quando a pesquisa não encontra nada
+    public event Action<string>? OnErroDados;
 
     private List<PrecoMedioModel> _medias = new();
 
@@ -16,16 +20,36 @@ public class Model
         _service = service;
     }
 
-    // --- MÉDIAS (ligado ao Service) ---
+    //  MÉDIAS 
     public async Task AtualizarMedias()
     {
-        _medias = await _service.ObterMediasAsync();
-        OnMudancaEstado?.Invoke();
+        try 
+        {
+            var dadosApi = await _service.ObterMediasAsync();
+
+            // proteção contra valores null / Lista vazia 
+            if (dadosApi == null || !dadosApi.Any())
+            {
+                _medias = new List<PrecoMedioModel>(); // Garante que não é null
+                OnErroDados?.Invoke("Sem dados disponíveis para as médias nacionais.");
+                return;
+            }
+
+            _medias = dadosApi;
+            OnMudancaEstado?.Invoke();
+        }
+        catch (Exception)
+        {
+            // Proteção contra falhas de rede
+            OnErroDados?.Invoke("Erro de ligação ao servidor da DGEG.");
+        }
     }
+    
 
     public List<PrecoMedioModel> ObterMedias()
     {
-        return _medias;
+        // Se for null, devolvemos lista vazia para não crashar a View
+        return _medias ?? new List<PrecoMedioModel>();
     }
 
     // --- OUTRAS FUNCIONALIDADES ---
@@ -52,4 +76,5 @@ public class Model
         // Exemplo futuro:
         // var dados = await _service.ObterPostosAsync(distrito, id);
     }
+    
 }
