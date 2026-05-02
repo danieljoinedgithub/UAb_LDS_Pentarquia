@@ -6,7 +6,7 @@ public class Model
 {
     private ICombustivelService _service;
 
-    public event Action? OnMudancaEstado;
+    public event Action? OnMediasProntas;
 
     private List<PrecoMedioModel> _medias = new();
 
@@ -20,7 +20,7 @@ public class Model
     public async Task AtualizarMedias()
     {
         _medias = await _service.ObterMediasAsync();
-        OnMudancaEstado?.Invoke();
+        OnMediasProntas?.Invoke();
     }
 
     public List<PrecoMedioModel> ObterMedias()

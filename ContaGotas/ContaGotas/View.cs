@@ -13,7 +13,7 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
         model.NotificarDistritos += ApresentarDistritos;
-        model.OnMudancaEstado += NotificarMudancaEstado;
+        model.OnMediasProntas += MostrarMedias;
     }
     
     
@@ -34,16 +34,16 @@ public class View
     
     // --- MÉDIAS ---
 
-    private void NotificarMudancaEstado()
+    private void MostrarMedias()
     {
         var dados = model.ObterMedias();
-        MostrarDados(dados);
-    }
-
-    private void MostrarDados(List<PrecoMedioModel> dados)
-    {
+        
+        if (!dados.Any()) {
+            Console.WriteLine("Não existem médias disponíveis da DGEG para o período selecionado.");
+            return;
+        }
+        
         Console.WriteLine("Médias obtidas:");
-
         foreach (var d in dados)
         {
             Console.WriteLine(d.combustivel +" "+ d.valor);

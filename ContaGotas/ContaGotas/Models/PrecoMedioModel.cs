@@ -1,7 +1,7 @@
 ﻿namespace ContaGotas;
 using System.Text.Json.Serialization;
 
-public class PrecoMedioModel
+public class PrecoMedioModel : IValido
 {
     [JsonPropertyName("PrecoMedio")]
     public string valor { get; set; }

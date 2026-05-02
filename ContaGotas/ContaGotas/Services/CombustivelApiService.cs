@@ -61,7 +61,8 @@ public class CombustivelApiService : ICombustivelService
                     return default;
                 }
 
-                return JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
+                var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
+                return dados;
             }
             // Falha de Internet ou Servidor da DGEG
             catch (HttpRequestException e)
@@ -109,7 +110,13 @@ public class CombustivelApiService : ICombustivelService
         String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&" + paramData;
         List<PrecoMedioModel> listaMedias = await chamarDGEG<List<PrecoMedioModel>>(url);
 
-        return listaMedias ?? new List<PrecoMedioModel>();
+        if (listaMedias == null)
+            return new List<PrecoMedioModel>();
+
+        //Validação de dados para garantir que só são devolvidos dados válidos
+        return listaMedias
+            .Where(m => m.IsValido())
+            .ToList();
     }
     
 }
