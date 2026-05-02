@@ -1,6 +1,32 @@
-﻿using System.Text.Json;
+﻿using System.IO.Enumeration;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ContaGotas;
+
+
+public class PrecoDgegConverter : JsonConverter<decimal>
+{
+    public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Number)
+            return reader.GetDecimal();
+        
+        
+        
+        string value = reader.GetString();
+        if (string.IsNullOrWhiteSpace(value)) return 0;
+
+        // Remove "€"
+        string cleaned = value.Replace("€", "").Trim();
+        return decimal.Parse(cleaned , new System.Globalization.CultureInfo("pt-PT"));
+    }
+
+    public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(value);
+    }
+}
 
 
 public interface ICombustivelService
@@ -44,6 +70,7 @@ public class CombustivelApiService : ICombustivelService
 
                 JsonSerializerOptions opcoes = new JsonSerializerOptions();
                 opcoes.PropertyNameCaseInsensitive = true;
+                opcoes.Converters.Add(new PrecoDgegConverter());
 
                 JsonDocument response = JsonDocument.Parse(jsonResponse);
 
@@ -60,6 +87,13 @@ public class CombustivelApiService : ICombustivelService
                 {
                     return default;
                 }
+                
+                // caso não tiver 
+                if (resultado.GetRawText() == "[]" )
+                {
+                    //por agora o catch nesta classe apanha
+                    throw new Exception("Resultado DGEG Vazio: ");
+                }
 
                 var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
                 return dados;
@@ -75,6 +109,24 @@ public class CombustivelApiService : ICombustivelService
 
                 // CORREÇÃO DO BUG: Esperar 2 segundos antes de tentar de novo
                 // Ia fazer 3 pedidos à DGEG numa fração de segundo, o que não dá tempo para a internet voltar.
+                await Task.Delay(2000);}
+            catch (JsonException e)
+            {
+                if (tentativas == maxTentativas)
+                {
+                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                }
+                
+                await Task.Delay(2000);
+            }
+            //quando algum campo com variavel defenida como required apanhar um null o conversor manda FormatException
+            catch (System.FormatException e)
+            {
+                if (tentativas == maxTentativas)
+                {
+                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                }
+                
                 await Task.Delay(2000);
             }
             // Validação do timeout da chamada
@@ -84,7 +136,7 @@ public class CombustivelApiService : ICombustivelService
                     throw new Exception("Timeout ao chamar a API da DGEG.");
             }
             // Validação dos dados JSON recebidos
-            catch (JsonException)
+            catch (Exception ex) when (ex is System.FormatException || ex is FormatException)
             {
                 throw new Exception("Dados inválidos obtidos da API da DGEG.");
             }
