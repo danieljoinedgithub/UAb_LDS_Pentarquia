@@ -5,10 +5,10 @@ namespace ContaGotas;
 
 public class TipoCombustivel 
 { 
-    [JsonPropertyName("ID")]
-    public int Id { get; set; } 
+    [JsonPropertyName("Id")]
+    public required int  Id { get; set; } //required para obrigar a preencer com valor
     
-    [JsonPropertyName("Descricao")]
+    [JsonPropertyName("Descritivo")]
     public string Nome { get; set; } 
 }
 
@@ -52,8 +52,8 @@ public class Posto
     public string Morada { get; set; }
     
     [JsonPropertyName("Preco")]
-    public string PrecoString { get; set; } // A API às vezes envia como string "1,749 €"
+    public required decimal PrecoString { get; set; } // A API às vezes envia como string "1,749 €"
 
     // Propriedade auxiliar para cálculos
-    public double Preco => double.TryParse(PrecoString?.Split(' ')[0].Replace(',', '.'), out var res) ? res : 0;
+    //public double Preco => double.TryParse(PrecoString?.Split(' ')[0].Replace(',', '.'), out var res) ? res : 0;
 }

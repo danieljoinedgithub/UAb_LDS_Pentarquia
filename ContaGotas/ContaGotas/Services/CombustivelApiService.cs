@@ -1,6 +1,31 @@
-﻿using System.Text.Json;
+﻿using System.IO.Enumeration;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ContaGotas;
+
+public class PrecoDgegConverter : JsonConverter<decimal>
+{
+    public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.Number)
+            return reader.GetDecimal();
+        
+        
+        
+        string value = reader.GetString();
+        if (string.IsNullOrWhiteSpace(value)) return 0;
+
+        // Remove "€"
+        string cleaned = value.Replace("€", "").Trim();
+        return decimal.Parse(cleaned , new System.Globalization.CultureInfo("pt-PT"));
+    }
+
+    public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue(value);
+    }
+}
 
 
 public interface ICombustivelService
@@ -12,7 +37,7 @@ public interface ICombustivelService
 // Implementação real que lida com HTTP
 public class CombustivelApiService : ICombustivelService
 {
-    private static readonly HttpClient _client = new HttpClient();
+    public  HttpClient _client = new HttpClient();
     
     private static readonly String baseUrl = "https://precoscombustiveis.dgeg.gov.pt/api/";
     //Contrutor
@@ -38,42 +63,77 @@ public class CombustivelApiService : ICombustivelService
             {
                 tentativas++;
                 HttpResponseMessage resposta = await _client.GetAsync(urlDestino);
-                resposta.EnsureSuccessStatusCode(); 
+                resposta.EnsureSuccessStatusCode();
 
                 string jsonResponse = await resposta.Content.ReadAsStringAsync();
 
                 JsonSerializerOptions opcoes = new JsonSerializerOptions();
                 opcoes.PropertyNameCaseInsensitive = true;
+                opcoes.Converters.Add(new PrecoDgegConverter());
 
                 JsonDocument response = JsonDocument.Parse(jsonResponse);
 
                 // CORREÇÃO DO BUG: Validar a existência das propriedades de forma segura (sem estourar)
                 // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
                 // este GetProperty vai disparar uma KeyNotFoundException
-                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) || !statusElement.GetBoolean()) 
+                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) ||
+                    !statusElement.GetBoolean())
                 {
-                   return default;
-                } 
-                
-                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado)) 
-                {
-                   return default;
+                    return default;
                 }
 
+                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado))
+                {
+                    return default;
+                }
+
+                // caso não tiver 
+                if (resultado.GetRawText() == "[]" )
+                {
+                    //por agora o catch nesta classe apanha
+                    throw new Exception("Resultado DGEG Vazio: ");
+                }
+                
+                
+                
                 return JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
             }
+
+            
+            
             // Falha de Internet ou Servidor da DGEG
             catch (HttpRequestException e)
             {
                 if (tentativas == maxTentativas)
                 {
                     // Lança o erro para cima, o Controller try-catch vai apanhar!
-                    throw new Exception("Servidor da DGEG não encontrado após várias tentativas.");  
+                    throw new Exception("Servidor da DGEG não encontrado após várias tentativas.");
                 }
+
                 // CORREÇÃO DO BUG: Esperar 2 segundos antes de tentar de novo
                 // Ia fazer 3 pedidos à DGEG numa fração de segundo, o que não dá tempo para a internet voltar.
-                await Task.Delay(2000); 
+                await Task.Delay(2000);
             }
+            catch (JsonException e)
+            {
+                if (tentativas == maxTentativas)
+                {
+                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                }
+                
+                await Task.Delay(2000);
+            }
+            //quando algum campo com variavel defenida como required apanhar um null o conversor manda FormatException
+            catch (System.FormatException e)
+            {
+                if (tentativas == maxTentativas)
+                {
+                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                }
+                
+                await Task.Delay(2000);
+            }
+            
             // Qualquer outro erro (ex: o JSON vinha estragado)
             catch (Exception e)
             {
@@ -98,4 +158,3 @@ public class CombustivelApiService : ICombustivelService
     }
     
 }
-
