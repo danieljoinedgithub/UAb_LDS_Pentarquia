@@ -74,13 +74,16 @@ public class CombustivelApiService : ICombustivelService
 
                 string jsonResponse = await resposta.Content.ReadAsStringAsync();
 
+                //Validação de resposta vazia
+                if (string.IsNullOrWhiteSpace(jsonResponse))
+                    return default;
+
                 JsonSerializerOptions opcoes = new JsonSerializerOptions();
                 opcoes.PropertyNameCaseInsensitive = true;
                 opcoes.Converters.Add(new PrecoDgegConverter());
 
                 JsonDocument response = JsonDocument.Parse(jsonResponse);
-
-                // CORREÇÃO DO BUG: Validar a existência das propriedades de forma segura (sem estourar)
+                
                 // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
                 // este GetProperty vai disparar uma KeyNotFoundException
                 if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) ||
@@ -95,11 +98,11 @@ public class CombustivelApiService : ICombustivelService
                 }
                 
                 // caso não tiver 
-                if (resultado.GetRawText() == "[]" )
+                /*if (resultado.GetRawText() == "[]" )
                 {
                     //por agora o catch nesta classe apanha
                     throw new Exception("Resultado DGEG Vazio: ");
-                }
+                }*/
 
                 var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
                 return dados;
@@ -139,14 +142,11 @@ public class CombustivelApiService : ICombustivelService
             catch (TaskCanceledException e)
             {
                 if (tentativas == maxTentativas)
+                {
                     throw new Exception("Timeout ao chamar a API da DGEG.");
+                }
             }
             // Validação dos dados JSON recebidos
-            catch (Exception ex) when (ex is System.FormatException || ex is FormatException)
-            {
-                throw new Exception("Dados inválidos obtidos da API da DGEG.");
-            }
-            // Qualquer outro erro (ex: o JSON vinha estragado)
             catch (Exception e)
             {
                 // Qualquer erro inesperado é capturado aqui para não crashar a app

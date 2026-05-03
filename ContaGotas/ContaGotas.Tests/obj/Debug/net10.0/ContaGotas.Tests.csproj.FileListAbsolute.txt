@@ -1,106 +1,209 @@
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.csproj.AssemblyReference.cache
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.GeneratedMSBuildEditorConfig.editorconfig
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.AssemblyInfoInputs.cache
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.AssemblyInfo.cs
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.csproj.CoreCompileInputs.cache
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.sourcelink.json
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\.msCoverageSourceRootsMapping_ContaGotas.Tests
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\CoverletSourceRootsMapping_ContaGotas.Tests
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\testhost.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.deps.json
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.runtimeconfig.json
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.exe
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\testhost.exe
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.runner.visualstudio.testadapter.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.runner.reporters.netcoreapp10.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.runner.utility.netcoreapp10.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.Tests.deps.json
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.Tests.runtimeconfig.json
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.Tests.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.Tests.pdb
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.CoreUtilities.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.PlatformAbstractions.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.CommunicationUtilities.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.CrossPlatEngine.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.Utilities.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.TestPlatform.Common.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\Newtonsoft.Json.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.abstractions.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.assert.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.core.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\xunit.execution.dotnet.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\cs\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\cs\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\cs\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\de\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\de\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\de\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\es\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\es\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\es\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\fr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\fr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\fr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\it\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\it\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\it\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ja\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ja\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ja\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ko\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ko\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ko\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pl\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pl\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pl\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pt-BR\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pt-BR\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\pt-BR\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ru\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ru\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ru\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\tr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\tr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\tr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hans\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hans\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\bin\Debug\net10.0\ContaGotas.pdb
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGot.A35403E8.Up2Date
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\refint\ContaGotas.Tests.dll
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.pdb
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ContaGotas.Tests.genruntimeconfig.cache
-E:\UAB\Git\UAB\2 ano\2 Semestre\Laboratório de Desenvolvimento de Software\UAb_LDS_Pentarquia\ContaGotas\ContaGotas.Tests\obj\Debug\net10.0\ref\ContaGotas.Tests.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.csproj.AssemblyReference.cache
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.GeneratedMSBuildEditorConfig.editorconfig
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.AssemblyInfoInputs.cache
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.AssemblyInfo.cs
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.csproj.CoreCompileInputs.cache
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.sourcelink.json
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/.msCoverageSourceRootsMapping_ContaGotas.Tests
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/CoverletSourceRootsMapping_ContaGotas.Tests
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/testhost.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.deps.json
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.runtimeconfig.json
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.exe
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/testhost.exe
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.deps.json
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.runtimeconfig.json
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.pdb
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Newtonsoft.Json.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.abstractions.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.assert.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.core.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.execution.dotnet.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.pdb
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGot.A35403E8.Up2Date
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/refint/ContaGotas.Tests.dll
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.pdb
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.genruntimeconfig.cache
+E:/UAB/Git/UAB/2 ano/2 Semestre/Laboratório de Desenvolvimento de Software/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ref/ContaGotas.Tests.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/.msCoverageSourceRootsMapping_ContaGotas.Tests
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/CoverletSourceRootsMapping_ContaGotas.Tests
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.abstractions.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.deps.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.runtimeconfig.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.deps.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.runtimeconfig.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.Tests.pdb
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/testhost.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/Newtonsoft.Json.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.assert.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.core.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/xunit.execution.dotnet.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/bin/Debug/net10.0/ContaGotas.pdb
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.csproj.AssemblyReference.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.AssemblyInfoInputs.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.AssemblyInfo.cs
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.csproj.CoreCompileInputs.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.sourcelink.json
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGot.A35403E8.Up2Date
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/refint/ContaGotas.Tests.dll
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.pdb
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ContaGotas.Tests.genruntimeconfig.cache
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests/obj/Debug/net10.0/ref/ContaGotas.Tests.dll

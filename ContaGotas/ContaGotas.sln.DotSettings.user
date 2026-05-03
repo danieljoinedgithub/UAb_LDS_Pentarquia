@@ -32,6 +32,9 @@
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=40510a2c_002D96ec_002D483d_002D82ad_002Dfbce6bf04c99/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from PrecoMedioModelTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas.Tests" Presentation="&amp;lt;ContaGotas.Tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c489e4e_002D8752_002D485e_002Db4f5_002Df6f3e9f1144c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;And&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
