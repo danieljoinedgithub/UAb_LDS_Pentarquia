@@ -38,10 +38,11 @@ public interface ICombustivelService
 // Implementação real que lida com HTTP
 public class CombustivelApiService : ICombustivelService
 {
-    private static readonly HttpClient _client = new HttpClient();
+    private HttpClient _client = new HttpClient();
     
     private static readonly String baseUrl = "https://precoscombustiveis.dgeg.gov.pt/api/";
     //Contrutor
+
     public CombustivelApiService()
     {
         if (!_client.DefaultRequestHeaders.Contains("User-Agent"))
@@ -49,6 +50,11 @@ public class CombustivelApiService : ICombustivelService
             _client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
         }
+    }
+
+    public void setClient(HttpClient cliente)
+    {
+        this._client = cliente;
     }
     
     // chamada e processo da resposta da API DGEG

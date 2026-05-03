@@ -67,7 +67,7 @@ namespace ContaGotas.Tests
                            "\"Longitude\":-8.58063,\"Quantidade\":84}]}";
 
         var handler = new FakeDgegHandler(jsonErro);
-            service._client = new HttpClient(handler);
+        service.setClient(new HttpClient(handler));
             
             // Act
             List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
@@ -95,7 +95,7 @@ namespace ContaGotas.Tests
                            "\"Longitude\":-8.58063,\"Quantidade\":84}]}";
 
             var handler = new FakeDgegHandler(jsonErro);
-            service._client = new HttpClient(handler);
+            service.setClient(new HttpClient(handler));
             
             // Act
             var ex = await Assert.ThrowsAsync<Exception>(() => 
@@ -117,7 +117,7 @@ namespace ContaGotas.Tests
             var jsonErro = "{\"status\":true,\"mensagem\":\"sucesso\",\"resultado\":[]}";
 
             var handler = new FakeDgegHandler(jsonErro);
-            service._client = new HttpClient(handler);
+            service.setClient(new HttpClient(handler));
             
             // Act
             List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/");
