@@ -6,6 +6,9 @@ using System;
 using System.Threading;          
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+
+
 
 public class View : Form
 {
@@ -165,6 +168,16 @@ public class View : Form
 
             if (this.opcao == "4") 
             {
+                
+                // VERIFICAÇÃO DE SEGURANÇA PARA MACOS
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\n[AVISO]: O gráfico (ZedGraph) apenas é compatível com Windows.");
+                    Console.WriteLine("No MacOS, por favor consulte os dados através das opções de texto.");
+                    Console.ResetColor();
+                    continue; // Volta ao menu 
+                }
                 if (graficoAberto) { Console.WriteLine("\nAviso: O gráfico já está aberto."); continue; }
 
                 // 1. Obtemos os dados antes de abrir a thread
