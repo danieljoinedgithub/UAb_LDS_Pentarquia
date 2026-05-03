@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 public class View : Form
 {
+    
+    bool graficoAberto = false;
     private Controller controller;
     private Model model;
     private string opcao = "";
@@ -40,7 +42,6 @@ public class View : Form
         
         
         // --- TESTE DO ZEDGRAPH ---
-        // Injetamos aqui para ver se o motor gráfico está a funcionar
         var dadosTeste = new List<PrecoMedioModel> {
             new PrecoMedioModel("1.75", "Gasolina 95", "Lisboa"),
             new PrecoMedioModel("1.62", "Gasóleo", "Porto"),
@@ -148,6 +149,7 @@ public class View : Form
     // de falar com a API antes de imprimir o menu de novo
     public async Task AtivarInterfaceComOpcoes()
     {
+        
         while (true)
         {
             Console.WriteLine("\nMENU:");
@@ -160,31 +162,37 @@ public class View : Form
             string? leitura = Console.ReadLine();
             this.opcao = leitura ?? "";
             
+
             if (this.opcao == "4") 
             {
-                Console.WriteLine("A preparar ambiente gráfico... Aguarde.");
-    
+                if (graficoAberto) { Console.WriteLine("\nAviso: O gráfico já está aberto."); continue; }
+
+                // 1. Obtemos os dados antes de abrir a thread
+                var dadosParaExibir = controller.ObterDadosParaGrafico("sucesso"); 
+
                 Thread t = new Thread(() => {
                     try 
                     {
-                        // Criamos uma NOVA instância da View para o modo gráfico
-                        // Isso evita conflitos com o que a consola está a fazer
+                        graficoAberto = true;
+                        Application.EnableVisualStyles();
+            
+                        // 2. Usamos o construtor de 2 argumentos que JÁ EXISTE (resolve o erro :193)
                         View formGrafico = new View(this.controller, this.model);
             
-                        Application.EnableVisualStyles();
-                        // Inicia o loop de mensagens nesta thread específica
+                        // 3. Injetamos os dados diretamente no método de desenho
+                        formGrafico.AtualizarGrafico(dadosParaExibir);
+            
                         Application.Run(formGrafico); 
                     }
-                    catch (Exception ex) {
-                        Console.WriteLine("\n[Erro]: " + ex.Message);
-                    }
+                    catch (Exception ex) { Console.WriteLine("\n[Erro]: " + ex.Message); }
+                    finally { graficoAberto = false; }
                 });
 
                 t.SetApartmentState(ApartmentState.STA);
-                t.IsBackground = true; // Garante que a thread fecha se a consola fechar
+                t.IsBackground = true; 
                 t.Start();
             }
-        
+
             if (this.opcao == "0") break;
         }
     }

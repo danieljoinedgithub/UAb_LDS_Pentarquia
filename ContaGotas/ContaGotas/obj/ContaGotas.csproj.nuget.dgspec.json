@@ -13,9 +13,6 @@
         "packagesPath": "C:\\Users\\denys\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\denys\\RiderProjects\\UAb_LDS_Pentarquia\\ContaGotas\\ContaGotas\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\denys\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
