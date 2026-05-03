@@ -97,16 +97,18 @@ public class CombustivelApiService : ICombustivelService
                     return default;
                 }
                 
-                // caso não tiver 
-                /*if (resultado.GetRawText() == "[]" )
+                // caso não tiver nada no JsonElement resultado
+                if (resultado.GetRawText() == "[]" )
                 {
                     //por agora o catch nesta classe apanha
-                    throw new Exception("Resultado DGEG Vazio: ");
-                }*/
+                    throw new Exception("Resultados:[]");
+                }
 
                 var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
                 return dados;
             }
+            
+            //=== EXCEÇÕES ====//
             // Falha de Internet ou Servidor da DGEG
             catch (HttpRequestException e)
             {
@@ -145,10 +147,18 @@ public class CombustivelApiService : ICombustivelService
                 {
                     throw new Exception("Timeout ao chamar a API da DGEG.");
                 }
+                await Task.Delay(2000);
             }
             // Validação dos dados JSON recebidos
             catch (Exception e)
             {
+
+                if (e.Message == "Resultados:[]")
+                {
+                    throw new Exception("Resultados:[]");
+                }
+                
+                
                 // Qualquer erro inesperado é capturado aqui para não crashar a app
                 throw new Exception($"Erro inesperado ao ler dados da DGEG: {e.Message}");
             }

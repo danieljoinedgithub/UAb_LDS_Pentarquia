@@ -76,11 +76,7 @@ namespace ContaGotas.Tests
             // Assert
         
             Assert.NotEmpty(resultado);
-
-            foreach (var VARIABLE in resultado)
-            {
-                _testOutputHelper.WriteLine(VARIABLE.PrecoString.ToString());
-            }
+            
         }
         
         [Fact]
@@ -110,7 +106,7 @@ namespace ContaGotas.Tests
         
         
         [Fact]
-        public async Task ChamarDGEG_DeveRetornar_resultadoVazio()
+        public async Task ChamarDGEG_DeveRetornar_QunadoResultadoVazio()
         {
             // Arrange
             var service = new CombustivelApiService();
