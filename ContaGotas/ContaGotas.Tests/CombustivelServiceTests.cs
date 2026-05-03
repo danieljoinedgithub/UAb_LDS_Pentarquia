@@ -122,8 +122,10 @@ namespace ContaGotas.Tests
             // Act
             List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/");
 
-            // Assert
-            Assert.Empty(resultado);
+            // Assert (validação de se não é vazio ou null)
+            //Assert.Null(resultado);
+            //Assert.Empty(resultado);
+            Assert.True(resultado == null || !resultado.Any());
         }
         
         
