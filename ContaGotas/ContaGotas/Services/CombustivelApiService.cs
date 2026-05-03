@@ -1,5 +1,4 @@
-﻿using System.IO.Enumeration;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ContaGotas;
@@ -11,8 +10,6 @@ public class PrecoDgegConverter : JsonConverter<decimal>
     {
         if (reader.TokenType == JsonTokenType.Number)
             return reader.GetDecimal();
-        
-        
         
         string value = reader.GetString();
         if (string.IsNullOrWhiteSpace(value)) return 0;
