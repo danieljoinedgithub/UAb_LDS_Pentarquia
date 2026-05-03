@@ -59,8 +59,8 @@ public class View
         {
             Console.WriteLine("\nMENU:");
             Console.WriteLine("1 - Ver médias");
-            Console.WriteLine("2 - Pesquisar distrital");
-            Console.WriteLine("3 - Estatisticas");
+            Console.WriteLine("2 - Pesquisar distrital (em desenvolvimento)");
+            Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
             Console.WriteLine("0 - Sair");
 
             await SelecionarOpcao();
