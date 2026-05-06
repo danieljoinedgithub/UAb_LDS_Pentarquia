@@ -13,8 +13,7 @@ public class View
         model = m;
         
         //Subscrição dos eventos necessarios entre View-Model
-        model.NotificarTiposDeCombustivel += ApresentarTiposCombustivel;
-        model.NotificarDistritos += ApresentarDistritos;
+        model.OnTiposDistritos += ApresentarBoxTipoDistritos;
         model.OnMediasProntas += MostrarMedias;
     }
     
@@ -22,17 +21,6 @@ public class View
     //Eventos
     public event Action<int, int>? Pesquisa;
     
-    //utilizador clica no butao pesquisa
-    public void OnPesquisa()
-    {
-        //int tipo=campo1.getv
-        //int distrito=campo2.getv
-        
-        int tipo=1;
-        int distrito = 1;
-        
-        Pesquisa?.Invoke(tipo, distrito);
-    }
     
     // --- MÉDIAS ---
 
@@ -57,6 +45,7 @@ public class View
     // de falar com a API antes de imprimir o menu de novo
     public async Task AtivarInterfaceComOpcoes()
     {
+        
         while (true)
         {
             Console.WriteLine("\nMENU:");
@@ -83,31 +72,54 @@ public class View
         }
     }
 
-
-    private void ApresentarTiposCombustivel(List<string> tipos)
+/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
+     buscar a informação diretamente à classe e Onchange(reativo) quando os dois tiveren selecionados pesquisa 
+     se for com butao de pesquisa mesma coisa so faz pesquisa quando o utilizador escolhe os dois se por acaso clicar sem
+     as escolhas serem completa não faz nada e espera que o utilizador escolha ou volta a traz */
+    
+    //utilizador clica no butao pesquisa
+    public void OnPesquisa(int tipo,int distrito)
     {
+        Pesquisa?.Invoke(tipo, distrito);
+    }
+    
+    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    {
+        /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash ano sair do loop ate
+          opcao valida selecionada*/ 
+        
         //Apresentar os tipos de combustível
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
-        for (int i = 0; i < tipos.Count; i++)
+        foreach (var tipo in tipos)
         {
-            Console.WriteLine($"{i + 1} - {tipos[i]}");
+            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
         }
-        Console.WriteLine($"99 - Todos os tipos de combustivel");
-        
-        //TODO selecionar
-    }
-    
-    private void ApresentarDistritos(List<string> distritos)
-    {
-        //Apresentar os Distritos
-        Console.WriteLine("\nDISTRITOS:");
-        for (int i = 0; i < distritos.Count; i++)
-        {
-            Console.WriteLine($"{i + 1} - {distritos[i]}");
-        }
-        Console.WriteLine($"99 - Todos os distritos");
 
-        //TODO selecionar
+        int escolhaTipo = int.Parse(Console.ReadLine());
+        
+
+        Console.WriteLine("\nDistritos:");
+        foreach (var distrito in distritos)
+        {
+            Console.WriteLine($"{distrito.Id} - {distrito.Nome}");
+        }
+        int escolhaDistrito = int.Parse(Console.ReadLine());
+        
+        //simulacao butao
+        OnPesquisa(escolhaTipo, escolhaDistrito);
     }
-    
+
+    public void PresentarResultadoPesquisaDistrital(List<Posto> postos)
+    {
+        Console.Clear();
+        
+        foreach (var posto in postos)
+        {
+            Console.WriteLine(posto.Nome+"   "+posto.Morada+"   "+posto.PrecoString+"€");
+        }
+        Console.WriteLine("\n prime qualquer tecla para voltar");
+        Console.ReadKey(true);
+        
+        Console.Clear();
+    }
 }

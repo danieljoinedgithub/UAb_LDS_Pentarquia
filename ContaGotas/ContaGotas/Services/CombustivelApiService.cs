@@ -29,7 +29,10 @@ public class PrecoDgegConverter : JsonConverter<decimal>
 public interface ICombustivelService
 {
     Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7);
-    
+    Task<List<TipoCombustivel>> ObterTiposAsync();
+    Task<List<Distrito>> ObterDistritosAsync();
+    Task<List<Posto>> ObterPostosAsync(int tipo, int distrito);
+
 }
 
 // Implementação real que lida com HTTP
@@ -94,16 +97,18 @@ public class CombustivelApiService : ICombustivelService
                     return default;
                 }
                 
-                // caso não tiver 
-                /*if (resultado.GetRawText() == "[]" )
+                // caso não tiver nada no JsonElement resultado
+                if (resultado.GetRawText() == "[]" )
                 {
                     //por agora o catch nesta classe apanha
-                    throw new Exception("Resultado DGEG Vazio: ");
-                }*/
+                    throw new Exception("Resultados:[]");
+                }
 
                 var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
                 return dados;
             }
+            
+            //=== EXCEÇÕES ====//
             // Falha de Internet ou Servidor da DGEG
             catch (HttpRequestException e)
             {
@@ -142,10 +147,18 @@ public class CombustivelApiService : ICombustivelService
                 {
                     throw new Exception("Timeout ao chamar a API da DGEG.");
                 }
+                await Task.Delay(2000);
             }
             // Validação dos dados JSON recebidos
             catch (Exception e)
             {
+
+                if (e.Message == "Resultados:[]")
+                {
+                    throw new Exception("Resultados:[]");
+                }
+                
+                
                 // Qualquer erro inesperado é capturado aqui para não crashar a app
                 throw new Exception($"Erro inesperado ao ler dados da DGEG: {e.Message}");
             }
@@ -173,6 +186,25 @@ public class CombustivelApiService : ICombustivelService
             .Where(m => m.IsValido())
             .ToList();
     }
-    
+
+    public async Task<List<TipoCombustivel>> ObterTiposAsync()
+    {
+        String url = baseUrl + "PrecoComb/GetTiposCombustiveis";
+        List<TipoCombustivel> listaTipos = await chamarDGEG<List<TipoCombustivel>>(url);
+        return listaTipos;
+    }
+    public async Task<List<Distrito>> ObterDistritosAsync()
+    {
+        String url = baseUrl + "PrecoComb/GetDistritos";
+        List<Distrito> listaDistritos = await chamarDGEG<List<Distrito>>(url);
+        return listaDistritos;
+    }
+
+    public async Task<List<Posto>> ObterPostosAsync(int posto, int distrito)
+    {
+        String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idsDistrito="+distrito;
+        List<Posto> listaDistritos = await chamarDGEG<List<Posto>>(url);
+        return listaDistritos;
+    }
 }
 
