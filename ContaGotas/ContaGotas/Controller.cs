@@ -19,11 +19,6 @@ public class Controller
             model.AtualizarMedias();
         }
     }
-    
-    
-    
-    
-    
     // final de esqueleto de processo de obter dados média em controller
     
     public void TerminarAplicacao()
@@ -58,7 +53,7 @@ public class Controller
                 case 2: // Pesquisar distrital
                     
                     //view.atualizarInterface();
-                    model.ObterTiposDeCombustivel();
+                    await model.BuscarTiposDistritos();
                     //model.ObterDistritos();
                     
                     //em evento de pesquisa acionada na view//
@@ -67,7 +62,7 @@ public class Controller
                 
                 case 3: //Estatisticas
                     //view.atualizarInterface();
-                    model.ObterTiposDeCombustivel();
+                    //model.ObterTiposDeCombustivel();
                     //model.ObterDistritos();
                     break;
                 
@@ -94,9 +89,10 @@ public class Controller
         
     }
     
-    public void PesquisaDistrital(int distrito,int id)
+    public void PesquisaDistrital(int tipo,int distrito)
     {
-        model.PesquisarDistritos(distrito, id);
+        Console.WriteLine("\nid posto:"+tipo+" distrito:"+distrito);
+        model.PesquisarDistritos(tipo, distrito);
     }
     
 }

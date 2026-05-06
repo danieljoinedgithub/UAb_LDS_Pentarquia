@@ -28,7 +28,7 @@ public class Distrito
     [JsonPropertyName("ID")]
     public int Id { get; set; } 
     
-    [JsonPropertyName("Descricao")]
+    [JsonPropertyName("Descritivo")]
     public string Nome { get; set; } 
 }
 
