@@ -17,7 +17,7 @@ public class View
     
     
     //Eventos
-    public event Action<int, int>? Pesquisa;
+    public event Action<int, int>? PesquisaDistrital;
     
     
     // --- MÉDIAS ---
@@ -76,44 +76,60 @@ public class View
      as escolhas serem completa não faz nada e espera que o utilizador escolha ou volta a traz */
     
     //utilizador clica no butao pesquisa
-    public void OnPesquisa(int tipo,int distrito)
+    public void OnPesquisaDistrital(int tipo,int distrito)
     {
-        Pesquisa?.Invoke(tipo, distrito);
+        PesquisaDistrital?.Invoke(tipo, distrito);
     }
     
-    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    //Apresenta Lista de distritos do Objeto.Distritos
+    private void ApresentarMenuDistritos(List<Distrito> distritos)
     {
-        /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash ano sair do loop ate
-          opcao valida selecionada*/ 
-        
-        //Apresentar os tipos de combustível
-        Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
-        foreach (var tipo in tipos)
-        {
-            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
-        }
-
-        int escolhaTipo = int.Parse(Console.ReadLine());
-        
-
         Console.WriteLine("\nDistritos:");
         foreach (var distrito in distritos)
         {
             Console.WriteLine($"{distrito.Id} - {distrito.Nome}");
         }
+    }
+
+    /*Apresentar os tipos de combustível
+      Sugestoes: Fazer metodos de cada classe para apresentar ou retornar a string para imprimir 
+      Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
+    private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
+    {
+        
+        Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
+        foreach (var tipo in tipos)
+        {
+            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
+        }
+    }
+    
+    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    {
+        /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
+          opcao valida selecionada*/ 
+        
+        ApresentarMenuTipos(tipos);
+
+        int escolhaTipo = int.Parse(Console.ReadLine());
+
+        ApresentarMenuDistritos(distritos);
+        
         int escolhaDistrito = int.Parse(Console.ReadLine());
         
         //simulacao butao
-        OnPesquisa(escolhaTipo, escolhaDistrito);
+        OnPesquisaDistrital(escolhaTipo, escolhaDistrito);
     }
 
-    public void PresentarResultadoPesquisaDistrital(List<Posto> postos)
+    public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
     {
         Console.Clear();
         
         foreach (var posto in postos)
         {
-            Console.WriteLine(posto.Nome+"   "+posto.Morada+"   "+posto.PrecoString+"€");
+            Console.WriteLine($"Nome:{posto.Nome}\n" +
+                              $"Morada:{posto.Morada}\n" +
+                              $"Preço:{posto.PrecoString}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
         Console.ReadKey(true);
