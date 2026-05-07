@@ -86,7 +86,6 @@ public class Controller
             Console.WriteLine($"\nFalha ao comunicar com o serviço. Detalhes: {ex.Message}");
             
         }
-        
     }
     
     public void PesquisaDistrital(int tipo,int distrito)
