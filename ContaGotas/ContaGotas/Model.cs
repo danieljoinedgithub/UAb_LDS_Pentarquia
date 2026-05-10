@@ -77,7 +77,7 @@ public class Model
     public async void PesquisarDistritos(int tipo, int distrito)
     {
         List<Posto> postos = await _service.ObterPostosAsync(tipo, distrito);
-        ReadyPostos(postos);
+        ReadyPostos?.Invoke(postos); //previne crash se estiver nulo
         
     }
     

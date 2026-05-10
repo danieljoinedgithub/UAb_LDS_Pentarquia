@@ -52,6 +52,7 @@ public class View
             Console.WriteLine("1 - Ver médias");
             Console.WriteLine("2 - Pesquisar distrital (em desenvolvimento)");
             Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
+            Console.WriteLine("4 - Ver gráfico de médias");
             Console.WriteLine("0 - Sair");
 
             await SelecionarOpcao();
@@ -66,8 +67,13 @@ public class View
 
         if (int.TryParse(input, out int opcao))
         {
-            await controller.OpcaoSelecionada(opcao);
-        } else {
+            if (opcao == 4)
+                MostrarGrafico(); // local, no controller needed
+            else
+                await controller.OpcaoSelecionada(opcao);
+        }
+        else
+        {
             Console.WriteLine("Entrada inválida!");
         }
     }
@@ -137,5 +143,57 @@ public class View
         Console.ReadKey(true);
         
         Console.Clear();
+    }
+    
+    
+    public void MostrarGrafico()
+    {
+        //var dados = model.ObterMedias(); para depois a api
+        
+        var dados = new List<PrecoMedioModel>
+        {
+            new PrecoMedioModel("1.75", "Gasolina 95", "Lisboa"),
+            new PrecoMedioModel("1.62", "Gasoleo", "Porto"),
+            new PrecoMedioModel("1.89", "Gasolina 98", "Coimbra"),
+            new PrecoMedioModel("1.45", "Gasóleo Colorido", "Faro"),
+            new PrecoMedioModel("1.55", "GPL", "Braga")
+        };
+        //esta lista é usada como valores de teste
+
+        if (!dados.Any())
+        {
+            Console.WriteLine("Sem dados para mostrar no gráfico. Consulte as médias primeiro (opção 1).");
+            return;
+        }
+
+        var plot = new ScottPlot.Plot();
+
+        // Fix linha 162: converter string para double explicitamente
+        double[] valores = dados.Select(d => double.Parse(d.valor.ToString(), 
+            System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+        string[] labels = dados.Select(d => d.combustivel).ToArray();
+
+        // Criar barras
+        plot.Add.Bars(valores);
+
+        // Fix linha 172: SetTicks precisa de dois arrays separados
+        double[] posicoes = Enumerable.Range(0, labels.Length)
+            .Select(i => (double)i)
+            .ToArray();
+        plot.Axes.Bottom.SetTicks(posicoes, labels);
+
+        plot.Title("Preços Médios de Combustível (DGEG)");
+        plot.YLabel("Preço (€)");
+
+        string caminho = Path.Combine(Path.GetTempPath(), "contagotas_grafico.png");
+        plot.SavePng(caminho, 800, 500);
+
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = caminho,
+            UseShellExecute = true
+        });
+
+        Console.WriteLine($"Gráfico aberto: {caminho}");
     }
 }

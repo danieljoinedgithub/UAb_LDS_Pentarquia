@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj": {}
+    "C:\\Users\\denys\\Desktop\\uni\\2 ano segundo Semestre\\Laboratorio de Desenvolvimento de Software\\efolio c\\UAb_LDS_Pentarquia_fresh\\ContaGotas\\ContaGotas\\ContaGotas.csproj": {}
   },
   "projects": {
-    "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj": {
+    "C:\\Users\\denys\\Desktop\\uni\\2 ano segundo Semestre\\Laboratorio de Desenvolvimento de Software\\efolio c\\UAb_LDS_Pentarquia_fresh\\ContaGotas\\ContaGotas\\ContaGotas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj",
+        "projectUniqueName": "C:\\Users\\denys\\Desktop\\uni\\2 ano segundo Semestre\\Laboratorio de Desenvolvimento de Software\\efolio c\\UAb_LDS_Pentarquia_fresh\\ContaGotas\\ContaGotas\\ContaGotas.csproj",
         "projectName": "ContaGotas",
-        "projectPath": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj",
-        "packagesPath": "/Users/brunogoncalves/.nuget/packages/",
-        "outputPath": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/",
+        "projectPath": "C:\\Users\\denys\\Desktop\\uni\\2 ano segundo Semestre\\Laboratorio de Desenvolvimento de Software\\efolio c\\UAb_LDS_Pentarquia_fresh\\ContaGotas\\ContaGotas\\ContaGotas.csproj",
+        "packagesPath": "C:\\Users\\denys\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\denys\\Desktop\\uni\\2 ano segundo Semestre\\Laboratorio de Desenvolvimento de Software\\efolio c\\UAb_LDS_Pentarquia_fresh\\ContaGotas\\ContaGotas\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/brunogoncalves/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\denys\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +49,12 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.1.58, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
