@@ -158,7 +158,7 @@ public class View
             new PrecoMedioModel("1.45", "Gasóleo Colorido", "Faro"),
             new PrecoMedioModel("1.55", "GPL", "Braga")
         };
-        //esta lista é usada como valores de teste
+        //esta lista é usada como valores de teste.
 
         if (!dados.Any())
         {
@@ -168,7 +168,7 @@ public class View
 
         var plot = new ScottPlot.Plot();
 
-        // Fix linha 162: converter string para double explicitamente
+
         double[] valores = dados.Select(d => double.Parse(d.valor.ToString(), 
             System.Globalization.CultureInfo.InvariantCulture)).ToArray();
         string[] labels = dados.Select(d => d.combustivel).ToArray();
@@ -176,7 +176,7 @@ public class View
         // Criar barras
         plot.Add.Bars(valores);
 
-        // Fix linha 172: SetTicks precisa de dois arrays separados
+     
         double[] posicoes = Enumerable.Range(0, labels.Length)
             .Select(i => (double)i)
             .ToArray();
@@ -196,4 +196,5 @@ public class View
 
         Console.WriteLine($"Gráfico aberto: {caminho}");
     }
+    
 }
