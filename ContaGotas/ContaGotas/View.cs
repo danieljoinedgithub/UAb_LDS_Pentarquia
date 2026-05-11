@@ -126,12 +126,9 @@ public class View
         int escolhaTipo = int.Parse(Console.ReadLine());
         int idTipo = tipos[escolhaTipo - 1].Id;
 
-        ApresentarMenuDistritos(distritos);
-        
+        ApresentarMenuDistritos(distritos); 
         int escolhaDistrito = int.Parse(Console.ReadLine());
-        
-        Console.WriteLine(idTipo);
-        
+    
         //simulacao butao
         OnPesquisaDistrital(idTipo, escolhaDistrito);
     }
