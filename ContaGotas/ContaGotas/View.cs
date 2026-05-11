@@ -148,8 +148,6 @@ public class View
         }
         
         Console.WriteLine("\n prime qualquer tecla para voltar");
-        
-      
         Console.ReadKey(true);
         
         Console.Clear();
