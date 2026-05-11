@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 namespace ContaGotas;
 
 public class View
@@ -13,6 +15,9 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.OnTiposDistritos += ApresentarBoxTipoDistritos;
         model.OnMediasProntas += MostrarMedias;
+        model.ReadyPostos += ApresentarResultadoPesquisaDistrital;
+        
+        PesquisaDistrital += controller.PesquisaDistrital;
     }
     
     
@@ -50,6 +55,7 @@ public class View
             Console.WriteLine("1 - Ver médias");
             Console.WriteLine("2 - Pesquisar distrital (em desenvolvimento)");
             Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
+            Console.WriteLine("4 - Ver gráfico de médias");
             Console.WriteLine("0 - Sair");
 
             await SelecionarOpcao();
@@ -64,8 +70,13 @@ public class View
 
         if (int.TryParse(input, out int opcao))
         {
-            await controller.OpcaoSelecionada(opcao);
-        } else {
+            if (opcao == 4)
+                MostrarGrafico(); // local, no controller needed
+            else
+                await controller.OpcaoSelecionada(opcao);
+        }
+        else
+        {
             Console.WriteLine("Entrada inválida!");
         }
     }
@@ -96,11 +107,12 @@ public class View
       Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
     private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
     {
-        
+
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
+        int i = 1;
         foreach (var tipo in tipos)
         {
-            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
+            Console.WriteLine($"{i++} - {tipo.Nome}");
         }
     }
     
@@ -112,13 +124,16 @@ public class View
         ApresentarMenuTipos(tipos);
 
         int escolhaTipo = int.Parse(Console.ReadLine());
+        int idTipo = tipos[escolhaTipo - 1].Id;
 
         ApresentarMenuDistritos(distritos);
         
         int escolhaDistrito = int.Parse(Console.ReadLine());
         
+        Console.WriteLine(idTipo);
+        
         //simulacao butao
-        OnPesquisaDistrital(escolhaTipo, escolhaDistrito);
+        OnPesquisaDistrital(idTipo, escolhaDistrito);
     }
 
     public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
@@ -131,9 +146,73 @@ public class View
                               $"Morada:{posto.Morada}\n" +
                               $"Preço:{posto.PrecoString}€");
         }
+        
         Console.WriteLine("\n prime qualquer tecla para voltar");
+        
+      
         Console.ReadKey(true);
         
         Console.Clear();
     }
+    
+    
+    public void MostrarGrafico()
+    {
+        //var dados = model.ObterMedias(); para depois a api
+
+        string font = "Noto Sans";
+        
+        var dados = new List<PrecoMedioModel>
+        {
+            new PrecoMedioModel("1.75", "Gasolina 95", "Lisboa"),
+            new PrecoMedioModel("1.62", "Gasoleo", "Porto"),
+            new PrecoMedioModel("1.89", "Gasolina 98", "Coimbra"),
+            new PrecoMedioModel("1.45", "Gasóleo Colorido", "Faro"),
+            new PrecoMedioModel("1.55", "GPL", "Braga")
+        };
+        //esta lista é usada como valores de teste.
+
+        if (!dados.Any())
+        {
+            Console.WriteLine("Sem dados para mostrar no gráfico. Consulte as médias primeiro (opção 1).");
+            return;
+        }
+
+        var plot = new ScottPlot.Plot();
+
+
+        double[] valores = dados.Select(d => double.Parse(d.valor.ToString(), 
+            System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+        string[] labels = dados.Select(d => d.combustivel).ToArray();
+
+        // Criar barras
+        plot.Add.Bars(valores);
+
+     
+        double[] posicoes = Enumerable.Range(0, labels.Length)
+            .Select(i => (double)i)
+            .ToArray();
+        plot.Axes.Bottom.SetTicks(posicoes, labels);
+        plot.Axes.Bottom.TickLabelStyle.FontName = font;
+        
+        plot.Axes.Left.TickLabelStyle.FontName = font;
+        
+        plot.Axes.Margins(bottom:0);
+        
+
+        plot.Title("Preços Médios de Combustível (DGEG)");
+        plot.YLabel("Preço (€)");
+
+        string caminho = Path.Combine(Path.GetTempPath(), "contagotas_grafico.png");
+        plot.SavePng(caminho, 800, 500);
+
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = caminho,
+            UseShellExecute = true
+        });
+
+        Console.WriteLine($"Gráfico aberto: {caminho}");
+    }
+    
 }
