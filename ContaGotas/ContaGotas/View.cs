@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 namespace ContaGotas;
 
 public class View
@@ -64,8 +70,8 @@ public class View
     public async Task SelecionarOpcao()
     {
         Console.Write("Escolha opção: ");
-        string? input = Console.ReadLine();
-        
+        string input = Console.ReadLine();
+
         if (int.TryParse(input, out int opcao))
         {
             if (opcao == 4)
@@ -79,7 +85,7 @@ public class View
         }
     }
 
-/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado para
+/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
      buscar a informação diretamente à classe e Onchange(reativo) quando os dois tiveren selecionados pesquisa 
      se for com butao de pesquisa mesma coisa so faz pesquisa quando o utilizador escolhe os dois se por acaso clicar sem
      as escolhas serem completa não faz nada e espera que o utilizador escolha ou volta a traz */
@@ -152,7 +158,6 @@ public class View
                               $"Morada:{posto.Morada}\n" +
                               $"Preço:{posto.PrecoString}€");
         }
-        
         Console.WriteLine("\n prime qualquer tecla para voltar");
         /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
          
@@ -173,8 +178,6 @@ public class View
     public void MostrarGrafico()
     {
         //var dados = model.ObterMedias(); para depois a api
-
-        string font = "Noto Sans";
         
         var dados = new List<PrecoMedioModel>
         {
