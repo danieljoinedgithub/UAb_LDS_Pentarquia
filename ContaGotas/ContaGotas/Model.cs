@@ -57,8 +57,7 @@ public class Model
     // --- MÉDIAS (ligado ao Service) ---
     public async Task AtualizarMedias()
     {
-        
-        _medias = await _service.ObterMediasAsync();
+        _medias = await _service.ObterMediasAsync(-7, true);
         OnMediasProntas?.Invoke();
     }
 
@@ -75,16 +74,10 @@ public class Model
         OnTiposDistritos?.Invoke(_tiposCombustivel, _distritos);
     }
     
-    
     public async void PesquisarDistritos(int tipo, int distrito)
     {
         List<Posto> postos = await _service.ObterPostosAsync(tipo, distrito);
         ReadyPostos?.Invoke(postos); //previne crash se estiver nulo
         
     }
-    
-    
-    
-
-
 }
