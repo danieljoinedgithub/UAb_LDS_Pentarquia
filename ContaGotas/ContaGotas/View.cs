@@ -85,11 +85,11 @@ public class View
         {
             decimal diferenca = d.GetDiferencaPreco();
             if (diferenca > 0)
-                Console.WriteLine($"{d.combustivel} {d.valor}€ (+{diferenca:0.000}€ que há 15 dias)");
+                Console.WriteLine($"{d.combustivel} {d.valor} (+{diferenca:0.000}€ que há 15 dias)");
             else if (diferenca < 0)
-                Console.WriteLine($"{d.combustivel} {d.valor}€ ({diferenca:0.000}€ que há 15 dias)");
+                Console.WriteLine($"{d.combustivel} {d.valor} ({diferenca:0.000}€ que há 15 dias)");
             else
-                Console.WriteLine($"{d.combustivel} {d.valor}€"); // (sem alteração ou sem comparação)
+                Console.WriteLine($"{d.combustivel} {d.valor}"); // (sem alteração ou sem comparação)
         }
 
         Console.WriteLine("\n prima qualquer tecla para voltar");
