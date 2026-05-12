@@ -68,13 +68,18 @@ public class Model
     // --- Pesquisa Distrital ---
     public async Task BuscarTiposDistritos()
     {
-        Task<List<TipoCombustivel>> tiposGet = _service.ObterTiposAsync();
-        Task<List<Distrito>> distritosGet = _service.ObterDistritosAsync();
-        
-        await Task.WhenAll(tiposGet, distritosGet);
+        if (_tiposCombustivel.Count == 0 && _distritos.Count == 0)
+        {
+            Task<List<TipoCombustivel>> tiposGet = _service.ObterTiposAsync();
+            Task<List<Distrito>> distritosGet = _service.ObterDistritosAsync();
+            await Task.WhenAll(tiposGet, distritosGet);
         
         _tiposCombustivel = await tiposGet;
         _distritos = await distritosGet;
+        }
+        
+        
+        
         
         OnTiposDistritos?.Invoke(_tiposCombustivel, _distritos);
     }

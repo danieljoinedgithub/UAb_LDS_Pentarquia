@@ -1,15 +1,15 @@
 ﻿namespace ContaGotas;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 public class PrecoMedioModel : IValido
 {
-    [JsonPropertyName("PrecoMedio")]
+    [JsonProperty("PrecoMedio")]
     public string valor { get; set; }
 
-    [JsonPropertyName("TipoCombustivel")]
+    [JsonProperty("TipoCombustivel")]
     public string combustivel { get; set; }
 
-    [JsonPropertyName("Distrito")]
+    [JsonProperty("Distrito")]
     public string distrito { get; set; }
 
     public PrecoMedioModel(string valor, string combustivel, string distrito)
