@@ -29,24 +29,6 @@ public class View
     //Eventos
     public event Action<int, int>? PesquisaDistrital;
     
-    
-    // --- MÉDIAS ---
-
-    private void MostrarMedias()
-    {
-        var dados = model.ObterMedias();
-        
-        if (!dados.Any()) {
-            Console.WriteLine("Não existem médias disponíveis da DGEG para o período selecionado.");
-            return;
-        }
-        
-        Console.WriteLine("Médias obtidas:");
-        foreach (var d in dados)
-        {
-            Console.WriteLine(d.combustivel +" "+ d.valor);
-        }
-    }
 
     // Passa a async Task
     // Temos de dizer à View para "esperar" (await) que o Controller acabe 
@@ -86,6 +68,39 @@ public class View
         }
     }
 
+    
+        
+    // --- MÉDIAS ---
+
+    private void MostrarMedias()
+    {
+        var dados = model.ObterMedias();
+        
+        if (!dados.Any()) {
+            Console.WriteLine("Não existem médias disponíveis da DGEG para o período selecionado.");
+            return;
+        }
+        
+        Console.Clear();
+
+        Console.WriteLine("Médias obtidas:");
+        foreach (var d in dados)
+        {
+            decimal diferenca = d.GetDiferencaPreco();
+            if (diferenca > 0)
+                Console.WriteLine($"{d.combustivel} {d.valor} (+{diferenca:0.000}€ que há 15 dias)");
+            else if (diferenca < 0)
+                Console.WriteLine($"{d.combustivel} {d.valor} ({diferenca:0.000}€ que há 15 dias)");
+            else
+                Console.WriteLine($"{d.combustivel} {d.valor}"); // (sem alteração ou sem comparação)
+        }
+
+        Console.WriteLine("\n prima qualquer tecla para voltar");
+        Console.ReadKey(true);
+        
+        Console.Clear();
+    }
+    
 /*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
      buscar a informação diretamente à classe e Onchange(reativo) quando os dois tiveren selecionados pesquisa 
      se for com butao de pesquisa mesma coisa so faz pesquisa quando o utilizador escolhe os dois se por acaso clicar sem
@@ -210,12 +225,6 @@ public class View
             .Select(i => (double)i)
             .ToArray();
         plot.Axes.Bottom.SetTicks(posicoes, labels);
-        plot.Axes.Bottom.TickLabelStyle.FontName = font;
-        
-        plot.Axes.Left.TickLabelStyle.FontName = font;
-        
-        plot.Axes.Margins(bottom:0);
-        
 
         plot.Title("Preços Médios de Combustível (DGEG)");
         plot.YLabel("Preço (€)");
