@@ -1,6 +1,8 @@
-namespace ContaGotas;
-
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+
+namespace ContaGotas;
 
 public class Model
 {

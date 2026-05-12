@@ -1,4 +1,6 @@
-﻿namespace ContaGotas;
+﻿using System.Threading.Tasks;
+
+namespace ContaGotas;
 
 public class Program
 {
