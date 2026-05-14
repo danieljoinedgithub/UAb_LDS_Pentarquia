@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-
 namespace ContaGotas;
-
 
 public class PrecoDgegConverter : JsonConverter<decimal>
 {
@@ -29,7 +32,7 @@ public class PrecoDgegConverter : JsonConverter<decimal>
 
 public interface ICombustivelService
 {
-    Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7);
+    Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
     Task<List<TipoCombustivel>> ObterTiposAsync();
     Task<List<Distrito>> ObterDistritosAsync();
     Task<List<Posto>> ObterPostosAsync(int tipo, int distrito);
@@ -159,7 +162,7 @@ public class CombustivelApiService : ICombustivelService
         return default;
     }
     
-    public async Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7)
+    public async Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false)
     {
         String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
 
@@ -175,9 +178,28 @@ public class CombustivelApiService : ICombustivelService
             return new List<PrecoMedioModel>();
 
         //Validação de dados para garantir que só são devolvidos dados válidos
-        return listaMedias
+        var mediasAtuais = listaMedias
             .Where(m => m.IsValido())
             .ToList();
+
+        if (incluirDiferenca)
+        {
+            //Obter as medias anteriores
+            var mediasAntigas = await ObterMediasAsync(diasAntes * 2);
+
+            foreach (var atual in mediasAtuais)
+            {
+                var antiga = mediasAntigas
+                    .FirstOrDefault(a => a.combustivel == atual.combustivel);
+
+                if (antiga != null)
+                {
+                    atual.valorAnterior = antiga.GetPrecoDecimal();
+                }
+            }
+        }
+
+        return mediasAtuais;
     }
 
     public async Task<List<TipoCombustivel>> ObterTiposAsync()

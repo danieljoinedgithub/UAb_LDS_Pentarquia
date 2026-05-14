@@ -1,4 +1,6 @@
-﻿namespace ContaGotas;
+﻿using System.Threading.Tasks;
+
+namespace ContaGotas;
 
 public class Program
 {
@@ -14,11 +16,6 @@ public class Program
         
         // Criamos a View e damos-lhe o Controller e o Model
         var view = new View(controller, model);
-        
-        
-        //Como está estruturado obriga-me a subscrever o metodo do model ao evento da view aqui vamos ter de mudar isto
-
- 
         
         // A View inicia o ciclo de vida (C&G)
         await view.AtivarInterfaceComOpcoes();

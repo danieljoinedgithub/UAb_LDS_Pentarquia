@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace ContaGotas;
 
 public class View
@@ -22,24 +29,6 @@ public class View
     //Eventos
     public event Action<int, int>? PesquisaDistrital;
     
-    
-    // --- MÉDIAS ---
-
-    private void MostrarMedias()
-    {
-        var dados = model.ObterMedias();
-        
-        if (!dados.Any()) {
-            Console.WriteLine("Não existem médias disponíveis da DGEG para o período selecionado.");
-            return;
-        }
-        
-        Console.WriteLine("Médias obtidas:");
-        foreach (var d in dados)
-        {
-            Console.WriteLine(d.combustivel +" "+ d.valor);
-        }
-    }
 
     // Passa a async Task
     // Temos de dizer à View para "esperar" (await) que o Controller acabe 
@@ -64,8 +53,8 @@ public class View
     public async Task SelecionarOpcao()
     {
         Console.Write("Escolha opção: ");
-        string? input = Console.ReadLine();
-        
+        string input = Console.ReadLine();
+
         if (int.TryParse(input, out int opcao))
         {
             if (opcao == 4)
@@ -79,7 +68,40 @@ public class View
         }
     }
 
-/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado para
+    
+        
+    // --- MÉDIAS ---
+
+    private void MostrarMedias()
+    {
+        var dados = model.ObterMedias();
+        
+        if (!dados.Any()) {
+            Console.WriteLine("Não existem médias disponíveis da DGEG para o período selecionado.");
+            return;
+        }
+        
+        Console.Clear();
+
+        Console.WriteLine("Médias obtidas:");
+        foreach (var d in dados)
+        {
+            decimal diferenca = d.GetDiferencaPreco();
+            if (diferenca > 0)
+                Console.WriteLine($"{d.combustivel} {d.valor} (+{diferenca:0.000}€ que há 15 dias)");
+            else if (diferenca < 0)
+                Console.WriteLine($"{d.combustivel} {d.valor} ({diferenca:0.000}€ que há 15 dias)");
+            else
+                Console.WriteLine($"{d.combustivel} {d.valor}"); // (sem alteração ou sem comparação)
+        }
+
+        Console.WriteLine("\n prima qualquer tecla para voltar");
+        Console.ReadKey(true);
+        
+        Console.Clear();
+    }
+    
+/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
      buscar a informação diretamente à classe e Onchange(reativo) quando os dois tiveren selecionados pesquisa 
      se for com butao de pesquisa mesma coisa so faz pesquisa quando o utilizador escolhe os dois se por acaso clicar sem
      as escolhas serem completa não faz nada e espera que o utilizador escolha ou volta a traz */
@@ -105,7 +127,7 @@ public class View
       Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
     private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
     {
-
+        
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
         int i = 1;
         foreach (var tipo in tipos)
@@ -114,24 +136,30 @@ public class View
         }
     }
     
-    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    private void ApresentarBoxTipoDistritos()
     {
         /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
           opcao valida selecionada*/
 
         while (true)
         {
-            try{
+            try
+            {
+                List<TipoCombustivel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
         
                 int escolhaTipo = int.Parse(Console.ReadLine());
                 int idTipo = tipos[escolhaTipo - 1].Id;
                 
+                Console.Clear();
+                
+                List<Distrito> distritos = model.ObterDistritos();
                 ApresentarMenuDistritos(distritos); 
                 int escolhaDistrito = int.Parse(Console.ReadLine());
+                
+                Console.Clear();
     
-                //simulacao butao
-                OnPesquisaDistrital(idTipo, escolhaDistrito);
+                controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
             catch (ArgumentOutOfRangeException ex)
@@ -142,9 +170,11 @@ public class View
         }
     }
 
-    public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
+    public void ApresentarResultadoPesquisaDistrital()
     {
         Console.Clear();
+        
+        List<Posto> postos = model.ObterPostos();
         
         foreach (var posto in postos)
         {
@@ -152,7 +182,6 @@ public class View
                               $"Morada:{posto.Morada}\n" +
                               $"Preço:{posto.PrecoString}€");
         }
-        
         Console.WriteLine("\n prime qualquer tecla para voltar");
         /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
          
@@ -169,12 +198,9 @@ public class View
         Console.Clear();
     }
     
-    
     public void MostrarGrafico()
     {
         //var dados = model.ObterMedias(); para depois a api
-
-        string font = "Noto Sans";
         
         var dados = new List<PrecoMedioModel>
         {
@@ -207,12 +233,6 @@ public class View
             .Select(i => (double)i)
             .ToArray();
         plot.Axes.Bottom.SetTicks(posicoes, labels);
-        plot.Axes.Bottom.TickLabelStyle.FontName = font;
-        
-        plot.Axes.Left.TickLabelStyle.FontName = font;
-        
-        plot.Axes.Margins(bottom:0);
-        
 
         plot.Title("Preços Médios de Combustível (DGEG)");
         plot.YLabel("Preço (€)");

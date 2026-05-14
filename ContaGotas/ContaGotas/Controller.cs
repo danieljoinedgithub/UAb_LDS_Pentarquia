@@ -1,5 +1,7 @@
-namespace ContaGotas;
+using System;
+using System.Threading.Tasks;
 
+namespace ContaGotas;
 public class Controller
 {
     private Model model;
@@ -9,18 +11,7 @@ public class Controller
     {
         model = m;
     }
-    
-    // inicio de esqueleto de processo de obter dados média em controller
-    public void SelecionarOpcao(string opcao)
-    {
-        if (opcao == "Medias nacionais")
-        {
-            // Dispara o processo
-            model.AtualizarMedias();
-        }
-    }
-    // final de esqueleto de processo de obter dados média em controller
-    
+
     public void TerminarAplicacao()
     {
         Environment.Exit(0);
@@ -33,7 +24,6 @@ public class Controller
     public async Task OpcaoSelecionada(int opcao)
     {
         try{
-            
             
             /*controller não é suposto saber as listas do model caso alguma coisa aconteca o model manda excecao e
               controller apanha o que o model não conseguir gerir ou que não faz parte do papel do model e decide
