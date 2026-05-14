@@ -1,58 +1,58 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace ContaGotas;
 
 
 public class TipoCombustivel 
 { 
-    [JsonPropertyName("Id")]
-    public required int  Id { get; set; } //required para obrigar a preencer com valor
+    [JsonProperty("Id", Required = Required.Always)]
+    public int  Id { get; set; } //required para obrigar a preencer com valor
     
-    [JsonPropertyName("Descritivo")]
+    [JsonProperty("Descritivo")]
     public string Nome { get; set; } 
 }
 
 
 public class Marca 
 { 
-    [JsonPropertyName("ID")]
+    [JsonProperty("ID")]
     public int Id { get; set; } 
     
-    [JsonPropertyName("Descricao")]
+    [JsonProperty("Descricao")]
     public string Nome { get; set; } 
 }
 
 
 public class Distrito 
 { 
-    [JsonPropertyName("ID")]
+    [JsonProperty("ID")]
     public int Id { get; set; } 
     
-    [JsonPropertyName("Descritivo")]
+    [JsonProperty("Descritivo")]
     public string Nome { get; set; } 
 }
 
 
 public class Municipio 
 { 
-    [JsonPropertyName("ID")]
+    [JsonProperty("ID")]
     public int Id { get; set; } 
     
-    [JsonPropertyName("Descricao")]
+    [JsonProperty("Descricao")]
     public string Nome { get; set; } 
 }
 
 
 public class Posto 
 { 
-    [JsonPropertyName("Nome")]
+    [JsonProperty("Nome")]
     public string Nome { get; set; } 
     
-    [JsonPropertyName("Morada")]
+    [JsonProperty("Morada")]
     public string Morada { get; set; }
     
-    [JsonPropertyName("Preco")]
-    public required decimal PrecoString { get; set; } // A API às vezes envia como string "1,749 €"
+    [JsonProperty("Preco", Required = Required.Always)]
+    public decimal PrecoString { get; set; } // A API às vezes envia como string "1,749 €"
 
     // Propriedade auxiliar para cálculos
     //public double Preco => double.TryParse(PrecoString?.Split(' ')[0].Replace(',', '.'), out var res) ? res : 0;

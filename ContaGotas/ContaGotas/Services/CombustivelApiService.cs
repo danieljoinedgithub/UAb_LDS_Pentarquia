@@ -1,27 +1,28 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace ContaGotas;
 
 
 public class PrecoDgegConverter : JsonConverter<decimal>
 {
-    public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override decimal ReadJson(JsonReader reader, Type objectType, decimal existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        if (reader.TokenType == JsonTokenType.Number)
-            return reader.GetDecimal();
+        if (reader.TokenType == JsonToken.Float || reader.TokenType == JsonToken.Integer)
+            return Convert.ToDecimal(reader.Value);
         
-        string value = reader.GetString();
+        string value = reader.Value?.ToString();
         if (string.IsNullOrWhiteSpace(value)) return 0;
 
         // Remove "€"
         string cleaned = value.Replace("€", "").Trim();
         return decimal.Parse(cleaned , new System.Globalization.CultureInfo("pt-PT"));
     }
-
-    public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
+    
+    public override void WriteJson(JsonWriter writer, decimal value, JsonSerializer serializer)
     {
-        writer.WriteNumberValue(value);
+        writer.WriteValue(value);
     }
 }
 
@@ -78,33 +79,25 @@ public class CombustivelApiService : ICombustivelService
                 if (string.IsNullOrWhiteSpace(jsonResponse))
                     return default;
 
-                JsonSerializerOptions opcoes = new JsonSerializerOptions();
-                opcoes.PropertyNameCaseInsensitive = true;
-                opcoes.Converters.Add(new PrecoDgegConverter());
-
-                JsonDocument response = JsonDocument.Parse(jsonResponse);
+                JObject response = JObject.Parse(jsonResponse);
                 
                 // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
                 // este GetProperty vai disparar uma KeyNotFoundException
-                if (!response.RootElement.TryGetProperty("status", out JsonElement statusElement) ||
-                    !statusElement.GetBoolean())
-                {
-                    return default;
-                }
-
-                if (!response.RootElement.TryGetProperty("resultado", out JsonElement resultado))
-                {
-                    return default;
-                }
+                bool status = response["status"]?.Value<bool>() ?? false;
+                if (!status) return default;
                 
-                // caso não tiver nada no JsonElement resultado
-                if (resultado.GetRawText() == "[]" )
-                {
-                    //por agora o catch nesta classe apanha
+                JToken resultado = response["resultado"];
+                
+                //por agora o catch nesta classe apanha
+                if (resultado == null ||!resultado.HasValues)
                     throw new Exception("Resultados:[]");
-                }
-
-                var dados = JsonSerializer.Deserialize<T>(resultado.GetRawText(), opcoes);
+                
+                JsonSerializerSettings opcoes = new JsonSerializerSettings();
+                opcoes.Converters.Add(new PrecoDgegConverter());
+                JsonSerializer serializer = JsonSerializer.Create(opcoes);
+                
+                
+                var dados = resultado.ToObject<T>(serializer);
                 return dados;
             }
             
@@ -121,7 +114,7 @@ public class CombustivelApiService : ICombustivelService
                 // CORREÇÃO DO BUG: Esperar 2 segundos antes de tentar de novo
                 // Ia fazer 3 pedidos à DGEG numa fração de segundo, o que não dá tempo para a internet voltar.
                 await Task.Delay(2000);}
-            catch (JsonException e)
+            catch (JsonReaderException e)
             {
                 if (tentativas == maxTentativas)
                 {
@@ -202,7 +195,7 @@ public class CombustivelApiService : ICombustivelService
 
     public async Task<List<Posto>> ObterPostosAsync(int posto, int distrito)
     {
-        String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idsDistrito="+distrito;
+        String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
         List<Posto> listaDistritos = await chamarDGEG<List<Posto>>(url);
         return listaDistritos;
     }

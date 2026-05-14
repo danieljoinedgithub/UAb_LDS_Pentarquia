@@ -76,6 +76,8 @@ public class Controller
             /*apanha excecao com mensagem que o service e model não conseguiram ter resultados do
              API impedindo a entrega de uma lista vazia e permitindo ao controler assumir o 
              controlo da excao e controllar o que acontece à view ou ao pedido em si*/
+            
+            
             if (ex.Message.Contains("Resultados:[]"))
             {
                 Console.WriteLine("Dados não carregados Erro: " + ex.Message);
@@ -84,7 +86,6 @@ public class Controller
             
             // O tratamento de error
             Console.WriteLine($"\nFalha ao comunicar com o serviço. Detalhes: {ex.Message}");
-            
         }
     }
     

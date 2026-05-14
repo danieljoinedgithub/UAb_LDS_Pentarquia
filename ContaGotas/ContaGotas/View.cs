@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 namespace ContaGotas;
 
 public class View
@@ -15,6 +13,9 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.OnTiposDistritos += ApresentarBoxTipoDistritos;
         model.OnMediasProntas += MostrarMedias;
+        model.ReadyPostos += ApresentarResultadoPesquisaDistrital;
+        
+        PesquisaDistrital += controller.PesquisaDistrital;
     }
     
     
@@ -63,8 +64,8 @@ public class View
     public async Task SelecionarOpcao()
     {
         Console.Write("Escolha opção: ");
-        string input = Console.ReadLine();
-
+        string? input = Console.ReadLine();
+        
         if (int.TryParse(input, out int opcao))
         {
             if (opcao == 4)
@@ -78,7 +79,7 @@ public class View
         }
     }
 
-/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
+/*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado para
      buscar a informação diretamente à classe e Onchange(reativo) quando os dois tiveren selecionados pesquisa 
      se for com butao de pesquisa mesma coisa so faz pesquisa quando o utilizador escolhe os dois se por acaso clicar sem
      as escolhas serem completa não faz nada e espera que o utilizador escolha ou volta a traz */
@@ -104,29 +105,41 @@ public class View
       Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
     private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
     {
-        
+
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
+        int i = 1;
         foreach (var tipo in tipos)
         {
-            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
+            Console.WriteLine($"{i++} - {tipo.Nome}");
         }
     }
     
     private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
     {
         /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
-          opcao valida selecionada*/ 
-        
-        ApresentarMenuTipos(tipos);
+          opcao valida selecionada*/
 
-        int escolhaTipo = int.Parse(Console.ReadLine());
-
-        ApresentarMenuDistritos(distritos);
+        while (true)
+        {
+            try{
+                ApresentarMenuTipos(tipos);
         
-        int escolhaDistrito = int.Parse(Console.ReadLine());
-        
-        //simulacao butao
-        OnPesquisaDistrital(escolhaTipo, escolhaDistrito);
+                int escolhaTipo = int.Parse(Console.ReadLine());
+                int idTipo = tipos[escolhaTipo - 1].Id;
+                
+                ApresentarMenuDistritos(distritos); 
+                int escolhaDistrito = int.Parse(Console.ReadLine());
+    
+                //simulacao butao
+                OnPesquisaDistrital(idTipo, escolhaDistrito);
+                break;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine("Escolha um numero valido.\n Qualquer tecla para continuar.");
+                Console.ReadKey(true);
+            } 
+        }
     }
 
     public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
@@ -139,8 +152,19 @@ public class View
                               $"Morada:{posto.Morada}\n" +
                               $"Preço:{posto.PrecoString}€");
         }
+        
         Console.WriteLine("\n prime qualquer tecla para voltar");
-        Console.ReadKey(true);
+        /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
+         
+         prime qualquer tecla para voltar
+         9                 // tecla escolhida
+         Entrada inválida! // saida do menu 
+         10                // não aparece no ecran devido ao Console.ReadKey(true); e limpa o ecran
+                           // como programado abaixo e espera por input do utilizador que é o menu numa consola limpa
+           */
+        
+        
+        Console.ReadLine();
         
         Console.Clear();
     }
@@ -149,6 +173,8 @@ public class View
     public void MostrarGrafico()
     {
         //var dados = model.ObterMedias(); para depois a api
+
+        string font = "Noto Sans";
         
         var dados = new List<PrecoMedioModel>
         {
@@ -181,6 +207,12 @@ public class View
             .Select(i => (double)i)
             .ToArray();
         plot.Axes.Bottom.SetTicks(posicoes, labels);
+        plot.Axes.Bottom.TickLabelStyle.FontName = font;
+        
+        plot.Axes.Left.TickLabelStyle.FontName = font;
+        
+        plot.Axes.Margins(bottom:0);
+        
 
         plot.Title("Preços Médios de Combustível (DGEG)");
         plot.YLabel("Preço (€)");

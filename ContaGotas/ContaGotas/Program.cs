@@ -18,8 +18,7 @@ public class Program
         
         //Como está estruturado obriga-me a subscrever o metodo do model ao evento da view aqui vamos ter de mudar isto
 
-        view.PesquisaDistrital += controller.PesquisaDistrital;
-        model.ReadyPostos += view.ApresentarResultadoPesquisaDistrital;
+ 
         
         // A View inicia o ciclo de vida (C&G)
         await view.AtivarInterfaceComOpcoes();
