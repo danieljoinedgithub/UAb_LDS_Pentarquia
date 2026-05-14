@@ -136,24 +136,30 @@ public class View
         }
     }
     
-    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    private void ApresentarBoxTipoDistritos()
     {
         /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
           opcao valida selecionada*/
 
         while (true)
         {
-            try{
+            try
+            {
+                List<TipoCombustivel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
         
                 int escolhaTipo = int.Parse(Console.ReadLine());
                 int idTipo = tipos[escolhaTipo - 1].Id;
                 
+                Console.Clear();
+                
+                List<Distrito> distritos = model.ObterDistritos();
                 ApresentarMenuDistritos(distritos); 
                 int escolhaDistrito = int.Parse(Console.ReadLine());
+                
+                Console.Clear();
     
-                //simulacao butao
-                OnPesquisaDistrital(idTipo, escolhaDistrito);
+                controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
             catch (ArgumentOutOfRangeException ex)
@@ -164,9 +170,11 @@ public class View
         }
     }
 
-    public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
+    public void ApresentarResultadoPesquisaDistrital()
     {
         Console.Clear();
+        
+        List<Posto> postos = model.ObterPostos();
         
         foreach (var posto in postos)
         {
@@ -189,7 +197,6 @@ public class View
         
         Console.Clear();
     }
-    
     
     public void MostrarGrafico()
     {

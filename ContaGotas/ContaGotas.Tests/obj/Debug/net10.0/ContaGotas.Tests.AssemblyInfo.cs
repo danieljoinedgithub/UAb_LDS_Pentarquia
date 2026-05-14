@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContaGotas.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+569330c4099cc9e2ce4e7023b522ef366c2c0d7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15cae858cf6b3102bed73e2fc474d3dc7c04eaff")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContaGotas.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContaGotas.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
