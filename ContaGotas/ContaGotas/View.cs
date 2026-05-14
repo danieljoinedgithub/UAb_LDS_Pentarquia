@@ -20,6 +20,9 @@ public class View
         //Subscrição dos eventos necessarios entre View-Model
         model.OnTiposDistritos += ApresentarBoxTipoDistritos;
         model.OnMediasProntas += MostrarMedias;
+        model.ReadyPostos += ApresentarResultadoPesquisaDistrital;
+        
+        PesquisaDistrital += controller.PesquisaDistrital;
     }
     
     
@@ -126,27 +129,39 @@ public class View
     {
         
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
+        int i = 1;
         foreach (var tipo in tipos)
         {
-            Console.WriteLine($"{tipo.Id} - {tipo.Nome}");
+            Console.WriteLine($"{i++} - {tipo.Nome}");
         }
     }
     
     private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
     {
         /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
-          opcao valida selecionada*/ 
-        
-        ApresentarMenuTipos(tipos);
+          opcao valida selecionada*/
 
-        int escolhaTipo = int.Parse(Console.ReadLine());
-
-        ApresentarMenuDistritos(distritos);
+        while (true)
+        {
+            try{
+                ApresentarMenuTipos(tipos);
         
-        int escolhaDistrito = int.Parse(Console.ReadLine());
-        
-        //simulacao butao
-        OnPesquisaDistrital(escolhaTipo, escolhaDistrito);
+                int escolhaTipo = int.Parse(Console.ReadLine());
+                int idTipo = tipos[escolhaTipo - 1].Id;
+                
+                ApresentarMenuDistritos(distritos); 
+                int escolhaDistrito = int.Parse(Console.ReadLine());
+    
+                //simulacao butao
+                OnPesquisaDistrital(idTipo, escolhaDistrito);
+                break;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine("Escolha um numero valido.\n Qualquer tecla para continuar.");
+                Console.ReadKey(true);
+            } 
+        }
     }
 
     public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
@@ -159,8 +174,18 @@ public class View
                               $"Morada:{posto.Morada}\n" +
                               $"Preço:{posto.PrecoString}€");
         }
-        Console.WriteLine("\n prima qualquer tecla para voltar");
-        Console.ReadKey(true);
+        Console.WriteLine("\n prime qualquer tecla para voltar");
+        /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
+         
+         prime qualquer tecla para voltar
+         9                 // tecla escolhida
+         Entrada inválida! // saida do menu 
+         10                // não aparece no ecran devido ao Console.ReadKey(true); e limpa o ecran
+                           // como programado abaixo e espera por input do utilizador que é o menu numa consola limpa
+           */
+        
+        
+        Console.ReadLine();
         
         Console.Clear();
     }

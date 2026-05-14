@@ -145,3 +145,4 @@ C:/Users/denys/Desktop/uni/2 ano segundo Semestre/Laboratorio de Desenvolvimento
 /Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/runtimes/win-x86/native/libSkiaSharp.dll
 /Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.csproj.AssemblyReference.cache
 /Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/obj/Debug/net10.0/ContaGotas.csproj.Up2Date
+/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/bin/Debug/net10.0/Newtonsoft.Json.dll

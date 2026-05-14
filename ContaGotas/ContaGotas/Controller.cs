@@ -11,18 +11,7 @@ public class Controller
     {
         model = m;
     }
-    
-    // inicio de esqueleto de processo de obter dados média em controller
-    public void SelecionarOpcao(string opcao)
-    {
-        if (opcao == "Medias nacionais")
-        {
-            // Dispara o processo
-            model.AtualizarMedias();
-        }
-    }
-    // final de esqueleto de processo de obter dados média em controller
-    
+
     public void TerminarAplicacao()
     {
         Environment.Exit(0);
@@ -35,7 +24,6 @@ public class Controller
     public async Task OpcaoSelecionada(int opcao)
     {
         try{
-            
             
             /*controller não é suposto saber as listas do model caso alguma coisa aconteca o model manda excecao e
               controller apanha o que o model não conseguir gerir ou que não faz parte do papel do model e decide
@@ -78,6 +66,8 @@ public class Controller
             /*apanha excecao com mensagem que o service e model não conseguiram ter resultados do
              API impedindo a entrega de uma lista vazia e permitindo ao controler assumir o 
              controlo da excao e controllar o que acontece à view ou ao pedido em si*/
+            
+            
             if (ex.Message.Contains("Resultados:[]"))
             {
                 Console.WriteLine("Dados não carregados Erro: " + ex.Message);
@@ -86,7 +76,6 @@ public class Controller
             
             // O tratamento de error
             Console.WriteLine($"\nFalha ao comunicar com o serviço. Detalhes: {ex.Message}");
-            
         }
     }
     
