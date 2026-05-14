@@ -129,6 +129,7 @@ public class View
     {
         
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
+        int i = 1;
         foreach (var tipo in tipos)
         {
             Console.WriteLine($"{i++} - {tipo.Nome}");

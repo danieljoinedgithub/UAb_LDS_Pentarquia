@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8OAq5s/hbww=",
+  "dgSpecHash": "eD0BcoYSZKI=",
   "success": true,
   "projectFilePath": "/Users/brunogoncalves/RiderProjects/UAb_LDS_Pentarquia/ContaGotas/ContaGotas/ContaGotas.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/Users/brunogoncalves/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.1/harfbuzzsharp.nativeassets.linux.8.3.1.1.nupkg.sha512",
     "/Users/brunogoncalves/.nuget/packages/harfbuzzsharp.nativeassets.macos/8.3.1.1/harfbuzzsharp.nativeassets.macos.8.3.1.1.nupkg.sha512",
     "/Users/brunogoncalves/.nuget/packages/harfbuzzsharp.nativeassets.win32/8.3.1.1/harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
+    "/Users/brunogoncalves/.nuget/packages/newtonsoft.json/13.0.4/newtonsoft.json.13.0.4.nupkg.sha512",
     "/Users/brunogoncalves/.nuget/packages/scottplot/5.1.58/scottplot.5.1.58.nupkg.sha512",
     "/Users/brunogoncalves/.nuget/packages/skiasharp/3.119.0/skiasharp.3.119.0.nupkg.sha512",
     "/Users/brunogoncalves/.nuget/packages/skiasharp.harfbuzz/3.119.0/skiasharp.harfbuzz.3.119.0.nupkg.sha512",
