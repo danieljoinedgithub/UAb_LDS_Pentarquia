@@ -60,7 +60,7 @@ public class Controller
                 
                 default:
                     //apanha alguma opcao invalida
-                    OnErroOcorrido?.Invoke($"Opção {opcao} é inválida. Escolha um valor entre 0 e 3.");
+                    OnErroOcorrido?.Invoke($"Opção {opcao} é inválida. Escolha um valor entre 0 e 4.");
                     break;
             }
         }catch (Exception ex)
