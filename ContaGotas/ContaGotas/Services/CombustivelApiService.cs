@@ -34,8 +34,8 @@ public interface ICombustivelService
 {
     Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
     Task<List<TipoCombustivel>> ObterTiposAsync();
-    Task<List<Distrito>> ObterDistritosAsync();
-    Task<List<Posto>> ObterPostosAsync(int tipo, int distrito);
+    Task<List<DistritoModel>> ObterDistritosAsync();
+    Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito);
 
 }
 
@@ -211,20 +211,20 @@ public class CombustivelApiService : ICombustivelService
             .ToList();
         return listaTiposValidada;
     }
-    public async Task<List<Distrito>> ObterDistritosAsync()
+    public async Task<List<DistritoModel>> ObterDistritosAsync()
     {
         String url = baseUrl + "PrecoComb/GetDistritos";
-        List<Distrito> listaDistritos = await chamarDGEG<List<Distrito>>(url);
+        List<DistritoModel> listaDistritos = await chamarDGEG<List<DistritoModel>>(url);
         var listaDistritosValidada = listaDistritos
             .Where(d => d.IsValido())
             .ToList();
         return listaDistritosValidada;
     }
 
-    public async Task<List<Posto>> ObterPostosAsync(int posto, int distrito)
+    public async Task<List<PostoModel>> ObterPostosAsync(int posto, int distrito)
     {
         String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
-        List<Posto> listaPostos = await chamarDGEG<List<Posto>>(url);
+        List<PostoModel> listaPostos = await chamarDGEG<List<PostoModel>>(url);
         var listaPostosValidada = listaPostos
             .Where(p => p.IsValido())
             .ToList();

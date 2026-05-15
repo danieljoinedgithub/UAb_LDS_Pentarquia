@@ -75,7 +75,7 @@ namespace ContaGotas.Tests
         service.setClient(new HttpClient(handler));
             
             // Act
-            List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
+            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
             
 
             // Assert
@@ -100,7 +100,7 @@ namespace ContaGotas.Tests
             
             // Act
             var ex = await Assert.ThrowsAsync<Exception>(() => 
-                service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
+                service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
             
 
             // Assert
@@ -121,7 +121,7 @@ namespace ContaGotas.Tests
             service.setClient(new HttpClient(handler));
             
             // Act
-            List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/");
+            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/");
 
             // Assert (validação de se não é vazio ou null)
             //Assert.Null(resultado);

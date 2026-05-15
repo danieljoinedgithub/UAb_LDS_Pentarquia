@@ -2,12 +2,12 @@ using Newtonsoft.Json;
 
 namespace ContaGotas;
 
-public class Marca : IValido
+public class DistritoModel : IValido
 { 
     [JsonProperty("ID")]
     public int Id { get; set; } 
     
-    [JsonProperty("Descricao")]
+    [JsonProperty("Descritivo")]
     public string Nome { get; set; } 
     
     public bool IsValido()
@@ -21,6 +21,4 @@ public class Marca : IValido
 
         return true;
     }
-    
 }
-

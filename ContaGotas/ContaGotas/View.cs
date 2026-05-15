@@ -113,7 +113,7 @@ public class View
     }
     
     //Apresenta Lista de distritos do Objeto.Distritos
-    private void ApresentarMenuDistritos(List<Distrito> distritos)
+    private void ApresentarMenuDistritos(List<DistritoModel> distritos)
     {
         Console.WriteLine("\nDistritos:");
         foreach (var distrito in distritos)
@@ -153,7 +153,7 @@ public class View
                 
                 Console.Clear();
                 
-                List<Distrito> distritos = model.ObterDistritos();
+                List<DistritoModel> distritos = model.ObterDistritos();
                 ApresentarMenuDistritos(distritos); 
                 int escolhaDistrito = int.Parse(Console.ReadLine());
                 
@@ -174,7 +174,7 @@ public class View
     {
         Console.Clear();
         
-        List<Posto> postos = model.ObterPostos();
+        List<PostoModel> postos = model.ObterPostos();
         
         foreach (var posto in postos)
         {

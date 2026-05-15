@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace ContaGotas;
 
-public class Municipio : IValido
+public class MunicipioModel : IValido
 { 
     [JsonProperty("ID")]
     public int Id { get; set; } 

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace ContaGotas;
 
-public class Posto : IValido
+public class PostoModel : IValido
 { 
     [JsonProperty("Id", Required = Required.Always)]
     public int  Id { get; set; } //required para obrigar a preencer com valor
