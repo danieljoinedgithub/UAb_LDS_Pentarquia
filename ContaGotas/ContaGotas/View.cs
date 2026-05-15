@@ -166,7 +166,8 @@ public class View
                 int escolhaDistrito = int.Parse(Console.ReadLine());
                 
                 Console.Clear();
-    
+                
+                Console.WriteLine("\nid posto:"+idTipo+" distrito:"+escolhaDistrito);
                 controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }

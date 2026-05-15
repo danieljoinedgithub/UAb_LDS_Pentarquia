@@ -83,7 +83,6 @@ public class Controller
     
     public void PesquisaDistrital(int tipo,int distrito)
     {
-        Console.WriteLine("\nid posto:"+tipo+" distrito:"+distrito);
         model.PesquisarDistritos(tipo, distrito);
     }
     
