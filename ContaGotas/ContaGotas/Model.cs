@@ -10,7 +10,7 @@ public class Model
     
     //=== Listas para dados ===//
     private List<PrecoMedioModel> _medias = new();
-    private List<TipoCombustivel> _tiposCombustivel = new();
+    private List<TipoCombustivelModel> _tiposCombustivel = new();
     private List<DistritoModel> _distritos = new();
     private List<PostoModel> _postosPesquisados = new();
     
@@ -30,7 +30,7 @@ public class Model
         return _medias;
     }
 
-    public List<TipoCombustivel> ObterTipos()
+    public List<TipoCombustivelModel> ObterTipos()
     {
         return _tiposCombustivel;
     }
@@ -67,7 +67,7 @@ public class Model
     {
         if (_tiposCombustivel.Count == 0 && _distritos.Count == 0 || force)
         {
-            Task<List<TipoCombustivel>> tiposGet = _service.ObterTiposAsync();
+            Task<List<TipoCombustivelModel>> tiposGet = _service.ObterTiposAsync();
             Task<List<DistritoModel>> distritosGet = _service.ObterDistritosAsync();
             await Task.WhenAll(tiposGet, distritosGet);
         

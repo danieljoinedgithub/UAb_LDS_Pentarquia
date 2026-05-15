@@ -125,7 +125,7 @@ public class View
     /*Apresentar os tipos de combustível
       Sugestoes: Fazer metodos de cada classe para apresentar ou retornar a string para imprimir 
       Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
-    private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
+    private void ApresentarMenuTipos(List<TipoCombustivelModel> tipos)
     {
         
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
@@ -145,7 +145,7 @@ public class View
         {
             try
             {
-                List<TipoCombustivel> tipos = model.ObterTipos();
+                List<TipoCombustivelModel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
         
                 int escolhaTipo = int.Parse(Console.ReadLine());

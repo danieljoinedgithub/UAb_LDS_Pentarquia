@@ -33,7 +33,7 @@ public class PrecoDgegConverter : JsonConverter<decimal>
 public interface ICombustivelService
 {
     Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
-    Task<List<TipoCombustivel>> ObterTiposAsync();
+    Task<List<TipoCombustivelModel>> ObterTiposAsync();
     Task<List<DistritoModel>> ObterDistritosAsync();
     Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito);
 
@@ -202,10 +202,10 @@ public class CombustivelApiService : ICombustivelService
         return mediasAtuais;
     }
 
-    public async Task<List<TipoCombustivel>> ObterTiposAsync()
+    public async Task<List<TipoCombustivelModel>> ObterTiposAsync()
     {
         String url = baseUrl + "PrecoComb/GetTiposCombustiveis";
-        List<TipoCombustivel> listaTipos = await chamarDGEG<List<TipoCombustivel>>(url);
+        List<TipoCombustivelModel> listaTipos = await chamarDGEG<List<TipoCombustivelModel>>(url);
         var listaTiposValidada = listaTipos
             .Where(t => t.IsValido())
             .ToList();

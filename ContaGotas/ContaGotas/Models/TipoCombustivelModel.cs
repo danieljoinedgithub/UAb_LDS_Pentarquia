@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace ContaGotas;
 
 
-public class TipoCombustivel :IValido
+public class TipoCombustivelModel :IValido
 { 
     [JsonProperty("Id", Required = Required.Always)]
     public int  Id { get; set; } //required para obrigar a preencer com valor

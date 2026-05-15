@@ -46,7 +46,7 @@ namespace ContaGotas.Tests
             // este teste num cenário real tentaria aceder à net. 
             // Abaixo mostro como testar a lógica de parsing isolada se o método fosse protegido.
             
-            List<TipoCombustivel>? resultado = await service.chamarDGEG<List<TipoCombustivel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
+            List<TipoCombustivelModel>? resultado = await service.chamarDGEG<List<TipoCombustivelModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
             foreach (var item in resultado)
             {
                 _testOutputHelper.WriteLine(item.Nome);
