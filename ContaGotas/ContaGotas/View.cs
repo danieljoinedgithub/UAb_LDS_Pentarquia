@@ -91,7 +91,7 @@ public class View
         
         Console.Clear();
 
-        Console.WriteLine("Médias obtidas:");
+        Console.WriteLine("MÉDIAS OBTIDAS:");
         foreach (var d in dados)
         {
             decimal diferenca = d.GetDiferencaPreco();
