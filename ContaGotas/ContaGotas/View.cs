@@ -58,7 +58,7 @@ public class View
         if (int.TryParse(input, out int opcao))
         {
             if (opcao == 4)
-                MostrarGrafico(); // local, no controller needed
+                await MostrarGrafico();
             else
                 await controller.OpcaoSelecionada(opcao);
         }
@@ -191,7 +191,7 @@ public class View
     }
     
     
-    public void MostrarGrafico()
+    public async Task MostrarGrafico()
     {
         //var dados = model.ObterMedias(); para depois a api
         
@@ -207,8 +207,9 @@ public class View
 
         if (!dados.Any())
         {
-            Console.WriteLine("Sem dados para mostrar no gráfico. Consulte as médias primeiro (opção 1).");
-            return;
+            Console.WriteLine("A carregar dados...");
+            await controller.OpcaoSelecionada(1);
+            dados = model.ObterMedias();
         }
 
         var plot = new ScottPlot.Plot();
