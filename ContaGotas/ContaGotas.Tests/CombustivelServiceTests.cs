@@ -1,6 +1,11 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text.Json;
-
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 using ContaGotas;
 using Xunit.Abstractions;
@@ -41,7 +46,7 @@ namespace ContaGotas.Tests
             // este teste num cenário real tentaria aceder à net. 
             // Abaixo mostro como testar a lógica de parsing isolada se o método fosse protegido.
             
-            List<TipoCombustivel>? resultado = await service.chamarDGEG<List<TipoCombustivel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
+            List<TipoCombustivelModel>? resultado = await service.chamarDGEG<List<TipoCombustivelModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
             foreach (var item in resultado)
             {
                 _testOutputHelper.WriteLine(item.Nome);
@@ -70,7 +75,7 @@ namespace ContaGotas.Tests
         service.setClient(new HttpClient(handler));
             
             // Act
-            List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
+            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
             
 
             // Assert
@@ -95,7 +100,7 @@ namespace ContaGotas.Tests
             
             // Act
             var ex = await Assert.ThrowsAsync<Exception>(() => 
-                service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
+                service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
             
 
             // Assert
@@ -116,7 +121,7 @@ namespace ContaGotas.Tests
             service.setClient(new HttpClient(handler));
             
             // Act
-            List<Posto> resultado = await service.chamarDGEG<List<Posto>>("https://precoscombustiveis.dgeg.gov.pt/");
+            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/");
 
             // Assert (validação de se não é vazio ou null)
             //Assert.Null(resultado);

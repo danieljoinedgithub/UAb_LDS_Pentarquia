@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace ContaGotas.Tests;
 
 public class PrecoMedioModelTests
@@ -19,7 +21,7 @@ public class PrecoMedioModelTests
     [InlineData("-1.20")] //negativo
     [InlineData("abc")]
     [InlineData("€")]
-    public void IsValido_False_PrecoInvalido(string valor)
+    public void IsValido_False_PrecoInvalido(string p)
     {
         var preco = new PrecoMedioModel("", "Gasolina 95", "Lisboa");
 

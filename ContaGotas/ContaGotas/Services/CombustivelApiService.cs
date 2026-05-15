@@ -33,9 +33,9 @@ public class PrecoDgegConverter : JsonConverter<decimal>
 public interface ICombustivelService
 {
     Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
-    Task<List<TipoCombustivel>> ObterTiposAsync();
-    Task<List<Distrito>> ObterDistritosAsync();
-    Task<List<Posto>> ObterPostosAsync(int tipo, int distrito);
+    Task<List<TipoCombustivelModel>> ObterTiposAsync();
+    Task<List<DistritoModel>> ObterDistritosAsync();
+    Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito);
 
 }
 
@@ -202,24 +202,33 @@ public class CombustivelApiService : ICombustivelService
         return mediasAtuais;
     }
 
-    public async Task<List<TipoCombustivel>> ObterTiposAsync()
+    public async Task<List<TipoCombustivelModel>> ObterTiposAsync()
     {
         String url = baseUrl + "PrecoComb/GetTiposCombustiveis";
-        List<TipoCombustivel> listaTipos = await chamarDGEG<List<TipoCombustivel>>(url);
-        return listaTipos;
+        List<TipoCombustivelModel> listaTipos = await chamarDGEG<List<TipoCombustivelModel>>(url);
+        var listaTiposValidada = listaTipos
+            .Where(t => t.IsValido())
+            .ToList();
+        return listaTiposValidada;
     }
-    public async Task<List<Distrito>> ObterDistritosAsync()
+    public async Task<List<DistritoModel>> ObterDistritosAsync()
     {
         String url = baseUrl + "PrecoComb/GetDistritos";
-        List<Distrito> listaDistritos = await chamarDGEG<List<Distrito>>(url);
-        return listaDistritos;
+        List<DistritoModel> listaDistritos = await chamarDGEG<List<DistritoModel>>(url);
+        var listaDistritosValidada = listaDistritos
+            .Where(d => d.IsValido())
+            .ToList();
+        return listaDistritosValidada;
     }
 
-    public async Task<List<Posto>> ObterPostosAsync(int posto, int distrito)
+    public async Task<List<PostoModel>> ObterPostosAsync(int posto, int distrito)
     {
         String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
-        List<Posto> listaDistritos = await chamarDGEG<List<Posto>>(url);
-        return listaDistritos;
+        List<PostoModel> listaPostos = await chamarDGEG<List<PostoModel>>(url);
+        var listaPostosValidada = listaPostos
+            .Where(p => p.IsValido())
+            .ToList();
+        return listaPostosValidada;
     }
 }
 

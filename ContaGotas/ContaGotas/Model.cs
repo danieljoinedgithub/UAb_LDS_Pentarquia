@@ -10,9 +10,9 @@ public class Model
     
     //=== Listas para dados ===//
     private List<PrecoMedioModel> _medias = new();
-    private List<TipoCombustivel> _tiposCombustivel = new();
-    private List<Distrito> _distritos = new();
-    private List<Posto> _postosPesquisados = new();
+    private List<TipoCombustivelModel> _tiposCombustivel = new();
+    private List<DistritoModel> _distritos = new();
+    private List<PostoModel> _postosPesquisados = new();
     
     //=== CONSTRUTORES ===//
     
@@ -25,31 +25,31 @@ public class Model
     
     //=== GETS ===//
     
-    public List<PrecoMedioModel> GetMedias()
+    public List<PrecoMedioModel> ObterMedias()
     {
         return _medias;
     }
 
-    public List<TipoCombustivel> GetTipos()
+    public List<TipoCombustivelModel> ObterTipos()
     {
         return _tiposCombustivel;
     }
 
-    public List<Distrito> GetDistritos()
+    public List<DistritoModel> ObterDistritos()
     {
         return _distritos;
     }
 
-    public List<Posto> GetPostos()
+    public List<PostoModel> ObterPostos()
     {
         return _postosPesquisados;
     }
 
     //=== EVENTOS ===//
     public event Action? OnMediasProntas;
-    public event Action<List<TipoCombustivel>, List<Distrito>>? OnTiposDistritos;
+    public event Action? OnTiposDistritos;
     
-    public event Action<List<Posto>>? ReadyPostos; 
+    public event Action? ReadyPostos; 
 
     
     //=== METODOS ===//
@@ -61,36 +61,28 @@ public class Model
         _medias = await _service.ObterMediasAsync();
         OnMediasProntas?.Invoke();
     }
-
-    public List<PrecoMedioModel> ObterMedias()
-    {
-        return _medias;
-    }
     
     // --- Pesquisa Distrital ---
-    public async Task BuscarTiposDistritos()
+    public async Task BuscarTiposDistritos(bool force = false)
     {
-        if (_tiposCombustivel.Count == 0 && _distritos.Count == 0)
+        if (_tiposCombustivel.Count == 0 && _distritos.Count == 0 || force)
         {
-            Task<List<TipoCombustivel>> tiposGet = _service.ObterTiposAsync();
-            Task<List<Distrito>> distritosGet = _service.ObterDistritosAsync();
+            Task<List<TipoCombustivelModel>> tiposGet = _service.ObterTiposAsync();
+            Task<List<DistritoModel>> distritosGet = _service.ObterDistritosAsync();
             await Task.WhenAll(tiposGet, distritosGet);
         
-        _tiposCombustivel = await tiposGet;
-        _distritos = await distritosGet;
+            _tiposCombustivel = await tiposGet;
+            _distritos = await distritosGet;
         }
-        
-        
-        
-        
-        OnTiposDistritos?.Invoke(_tiposCombustivel, _distritos);
+        OnTiposDistritos?.Invoke();
     }
     
     
     public async Task PesquisarDistritos(int tipo, int distrito)
     {
-        List<Posto> postos = await _service.ObterPostosAsync(tipo, distrito);
-        ReadyPostos?.Invoke(postos);
+        _postosPesquisados = await _service.ObterPostosAsync(tipo, distrito);
+        ReadyPostos?.Invoke(); //previne crash se estiver nulo
+        
     }
     
     

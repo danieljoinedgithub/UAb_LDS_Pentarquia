@@ -58,7 +58,7 @@ public class View
         if (int.TryParse(input, out int opcao))
         {
             if (opcao == 4)
-                await MostrarGrafico();
+                MostrarGrafico(); // local, no controller needed
             else
                 await controller.OpcaoSelecionada(opcao);
         }
@@ -113,7 +113,7 @@ public class View
     }
     
     //Apresenta Lista de distritos do Objeto.Distritos
-    private void ApresentarMenuDistritos(List<Distrito> distritos)
+    private void ApresentarMenuDistritos(List<DistritoModel> distritos)
     {
         Console.WriteLine("\nDistritos:");
         foreach (var distrito in distritos)
@@ -125,7 +125,7 @@ public class View
     /*Apresentar os tipos de combustível
       Sugestoes: Fazer metodos de cada classe para apresentar ou retornar a string para imprimir 
       Exemplo:tipos.toString= return $"{tipo.Id} - {tipo.Nome}");*/
-    private void ApresentarMenuTipos(List<TipoCombustivel> tipos)
+    private void ApresentarMenuTipos(List<TipoCombustivelModel> tipos)
     {
         
         Console.WriteLine("\nTIPOS DE COMBUSTÍVEL:");
@@ -136,24 +136,30 @@ public class View
         }
     }
     
-    private void ApresentarBoxTipoDistritos(List<TipoCombustivel> tipos,List<Distrito> distritos)
+    private void ApresentarBoxTipoDistritos()
     {
         /*TODO:condicao para impedir escolha invalida ou um Exception para impedir crash áo sair do loop ate
           opcao valida selecionada*/
 
         while (true)
         {
-            try{
+            try
+            {
+                List<TipoCombustivelModel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
         
                 int escolhaTipo = int.Parse(Console.ReadLine());
                 int idTipo = tipos[escolhaTipo - 1].Id;
                 
+                Console.Clear();
+                
+                List<DistritoModel> distritos = model.ObterDistritos();
                 ApresentarMenuDistritos(distritos); 
                 int escolhaDistrito = int.Parse(Console.ReadLine());
+                
+                Console.Clear();
     
-                //simulacao butao
-                OnPesquisaDistrital(idTipo, escolhaDistrito);
+                controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
             catch (ArgumentOutOfRangeException ex)
@@ -164,9 +170,11 @@ public class View
         }
     }
 
-    public void ApresentarResultadoPesquisaDistrital(List<Posto> postos)
+    public void ApresentarResultadoPesquisaDistrital()
     {
         Console.Clear();
+        
+        List<PostoModel> postos = model.ObterPostos();
         
         foreach (var posto in postos)
         {
@@ -189,7 +197,6 @@ public class View
         
         Console.Clear();
     }
-    
     
     public async Task MostrarGrafico()
     {
@@ -227,6 +234,10 @@ public class View
             .Select(i => (double)i)
             .ToArray();
         plot.Axes.Bottom.SetTicks(posicoes, labels);
+        plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+        
+        plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+        plot.Axes.Margins(bottom:0);
 
         plot.Title("Preços Médios de Combustível (DGEG)");
         plot.YLabel("Preço (€)");

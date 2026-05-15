@@ -4,6 +4,7 @@ obj/
 
 # Rider / JetBrains
 .idea/
+.vs/
 *.sln.iml
 *.user
 
