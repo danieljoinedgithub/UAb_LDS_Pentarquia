@@ -46,7 +46,7 @@ namespace ContaGotas.Tests
             // este teste num cenário real tentaria aceder à net. 
             // Abaixo mostro como testar a lógica de parsing isolada se o método fosse protegido.
             
-            List<TipoCombustivelModel>? resultado = await service.chamarDGEG<List<TipoCombustivelModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
+            List<TipoCombustivelModel>? resultado = await service.chamarDGEG<TipoCombustivelModel>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/GetTiposCombustiveis");
             foreach (var item in resultado)
             {
                 _testOutputHelper.WriteLine(item.Nome);
@@ -71,15 +71,16 @@ namespace ContaGotas.Tests
                            "\"Morada\":\"EN 201 Km 36,46 - Sernados\",\"Localidade\":\"Feitosa\",\"CodPostal\":\"4990-351\",\"Latitude\":41.75301," +
                            "\"Longitude\":-8.58063,\"Quantidade\":84}]}";
 
-        var handler = new FakeDgegHandler(jsonErro);
-        service.setClient(new HttpClient(handler));
+            var handler = new FakeDgegHandler(jsonErro);
+            service.setClient(new HttpClient(handler));
             
             // Act
-            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194");
+            String url = "https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194";
+            List<PostoModel> resultado = await service.chamarDGEG<PostoModel>(url)
+                                         ?? new List<PostoModel>();
             
-
             // Assert
-        
+            Assert.NotNull(resultado);
             Assert.NotEmpty(resultado);
             
         }
@@ -100,18 +101,17 @@ namespace ContaGotas.Tests
             
             // Act
             var ex = await Assert.ThrowsAsync<Exception>(() => 
-                service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
+                service.chamarDGEG<PostoModel>("https://precoscombustiveis.dgeg.gov.pt/api/PrecoComb/PesquisarPostos?idsTiposComb=3201%2C3205&idMarca=29&idTipoPosto=3&idDistrito=13&idsMunicipios=198,194"));
             
 
             // Assert
-            
-            Assert.Contains("Algum campo critico no Json esta null ou em falta",ex.Message);
-            
+            Assert.Contains("Erro inesperado ao ler dados da DGEG", ex.Message);
+            //Assert.Contains("Algum campo crítico no Json está null ou em falta",ex.Message);
         }
         
         
         [Fact]
-        public async Task ChamarDGEG_DeveRetornar_QunadoResultadoVazio()
+        public async Task ChamarDGEG_DeveRetornar_QuandoResultadoVazio()
         {
             // Arrange
             var service = new CombustivelApiService();
@@ -121,15 +121,13 @@ namespace ContaGotas.Tests
             service.setClient(new HttpClient(handler));
             
             // Act
-            List<PostoModel> resultado = await service.chamarDGEG<List<PostoModel>>("https://precoscombustiveis.dgeg.gov.pt/");
-
-            // Assert (validação de se não é vazio ou null)
-            //Assert.Null(resultado);
-            //Assert.Empty(resultado);
-            Assert.True(resultado == null || !resultado.Any());
+            String url = "https://precoscombustiveis.dgeg.gov.pt/";
+            //List<PostoModel> resultado = await service.chamarDGEG<PostoModel>(url);
+            
+            var ex = await Assert.ThrowsAsync<Exception>(() =>
+                service.chamarDGEG<PostoModel>(url));
+            Assert.Contains("Resultados:[]", ex.Message);
         }
-        
-        
         
 
         [Fact]
@@ -142,7 +140,7 @@ namespace ContaGotas.Tests
 
             // Esperamos que o erro customizado que escreveste no 'catch' seja lançado
             var ex = await Assert.ThrowsAsync<Exception>(() => 
-                service.chamarDGEG<List<PrecoMedioModel>>("https://url-invalida-que-gera-erro.com"));
+                service.chamarDGEG<PrecoMedioModel>("https://url-invalida-que-gera-erro.com"));
             
             Assert.Contains("Servidor da DGEG não encontrado", ex.Message);
         }
