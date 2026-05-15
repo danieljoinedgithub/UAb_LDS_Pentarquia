@@ -5,6 +5,8 @@ namespace ContaGotas;
 public class Controller
 {
     private Model model;
+    
+    public event Action<string>? OnErroOcorrido;
 
     // O Controller agora só recebe o Model já pronto
     public Controller(Model m)
@@ -58,7 +60,7 @@ public class Controller
                 
                 default:
                     //apanha alguma opcao invalida
-                    Console.WriteLine($"Opção {opcao} é inválida. Escolha um valor entre 0 e 3.");
+                    OnErroOcorrido?.Invoke($"Opção {opcao} é inválida. Escolha um valor entre 0 e 4.");
                     break;
             }
         }catch (Exception ex)
@@ -70,12 +72,12 @@ public class Controller
             
             if (ex.Message.Contains("Resultados:[]"))
             {
-                Console.WriteLine("Dados não carregados Erro: " + ex.Message);
+                OnErroOcorrido?.Invoke("Dados não carregados Erro: " + ex.Message);
             }
             
             
             // O tratamento de error
-            Console.WriteLine($"\nFalha ao comunicar com o serviço. Detalhes: {ex.Message}");
+            OnErroOcorrido?.Invoke($"\nFalha ao comunicar com o serviço. Detalhes: {ex.Message}");
         }
     }
     

@@ -22,9 +22,17 @@ public class View
         model.OnMediasProntas += MostrarMedias;
         model.ReadyPostos += ApresentarResultadoPesquisaDistrital;
         
+        //Subscrição dos eventos necessarios entre View-Controller
+        controller.OnErroOcorrido += MostrarErro;
+        
         PesquisaDistrital += controller.PesquisaDistrital;
     }
     
+    
+    private void MostrarErro(string mensagemErro)
+    {
+        Console.WriteLine($"\n{mensagemErro}");
+    }
     
     //Eventos
     public event Action<int, int>? PesquisaDistrital;

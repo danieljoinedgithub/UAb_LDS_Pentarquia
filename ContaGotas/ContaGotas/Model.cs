@@ -58,7 +58,7 @@ public class Model
     public async Task AtualizarMedias()
     {
         
-        _medias = await _service.ObterMediasAsync();
+        _medias = await _service.ObterMediasAsync(-7, true);
         OnMediasProntas?.Invoke();
     }
     
