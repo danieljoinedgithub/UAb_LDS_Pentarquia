@@ -1,5 +1,14 @@
+# Pastas de compilação
 bin/
 obj/
+
+# Rider / JetBrains
 .idea/
-.vs/
+*.sln.iml
 *.user
+
+# Outros ficheiros temporários
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/

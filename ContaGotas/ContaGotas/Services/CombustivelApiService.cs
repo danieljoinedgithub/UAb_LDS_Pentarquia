@@ -206,20 +206,29 @@ public class CombustivelApiService : ICombustivelService
     {
         String url = baseUrl + "PrecoComb/GetTiposCombustiveis";
         List<TipoCombustivel> listaTipos = await chamarDGEG<List<TipoCombustivel>>(url);
-        return listaTipos;
+        var listaTiposValidada = listaTipos
+            .Where(t => t.IsValido())
+            .ToList();
+        return listaTiposValidada;
     }
     public async Task<List<Distrito>> ObterDistritosAsync()
     {
         String url = baseUrl + "PrecoComb/GetDistritos";
         List<Distrito> listaDistritos = await chamarDGEG<List<Distrito>>(url);
-        return listaDistritos;
+        var listaDistritosValidada = listaDistritos
+            .Where(d => d.IsValido())
+            .ToList();
+        return listaDistritosValidada;
     }
 
     public async Task<List<Posto>> ObterPostosAsync(int posto, int distrito)
     {
         String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
-        List<Posto> listaDistritos = await chamarDGEG<List<Posto>>(url);
-        return listaDistritos;
+        List<Posto> listaPostos = await chamarDGEG<List<Posto>>(url);
+        var listaPostosValidada = listaPostos
+            .Where(p => p.IsValido())
+            .ToList();
+        return listaPostosValidada;
     }
 }
 

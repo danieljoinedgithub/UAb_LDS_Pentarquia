@@ -198,7 +198,7 @@ public class View
         Console.Clear();
     }
     
-    public void MostrarGrafico()
+    public async Task MostrarGrafico()
     {
         //var dados = model.ObterMedias(); para depois a api
         
@@ -214,8 +214,9 @@ public class View
 
         if (!dados.Any())
         {
-            Console.WriteLine("Sem dados para mostrar no gráfico. Consulte as médias primeiro (opção 1).");
-            return;
+            Console.WriteLine("A carregar dados...");
+            await controller.OpcaoSelecionada(1);
+            dados = model.ObterMedias();
         }
 
         var plot = new ScottPlot.Plot();
@@ -233,6 +234,10 @@ public class View
             .Select(i => (double)i)
             .ToArray();
         plot.Axes.Bottom.SetTicks(posicoes, labels);
+        plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+        
+        plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+        plot.Axes.Margins(bottom:0);
 
         plot.Title("Preços Médios de Combustível (DGEG)");
         plot.YLabel("Preço (€)");
