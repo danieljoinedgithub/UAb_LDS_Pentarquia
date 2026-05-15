@@ -29,15 +29,6 @@ public class PrecoDgegConverter : JsonConverter<decimal>
     }
 }
 
-
-public interface ICombustivelService
-{
-    Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
-    Task<List<TipoCombustivelModel>> ObterTiposAsync();
-    Task<List<DistritoModel>> ObterDistritosAsync();
-    Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito);
-}
-
 // Implementação real que lida com HTTP
 public class CombustivelApiService : ICombustivelService
 {
