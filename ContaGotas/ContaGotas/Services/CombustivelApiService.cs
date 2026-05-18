@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -29,16 +28,6 @@ public class PrecoDgegConverter : JsonConverter<decimal>
     }
 }
 
-
-public interface ICombustivelService
-{
-    Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false);
-    Task<List<TipoCombustivelModel>> ObterTiposAsync();
-    Task<List<DistritoModel>> ObterDistritosAsync();
-    Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito);
-
-}
-
 // Implementação real que lida com HTTP
 public class CombustivelApiService : ICombustivelService
 {
@@ -62,7 +51,7 @@ public class CombustivelApiService : ICombustivelService
     }
     
     // chamada e processo da resposta da API DGEG
-    public async Task<T?> chamarDGEG<T>(string urlDestino)
+    public async Task<List<T>?> chamarDGEG<T>(string urlDestino) where T : IValido
     {
         int tentativas = 0;
         const int maxTentativas = 3;
@@ -80,14 +69,15 @@ public class CombustivelApiService : ICombustivelService
 
                 //Validação de resposta vazia
                 if (string.IsNullOrWhiteSpace(jsonResponse))
-                    return default;
+                    throw new Exception($"Não foi obtida nenhuma resposta da API da DGEG. Tente novamente mais tarde ou modifique as informações requisitadas.");
 
                 JObject response = JObject.Parse(jsonResponse);
                 
                 // Se a DGEG estiver em manutenção e devolver um erro em HTML em vez de JSON, ou se mudarem o nome da variável, 
                 // este GetProperty vai disparar uma KeyNotFoundException
                 bool status = response["status"]?.Value<bool>() ?? false;
-                if (!status) return default;
+                if (!status)
+                    throw new Exception($"Não foi possível obter uma resposta válida da API da DGEG. Tente novamente mais tarde ou modifique as informações requisitadas.");
                 
                 JToken resultado = response["resultado"];
                 
@@ -99,9 +89,13 @@ public class CombustivelApiService : ICombustivelService
                 opcoes.Converters.Add(new PrecoDgegConverter());
                 JsonSerializer serializer = JsonSerializer.Create(opcoes);
                 
-                
-                var dados = resultado.ToObject<T>(serializer);
-                return dados;
+                //Validação de dados para garantir que só são devolvidos dados válidos
+                var dados = resultado.ToObject<List<T>>(serializer);
+                if (dados == null)
+                    return new List<T>();
+                return dados
+                    .Where(d => d.IsValido())
+                    .ToList();
             }
             
             //=== EXCEÇÕES ====//
@@ -121,7 +115,7 @@ public class CombustivelApiService : ICombustivelService
             {
                 if (tentativas == maxTentativas)
                 {
-                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                    throw new Exception($"Algum campo crítico no Json está null ou em falta: {e.Message}.");
                 }
                 
                 await Task.Delay(2000);
@@ -131,7 +125,7 @@ public class CombustivelApiService : ICombustivelService
             {
                 if (tentativas == maxTentativas)
                 {
-                    throw new Exception($"Algum campo critico no Json esta null ou em falta: {e.Message}.");
+                    throw new Exception($"Algum campo crítico no Json está null ou em falta: {e.Message}.");
                 }
                 
                 await Task.Delay(2000);
@@ -148,40 +142,30 @@ public class CombustivelApiService : ICombustivelService
             // Validação dos dados JSON recebidos
             catch (Exception e)
             {
-
                 if (e.Message == "Resultados:[]")
-                {
                     throw new Exception("Resultados:[]");
-                }
-                
-                
+
                 // Qualquer erro inesperado é capturado aqui para não crashar a app
                 throw new Exception($"Erro inesperado ao ler dados da DGEG: {e.Message}");
             }
         }
-        return default;
+        return new List<T>();
     }
     
     public async Task<List<PrecoMedioModel>> ObterMediasAsync(int diasAntes = -7, bool incluirDiferenca = false)
     {
-        String paramTipoCombustíveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
+        String paramTipoCombustiveis = "idsTiposComb=1120,3400,3205,3405,3201,2105,2101";
 
         // Obter as médias com a data dinâmica
         if (diasAntes > 0)
             diasAntes = -diasAntes;
         string paramData = $"dataIni={DateTime.Now.AddDays(diasAntes):yyyy/MM/dd}";
         
-        String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustíveis +"&" + paramData;
-        List<PrecoMedioModel> listaMedias = await chamarDGEG<List<PrecoMedioModel>>(url);
+        String url = baseUrl+"PrecoComb/PMD?"+ paramTipoCombustiveis +"&" + paramData;
+        List<PrecoMedioModel> mediasAtuais = await chamarDGEG<PrecoMedioModel>(url) 
+                                             ?? new List<PrecoMedioModel>();
 
-        if (listaMedias == null)
-            return new List<PrecoMedioModel>();
-
-        //Validação de dados para garantir que só são devolvidos dados válidos
-        var mediasAtuais = listaMedias
-            .Where(m => m.IsValido())
-            .ToList();
-
+        //Incluir a diferença relativamente a um periodo anterior
         if (incluirDiferenca)
         {
             //Obter as medias anteriores
@@ -193,9 +177,7 @@ public class CombustivelApiService : ICombustivelService
                     .FirstOrDefault(a => a.combustivel == atual.combustivel);
 
                 if (antiga != null)
-                {
                     atual.valorAnterior = antiga.GetPrecoDecimal();
-                }
             }
         }
 
@@ -205,30 +187,24 @@ public class CombustivelApiService : ICombustivelService
     public async Task<List<TipoCombustivelModel>> ObterTiposAsync()
     {
         String url = baseUrl + "PrecoComb/GetTiposCombustiveis";
-        List<TipoCombustivelModel> listaTipos = await chamarDGEG<List<TipoCombustivelModel>>(url);
-        var listaTiposValidada = listaTipos
-            .Where(t => t.IsValido())
-            .ToList();
-        return listaTiposValidada;
+        List<TipoCombustivelModel> listaTipos = await chamarDGEG<TipoCombustivelModel>(url) 
+                                                ?? new List<TipoCombustivelModel>();
+        return listaTipos;
     }
     public async Task<List<DistritoModel>> ObterDistritosAsync()
     {
         String url = baseUrl + "PrecoComb/GetDistritos";
-        List<DistritoModel> listaDistritos = await chamarDGEG<List<DistritoModel>>(url);
-        var listaDistritosValidada = listaDistritos
-            .Where(d => d.IsValido())
-            .ToList();
-        return listaDistritosValidada;
+        List<DistritoModel> listaDistritos = await chamarDGEG<DistritoModel>(url) 
+                                             ?? new List<DistritoModel>();
+        return listaDistritos;
     }
 
     public async Task<List<PostoModel>> ObterPostosAsync(int posto, int distrito)
     {
         String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
-        List<PostoModel> listaPostos = await chamarDGEG<List<PostoModel>>(url);
-        var listaPostosValidada = listaPostos
-            .Where(p => p.IsValido())
-            .ToList();
-        return listaPostosValidada;
+        List<PostoModel> listaPostos = await chamarDGEG<PostoModel>(url)
+                                       ?? new List<PostoModel>();
+        return listaPostos;
     }
 }
 

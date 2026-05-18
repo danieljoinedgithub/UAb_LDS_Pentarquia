@@ -48,7 +48,7 @@ public class View
         {
             Console.WriteLine("\nMENU:");
             Console.WriteLine("1 - Ver médias");
-            Console.WriteLine("2 - Pesquisar distrital (em desenvolvimento)");
+            Console.WriteLine("2 - Pesquisar distrital");
             Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
             Console.WriteLine("4 - Ver gráfico de médias");
             Console.WriteLine("0 - Sair");
@@ -91,7 +91,7 @@ public class View
         
         Console.Clear();
 
-        Console.WriteLine("Médias obtidas:");
+        Console.WriteLine("MÉDIAS OBTIDAS:");
         foreach (var d in dados)
         {
             decimal diferenca = d.GetDiferencaPreco();
@@ -155,27 +155,26 @@ public class View
             {
                 List<TipoCombustivelModel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
-
+        
                 int escolhaTipo = int.Parse(Console.ReadLine());
                 int idTipo = tipos[escolhaTipo - 1].Id;
-
+                
                 Console.Clear();
-
+                
                 List<DistritoModel> distritos = model.ObterDistritos();
-                ApresentarMenuDistritos(distritos);
+                ApresentarMenuDistritos(distritos); 
                 int escolhaDistrito = int.Parse(Console.ReadLine());
-
+                
                 Console.Clear();
-
-                Console.WriteLine("\nid posto:" + idTipo + " distrito:" + escolhaDistrito);
+    
                 controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
-            catch (Exception ex) when (ex is ArgumentOutOfRangeException || ex is FormatException)
+            catch (ArgumentOutOfRangeException ex)
             {
-                Console.WriteLine("Escolha um numero valido.\nQualquer tecla para continuar.");
+                Console.WriteLine("Escolha um numero valido.\n Qualquer tecla para continuar.");
                 Console.ReadKey(true);
-            }
+            } 
         }
     }
 
