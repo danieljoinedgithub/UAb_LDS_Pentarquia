@@ -22,9 +22,17 @@ public class View
         model.OnMediasProntas += MostrarMedias;
         model.ReadyPostos += ApresentarResultadoPesquisaDistrital;
         
+        //Subscrição dos eventos necessarios entre View-Controller
+        controller.OnErroOcorrido += MostrarErro;
+        
         PesquisaDistrital += controller.PesquisaDistrital;
     }
     
+    
+    private void MostrarErro(string mensagemErro)
+    {
+        Console.WriteLine($"\n{mensagemErro}");
+    }
     
     //Eventos
     public event Action<int, int>? PesquisaDistrital;
@@ -147,26 +155,27 @@ public class View
             {
                 List<TipoCombustivelModel> tipos = model.ObterTipos();
                 ApresentarMenuTipos(tipos);
-        
+
                 int escolhaTipo = int.Parse(Console.ReadLine());
                 int idTipo = tipos[escolhaTipo - 1].Id;
-                
+
                 Console.Clear();
-                
+
                 List<DistritoModel> distritos = model.ObterDistritos();
-                ApresentarMenuDistritos(distritos); 
+                ApresentarMenuDistritos(distritos);
                 int escolhaDistrito = int.Parse(Console.ReadLine());
-                
+
                 Console.Clear();
-    
+
+                Console.WriteLine("\nid posto:" + idTipo + " distrito:" + escolhaDistrito);
                 controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (Exception ex) when (ex is ArgumentOutOfRangeException || ex is FormatException)
             {
-                Console.WriteLine("Escolha um numero valido.\n Qualquer tecla para continuar.");
+                Console.WriteLine("Escolha um numero valido.\nQualquer tecla para continuar.");
                 Console.ReadKey(true);
-            } 
+            }
         }
     }
 
@@ -180,7 +189,7 @@ public class View
         {
             Console.WriteLine($"Nome:{posto.Nome}\n" +
                               $"Morada:{posto.Morada}\n" +
-                              $"Preço:{posto.PrecoString}€");
+                              $"Preço:{posto.Preco}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
         /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
