@@ -1,0 +1,107 @@
+﻿@page "/"
+@using ContaGotas
+@inject Controller Controller
+@inject Model Model
+@implements IDisposable
+
+<PageTitle>ContaGotas - Médias (MVC)</PageTitle>
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Preços Médios de Combustível 💧</h1>
+
+    @* 1. Se o Controller disparar um erro, mostramos esta caixa vermelha *@
+    @if (!string.IsNullOrEmpty(mensagemErro))
+    {
+        <div class="alert alert-danger shadow-sm">
+            <h5 class="alert-heading">Falha de Comunicação</h5>
+            <p class="mb-0">@mensagemErro</p>
+        </div>
+    }
+    @* 2. Se não houver erro, mas a lista continuar nula, mostramos o carregamento *@
+    else if (listaMedias == null)
+    {
+        <div class="d-flex align-items-center gap-2 text-secondary">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+            <span>A solicitar dados ao Controller (isto pode demorar alguns segundos)...</span>
+        </div>
+    }
+    @* 3. Quando os dados chegam com sucesso, desenhamos a tabela *@
+    else
+    {
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle bg-white mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Combustível</th>
+                        <th>Preço Atual</th>
+                        <th>Tendência (15 dias)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var media in listaMedias)
+                        {
+                            // 1. Dividimos por 1000 para transformar o 36 (milhares) em 0.036 (decimais)
+                            var diferencaReal = media.GetDiferencaPreco() / 1000m; 
+                            
+                            // 2. Forçamos a cultura portuguesa para garantir a vírgula no ecrã (0,036)
+                            var culturaPT = new System.Globalization.CultureInfo("pt-PT");
+
+                            <tr>
+                                <td class="fw-bold text-secondary">@media.combustivel</td>
+                                <td class="fs-5 fw-semibold">@media.valor</td>
+                                <td>
+                                    @if (diferencaReal > 0)
+                                    {
+                                        <span class="badge bg-danger p-2">+@diferencaReal.ToString("0.000", culturaPT) €</span>
+                                    }
+                                    else if (diferencaReal < 0)
+                                    {
+                                        <span class="badge bg-success p-2">@diferencaReal.ToString("0.000", culturaPT) €</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary p-2">Sem alteração</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    private List<PrecoMedioModel>? listaMedias;
+    private string? mensagemErro;
+
+    // Mudámos para OnInitializedAsync (assíncrono)
+    protected override async Task OnInitializedAsync()
+    {
+        // 1. Subscrevemos os eventos
+        Model.OnMediasProntas += MostrarMediasUI;
+        Controller.OnErroOcorrido += MostrarErroUI;
+
+        // 2. AGUARDAMOS que o Controller faça o trabalho, exatamente como na consola!
+        await Controller.OpcaoSelecionada(1);
+    }
+
+    private void MostrarMediasUI()
+    {
+        listaMedias = Model.ObterMedias();
+        mensagemErro = null;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void MostrarErroUI(string erro)
+    {
+        mensagemErro = erro;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Model.OnMediasProntas -= MostrarMediasUI;
+        Controller.OnErroOcorrido -= MostrarErroUI;
+    }
+}

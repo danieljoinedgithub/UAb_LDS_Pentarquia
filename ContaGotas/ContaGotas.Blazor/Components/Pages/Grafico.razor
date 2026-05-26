@@ -1,0 +1,104 @@
+@page "/grafico"
+@rendermode InteractiveServer
+@using ContaGotas
+@using System.IO
+@inject Controller Controller
+@inject Model Model
+@implements IDisposable
+
+<PageTitle>ContaGotas - Gráfico (MVC)</PageTitle>
+
+<div class="container mt-4">
+    <h1 class="text-primary mb-4">Análise Estatística Visual 📊</h1>
+
+    @* 1. Tratamento de Erros *@
+    @if (!string.IsNullOrEmpty(mensagemErro))
+    {
+        <div class="alert alert-danger shadow-sm">
+            <h5 class="alert-heading">Falha ao Gerar Gráfico</h5>
+            <p class="mb-0">@mensagemErro</p>
+        </div>
+    }
+    @* 2. Estado de Carregamento *@
+    else if (string.IsNullOrEmpty(base64Grafico))
+    {
+        <div class="d-flex align-items-center gap-2 text-secondary">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+            <span>A renderizar gráfico estatístico (isto pode demorar alguns segundos)...</span>
+        </div>
+    }
+    @* 3. Gráfico Carregado *@
+    else
+    {
+        <div class="card shadow-sm border-0 p-3 bg-white text-center">
+            <img src="data:image/png;base64,@base64Grafico" class="img-fluid rounded shadow-sm mx-auto" alt="Gráfico DGEG" style="max-width: 800px;" />
+        </div>
+    }
+</div>
+
+@code {
+    private string base64Grafico = "";
+    private string? mensagemErro;
+
+    // Mudámos para OnInitializedAsync para podermos usar o "await"
+    protected override async Task OnInitializedAsync()
+    {
+        // 1. Subscrever aos eventos (Sucesso e Erro)
+        Model.OnMediasProntas += GerarGraficoUI;
+        Controller.OnErroOcorrido += MostrarErroUI;
+
+        // 2. Pedir ao Controller para carregar as médias e AGUARDAR
+        await Controller.OpcaoSelecionada(1);
+    }
+
+    private void GerarGraficoUI()
+    {
+        var dados = Model.ObterMedias();
+
+        if (dados != null && dados.Any())
+        {
+            var plot = new ScottPlot.Plot();
+
+            // A SOLUÇÃO ESTÁ AQUI: Limpar a string antes de converter!
+            double[] valores = dados.Select(d => 
+            {
+                string numeroLimpo = d.valor.ToString()
+                                            .Replace("€", "")    // Tira o símbolo do Euro
+                                            .Replace(",", ".")   // Troca a vírgula por ponto
+                                            .Trim();             // Tira os espaços em branco
+                                            
+                return double.Parse(numeroLimpo, System.Globalization.CultureInfo.InvariantCulture);
+            }).ToArray();
+
+            string[] labels = dados.Select(d => d.combustivel).ToArray();
+
+            plot.Add.Bars(valores);
+
+            double[] posicoes = Enumerable.Range(0, labels.Length).Select(i => (double)i).ToArray();
+            plot.Axes.Bottom.SetTicks(posicoes, labels);
+            plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Margins(bottom: 0);
+            plot.Title("Preços Médios de Combustível (DGEG)");
+            plot.YLabel("Preço (€)");
+
+            byte[] imageBytes = plot.GetImage(800, 500).GetImageBytes();
+            base64Grafico = Convert.ToBase64String(imageBytes);
+            mensagemErro = null; 
+            
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private void MostrarErroUI(string erro)
+    {
+        mensagemErro = erro;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Model.OnMediasProntas -= GerarGraficoUI;
+        Controller.OnErroOcorrido -= MostrarErroUI;
+    }
+}
