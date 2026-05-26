@@ -48,7 +48,7 @@ public class View
         {
             Console.WriteLine("\nMENU:");
             Console.WriteLine("1 - Ver médias");
-            Console.WriteLine("2 - Pesquisar distrital (em desenvolvimento)");
+            Console.WriteLine("2 - Pesquisar distrital");
             Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
             Console.WriteLine("4 - Ver gráfico de médias");
             Console.WriteLine("0 - Sair");
@@ -91,7 +91,7 @@ public class View
         
         Console.Clear();
 
-        Console.WriteLine("Médias obtidas:");
+        Console.WriteLine("MÉDIAS OBTIDAS:");
         foreach (var d in dados)
         {
             decimal diferenca = d.GetDiferencaPreco();
@@ -166,8 +166,7 @@ public class View
                 int escolhaDistrito = int.Parse(Console.ReadLine());
                 
                 Console.Clear();
-                
-                Console.WriteLine("\nid posto:"+idTipo+" distrito:"+escolhaDistrito);
+    
                 controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
@@ -189,7 +188,7 @@ public class View
         {
             Console.WriteLine($"Nome:{posto.Nome}\n" +
                               $"Morada:{posto.Morada}\n" +
-                              $"Preço:{posto.PrecoString}€");
+                              $"Preço:{posto.Preco}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
         /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:

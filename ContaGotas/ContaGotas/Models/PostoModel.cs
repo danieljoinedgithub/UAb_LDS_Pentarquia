@@ -14,7 +14,7 @@ public class PostoModel : IValido
     public string Morada { get; set; }
     
     [JsonProperty("Preco", Required = Required.Always)]
-    public decimal PrecoString { get; set; } // A API às vezes envia como string "1,749 €"
+    public decimal Preco { get; set; } // A API às vezes envia como string "1,749 €"
     
     public bool IsValido()
     {
@@ -26,7 +26,7 @@ public class PostoModel : IValido
             return false;
         if (string.IsNullOrWhiteSpace(Morada))
             return false;
-        if (PrecoString <= 0)
+        if (Preco <= 0)
             return false;
 
         return true;
