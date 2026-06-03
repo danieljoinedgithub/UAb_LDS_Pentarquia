@@ -73,7 +73,7 @@ h1:focus {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 16px;
-    align-items: center;
+    align-items: normal;
     justify-content: space-between;
 }
 .caixa-medias > div {
@@ -82,14 +82,34 @@ h1:focus {
     border-radius: 8px;
     background-color: #fbfbfb;
     box-shadow: 2px 0px 4px #0000000a;
+    overflow: hidden;
 }
 
 .caixa-medias > div > h5{
-
+    font-size: 12pt;
+    margin-bottom: 8px;
 }
-.caixa-medias > div > span{
-
+.caixa-medias > div > p{
+    margin-bottom: 8px;
+    font-size: 20pt;
+    font-weight: bold;
 }
 .caixa-medias > div > small{
+    display: block;
+    padding: 8px 8px 8px 8px;
+    margin: 0px -8px -8px -8px;
+    font-size: 10pt;
+    background: #00000008;
+    border-top-right-radius: 16px;
+}
 
+@media (max-width: 1100px) {
+    .caixa-medias > div {
+        width: calc(50% - 16px);
+    }
+}
+@media (max-width: 850px) {
+    .caixa-medias > div {
+        width: 100%;
+    }
 }
