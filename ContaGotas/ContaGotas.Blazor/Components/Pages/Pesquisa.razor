@@ -97,9 +97,15 @@
                             @foreach (var posto in listaPostos)
                             {
                                 <tr>
-                                    <td class="fw-bold">@posto.Nome</td>
-                                    <td class="text-secondary small">@posto.Morada</td>
-                                    <td class="text-end fw-bold text-primary">@posto.PrecoString €</td>
+                                    <td class="fw-bold">@posto.nome</td>
+                                    <td class="text-secondary small">@posto.morada</td>
+                                    <td class="text-end fw-bold text-primary">@posto.preco €</td>
+                                    <td> 
+                                        <a class="btn btn-outline-success"
+                                           href="@($"https://www.google.com/maps/place/{posto.LatitudeToString},{posto.LongitudeToString}")"
+                                           target="_blank">Mapa</a>
+                                            
+                                    </td>
                                 </tr>
                             }
                         }

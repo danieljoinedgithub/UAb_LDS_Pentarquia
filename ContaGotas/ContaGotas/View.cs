@@ -186,9 +186,9 @@ public class View
         
         foreach (var posto in postos)
         {
-            Console.WriteLine($"Nome:{posto.Nome}\n" +
-                              $"Morada:{posto.Morada}\n" +
-                              $"Preço:{posto.Preco}€");
+            Console.WriteLine($"Nome:{posto.nome}\n" +
+                              $"Morada:{posto.morada}\n" +
+                              $"Preço:{posto.preco}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
         /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
