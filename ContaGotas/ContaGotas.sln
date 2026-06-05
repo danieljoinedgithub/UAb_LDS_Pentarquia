@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaGotas", "ContaGotas\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaGotas.Tests", "ContaGotas.Tests\ContaGotas.Tests.csproj", "{8340728E-B71D-4544-AB10-70C80578C788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaGotas.Blazor", "ContaGotas.Blazor\ContaGotas.Blazor.csproj", "{067CA875-0F8D-492C-8CA7-8B87660982E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{8340728E-B71D-4544-AB10-70C80578C788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8340728E-B71D-4544-AB10-70C80578C788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8340728E-B71D-4544-AB10-70C80578C788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067CA875-0F8D-492C-8CA7-8B87660982E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067CA875-0F8D-492C-8CA7-8B87660982E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067CA875-0F8D-492C-8CA7-8B87660982E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067CA875-0F8D-492C-8CA7-8B87660982E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
