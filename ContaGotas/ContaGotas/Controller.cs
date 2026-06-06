@@ -39,17 +39,12 @@ public class Controller
                 
                 case 1: // Ver médias
                     
-                    await model.AtualizarMedias(); //
+                    await model.AtualizarMedias(); 
                     break;
 
                 case 2: // Pesquisar distrital
                     
-                    //view.atualizarInterface();
                     await model.BuscarTiposDistritos();
-                    //model.ObterDistritos();
-                    
-                    //em evento de pesquisa acionada na view//
-                    // model.PesquisaDistrital(distrito, id);
                     break;
                 
                 case 3: //Estatisticas
