@@ -33,6 +33,8 @@ public class View
     private void MostrarErro(string mensagemErro)
     {
         Console.WriteLine($"\n{mensagemErro}");
+        _consoleLock = false;
+        
     }
     
     //Eventos
