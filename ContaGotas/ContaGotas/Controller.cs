@@ -14,9 +14,10 @@ public class Controller
         model = m;
     }
 
-    public void TerminarAplicacao()
+    public Task TerminarAplicacao()
     {
         Environment.Exit(0);
+        return Task.CompletedTask;
     }
 
     // Mudei de "async void" para "async Task" e adicionamos try-catch
