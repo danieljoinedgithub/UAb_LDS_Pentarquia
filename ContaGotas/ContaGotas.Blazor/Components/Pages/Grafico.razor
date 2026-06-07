@@ -197,18 +197,23 @@
         }
     }
 
-    private async Task CarregarCombustiveisComDadosAsync()
+   private async Task CarregarCombustiveisComDadosAsync()
     {
         aCarregarCombustiveis = true;
         await InvokeAsync(StateHasChanged);
 
         try
         {
-            var dados = await Model.ObterMediasDataAsync(-1);
-            combustiveisComDados = dados
-                .Where(d => ExtrairPreco(new List<PrecoMedioModel> { d }, d.combustivel) > 0)
-                .Select(d => d.combustivel)
-                .ToHashSet();
+            // CORREÇÃO: Usar as médias atuais em vez de pedir o dia de ontem (-1)
+            var dados = Model.ObterMedias(); 
+            
+            if (dados != null)
+            {
+                combustiveisComDados = dados
+                    .Where(d => ExtrairPreco(new List<PrecoMedioModel> { d }, d.combustivel) > 0)
+                    .Select(d => d.combustivel)
+                    .ToHashSet();
+            }
         }
         catch { }
 
@@ -313,9 +318,10 @@
             List<PrecoMedioModel> semana = new();
             List<PrecoMedioModel> duasSem = new();
 
-            try { hoje = await Model.ObterMediasDataAsync(-1); } catch { }
-            try { semana = await Model.ObterMediasDataAsync(-8); } catch { }
-            try { duasSem = await Model.ObterMediasDataAsync(-15); } catch { }
+            // CORREÇÃO: Usar médias atuais, há 7 dias e há 14 dias
+            try { hoje = Model.ObterMedias() ?? new(); } catch { }
+            try { semana = await Model.ObterMediasDataAsync(-7); } catch { }
+            try { duasSem = await Model.ObterMediasDataAsync(-14); } catch { }
 
             if (!hoje.Any() && !semana.Any() && !duasSem.Any())
             {
@@ -326,7 +332,8 @@
 
             var plot = new ScottPlot.Plot();
             double[] xs = { 0, 1, 2 };
-            string[] eixoX = { "Há 2 semanas", "Há 1 semana", "Ontem" };
+            // Atualizámos a label de Ontem para Atual
+            string[] eixoX = { "Há 2 semanas", "Há 1 semana", "Atual" }; 
 
             foreach (var nome in tiposEvolucaoSelecionados)
             {

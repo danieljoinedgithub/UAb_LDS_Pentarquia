@@ -29,21 +29,22 @@
         <div class="section">
             <h2>Preços Médios de Combustível</h2>
             <div class="caixa-medias">
-                @foreach (var media in listaMedias)
+               @foreach (var media in listaMedias)
                 {
-                    var diferenca = media.GetDiferencaPreco();
+                    var diferencaReal = media.GetDiferencaPreco() / 1000m;
+                    var culturaPT = new System.Globalization.CultureInfo("pt-PT");
+
                     <div>
                         <h5>@media.combustivel</h5>
                         <p>@media.valor</p>
                         
-                        
-                        @if (diferenca > 0)
+                        @if (diferencaReal > 0)
                         {
-                            <small>+ @diferenca€ que há 15 dias</small>
+                            <small>+ @diferencaReal.ToString("0.000", culturaPT) € que há 15 dias</small>
                         }
-                        else if (diferenca < 0)
+                        else if (diferencaReal < 0)
                         {
-                            <small>- @diferenca€ que há 15 dias</small>
+                            <small>@diferencaReal.ToString("0.000", culturaPT) € que há 15 dias</small>
                         }
                         else
                         {
