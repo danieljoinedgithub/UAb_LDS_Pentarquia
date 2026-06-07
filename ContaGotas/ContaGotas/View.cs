@@ -162,9 +162,9 @@ public class View
         
         foreach (var posto in postos)
         {
-            Console.WriteLine($"Nome:{posto.Nome}\n" +
-                              $"Morada:{posto.Morada}\n" +
-                              $"Preço:{posto.PrecoString}€");
+            Console.WriteLine($"Nome:{posto.nome}\n" +
+                              $"Morada:{posto.morada}\n" +
+                              $"Preço:{posto.preco}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
         Console.ReadLine();
@@ -358,8 +358,8 @@ public class View
         try
         {
             var postosValidos = postos
-                .Where(p => !string.IsNullOrWhiteSpace(p.Nome) && p.PrecoString > 0)
-                .OrderBy(p => p.PrecoString)
+                .Where(p => !string.IsNullOrWhiteSpace(p.nome) && p.preco > 0)
+                .OrderBy(p => p.preco)
                 .Take(4)
                 .ToList();
 
@@ -369,8 +369,8 @@ public class View
                 return;
             }
 
-            double[] valores = postosValidos.Select(p => (double)p.PrecoString).ToArray();
-            string[] labels = postosValidos.Select(p => p.Nome).ToArray();
+            double[] valores = postosValidos.Select(p => (double)p.preco).ToArray();
+            string[] labels = postosValidos.Select(p => p.nome).ToArray();
 
             var plot = new ScottPlot.Plot();
             plot.Add.Bars(valores);
