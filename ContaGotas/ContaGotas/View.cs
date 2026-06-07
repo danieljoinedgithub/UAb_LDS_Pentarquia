@@ -11,6 +11,7 @@ public class View
 {
     private Controller controller;
     private Model model;
+    private bool _consoleLock = false; //condição de corrido com leitura de consola
     
     public View(Controller c,Model m)
     {
@@ -46,14 +47,20 @@ public class View
         
         while (true)
         {
-            Console.WriteLine("\nMENU:");
-            Console.WriteLine("1 - Ver médias");
-            Console.WriteLine("2 - Pesquisar distrital");
-            Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
-            Console.WriteLine("4 - Ver gráfico de médias");
-            Console.WriteLine("0 - Sair");
+            if (!_consoleLock)
+            {
+                Console.WriteLine("\nMENU:");
+                Console.WriteLine("1 - Ver médias");
+                Console.WriteLine("2 - Pesquisar distrital");
+                Console.WriteLine("3 - Estatisticas (em desenvolvimento)");
+                Console.WriteLine("4 - Ver gráfico de médias");
+                Console.WriteLine("0 - Sair");
 
-            await SelecionarOpcao();
+                await SelecionarOpcao();
+            }
+            Task.Delay(500).Wait();
+            
+            
         }
     }
 
@@ -68,7 +75,10 @@ public class View
             if (opcao == 4)
                 MostrarGrafico(); // local, no controller needed
             else
+            {
+                _consoleLock = true;
                 await controller.OpcaoSelecionada(opcao);
+            }
         }
         else
         {
@@ -105,8 +115,8 @@ public class View
 
         Console.WriteLine("\n prima qualquer tecla para voltar");
         Console.ReadKey(true);
-        
         Console.Clear();
+        _consoleLock = false;
     }
     
 /*+++IMPORTANTE se formos para fazer UI não vamos ter loops o objeto neste caso o dropDownList vai ser configurado par
@@ -170,7 +180,7 @@ public class View
                 controller.PesquisaDistrital(idTipo, escolhaDistrito);
                 break;
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (Exception ex) when(ex is FormatException || ex is ArgumentOutOfRangeException)
             {
                 Console.WriteLine("Escolha um numero valido.\n Qualquer tecla para continuar.");
                 Console.ReadKey(true);
@@ -191,19 +201,9 @@ public class View
                               $"Preço:{posto.preco}€");
         }
         Console.WriteLine("\n prime qualquer tecla para voltar");
-        /*BUG: a leitura do menu chega primeiro que esse fazendo comportamento imprevisível exemplo:
-         
-         prime qualquer tecla para voltar
-         9                 // tecla escolhida
-         Entrada inválida! // saida do menu 
-         10                // não aparece no ecran devido ao Console.ReadKey(true); e limpa o ecran
-                           // como programado abaixo e espera por input do utilizador que é o menu numa consola limpa
-           */
-        
-        
-        Console.ReadLine();
-        
+        Console.ReadKey(true);
         Console.Clear();
+        _consoleLock = false;
     }
     
     public async Task MostrarGrafico()
