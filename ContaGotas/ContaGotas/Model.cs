@@ -85,7 +85,10 @@ public class Model
         
     }
     
-    
+    public async Task<List<PrecoMedioModel>> ObterMediasDataAsync(int diasAntes)
+    {
+        return await _service.ObterMediasAsync(diasAntes, false);
+    }
     
 
 

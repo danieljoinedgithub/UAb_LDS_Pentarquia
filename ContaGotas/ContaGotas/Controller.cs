@@ -14,9 +14,10 @@ public class Controller
         model = m;
     }
 
-    public void TerminarAplicacao()
+    public Task TerminarAplicacao()
     {
         Environment.Exit(0);
+        return Task.CompletedTask;
     }
 
     // Mudei de "async void" para "async Task" e adicionamos try-catch
@@ -76,9 +77,15 @@ public class Controller
         }
     }
     
-    public void PesquisaDistrital(int tipo,int distrito)
+    public async void PesquisaDistrital(int tipo,int distrito)
     {
-        model.PesquisarDistritos(tipo, distrito);
+        try
+        {
+            await model.PesquisarDistritos(tipo, distrito);
+        }
+        catch (Exception ex)
+        {
+            OnErroOcorrido?.Invoke($"\n{ex.Message}");
+        }
     }
-    
 }

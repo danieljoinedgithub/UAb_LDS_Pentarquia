@@ -9,49 +9,376 @@
 <PageTitle>ContaGotas - Gráfico (MVC)</PageTitle>
 
 <div class="container mt-4">
-    
-    <div class="section">
-        <h2>Estatísticas</h2>
-        
-        @* 1. Tratamento de Erros *@
-        @if (!string.IsNullOrEmpty(mensagemErro))
+    <h1 class="text-primary mb-4">Análise Estatística Visual 📊</h1>
+
+    @* Seletor de tipo de gráfico *@
+    <div class="mb-4 d-flex gap-2 flex-wrap">
+        <button class="btn @(tipoGrafico == "barras" ? "btn-primary" : "btn-outline-primary")"
+                @onclick='() => MudarGrafico("barras")'>
+            Preços Médios (Barras)
+        </button>
+        <button class="btn @(tipoGrafico == "distrital" ? "btn-primary" : "btn-outline-primary")"
+                @onclick='() => MudarGrafico("distrital")'>
+            Preços Distritais (Barras)
+        </button>
+        <button class="btn @(tipoGrafico == "evolucao" ? "btn-primary" : "btn-outline-primary")"
+                @onclick='() => MudarGrafico("evolucao")'>
+            Evolução de Preços (Linha)
+        </button>
+    </div>
+
+    @* Filtros distritais *@
+    @if (tipoGrafico == "distrital")
+    {
+        @if (listaTipos == null || listaDistritos == null)
         {
-            <div class="alert alert-danger shadow-sm">
-                <h5 class="alert-heading">Falha ao Gerar Gráfico</h5>
-                <p class="mb-0">@mensagemErro</p>
-            </div>
-        }
-        @* 2. Estado de Carregamento *@
-        else if (string.IsNullOrEmpty(base64Grafico))
-        {
-            <div class="d-flex align-items-center gap-2 text-secondary">
+            <div class="d-flex align-items-center gap-2 text-secondary mb-3">
                 <div class="spinner-border spinner-border-sm" role="status"></div>
-                <span>A renderizar gráfico estatístico (isto pode demorar alguns segundos)...</span>
+                <span>A carregar filtros...</span>
             </div>
         }
-        @* 3. Gráfico Carregado *@
         else
         {
-            <div class="card shadow-sm border-0 p-3 bg-white text-center">
-                <img src="data:image/png;base64,@base64Grafico" class="img-fluid rounded shadow-sm mx-auto" alt="Gráfico DGEG" style="max-width: 800px;"/>
+            <div class="card shadow-sm mb-4 border-0 bg-light">
+                <div class="card-body row g-3">
+                    <div class="col-md-5">
+                        <label class="form-label fw-semibold text-secondary">Combustível</label>
+                        <select class="form-select" @bind="idTipoEscolhido">
+                            <option value="0">-- Selecione o Tipo --</option>
+                            @foreach (var tipo in listaTipos)
+                            {
+                                <option value="@tipo.Id">@tipo.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="form-label fw-semibold text-secondary">Distrito</label>
+                        <select class="form-select" @bind="idDistritoEscolhido">
+                            <option value="0">-- Selecione o Distrito --</option>
+                            @foreach (var distrito in listaDistritos)
+                            {
+                                <option value="@distrito.Id">@distrito.Nome</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-primary w-100 fw-bold"
+                                disabled="@(idTipoEscolhido == 0 || idDistritoEscolhido == 0 || aCarregarPostos)"
+                                @onclick="AcionarPesquisaDistrital">
+                            @if (aCarregarPostos)
+                            {
+                                <span class="spinner-border spinner-border-sm" role="status"></span>
+                            }
+                            else
+                            {
+                                <span>Ver Gráfico</span>
+                            }
+                        </button>
+                    </div>
+                </div>
             </div>
         }
-    </div>
+    }
+
+    @* Filtros evolução *@
+    @if (tipoGrafico == "evolucao")
+    {
+        @if (listaTipos == null || aCarregarCombustiveis)
+        {
+            <div class="d-flex align-items-center gap-2 text-secondary mb-3">
+                <div class="spinner-border spinner-border-sm" role="status"></div>
+                <span>A carregar combustíveis disponíveis...</span>
+            </div>
+        }
+        else
+        {
+            <div class="card shadow-sm mb-4 border-0 bg-light">
+                <div class="card-body">
+                    <label class="form-label fw-semibold text-secondary">Selecione os combustíveis a comparar</label>
+                    <div class="d-flex gap-2 flex-wrap mt-2">
+                        @foreach (var tipo in listaTipos.Where(t => combustiveisComDados.Contains(t.Nome)))
+                        {
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox"
+                                       id="chk_@tipo.Id"
+                                       checked="@tiposEvolucaoSelecionados.Contains(tipo.Nome)"
+                                       @onchange="e => ToggleTipoEvolucao(tipo.Nome, (bool)e.Value)" />
+                                <label class="form-check-label" for="chk_@tipo.Id">@tipo.Nome</label>
+                            </div>
+                        }
+                    </div>
+                    <button class="btn btn-primary mt-3"
+                            disabled="@(!tiposEvolucaoSelecionados.Any())"
+                            @onclick="() => _ = GerarGraficoEvolucaoAsync()">
+                        Ver Evolução
+                    </button>
+                </div>
+            </div>
+        }
+    }
+
+    @* 1. Erro *@
+    @if (!string.IsNullOrEmpty(mensagemErro))
+    {
+        <div class="alert alert-danger shadow-sm">
+            <h5 class="alert-heading">Falha ao Gerar Gráfico</h5>
+            <p class="mb-0">@mensagemErro</p>
+        </div>
+    }
+    @* 2. A carregar *@
+    else if (string.IsNullOrEmpty(base64Grafico) && tipoGrafico != "distrital" && tipoGrafico != "evolucao")
+    {
+        <div class="d-flex align-items-center gap-2 text-secondary">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+            <span>A renderizar gráfico estatístico (isto pode demorar alguns segundos)...</span>
+        </div>
+    }
+    @* 3. Gráfico pronto *@
+    else if (!string.IsNullOrEmpty(base64Grafico))
+    {
+        <div class="card shadow-sm border-0 p-3 bg-white text-center">
+            <img src="data:image/png;base64,@base64Grafico"
+                 class="img-fluid rounded shadow-sm mx-auto"
+                 alt="Gráfico DGEG"
+                 style="max-width: 800px;" />
+        </div>
+        <p class="text-muted mt-2 small text-center">
+            Fonte: DGEG — Direção-Geral de Energia e Geologia
+        </p>
+    }
 </div>
 
 @code {
     private string base64Grafico = "";
     private string? mensagemErro;
+    private string tipoGrafico = "barras";
 
-    // Mudámos para OnInitializedAsync para podermos usar o "await"
+    // Distrital
+    private List<TipoCombustivelModel>? listaTipos;
+    private List<DistritoModel>? listaDistritos;
+    private int idTipoEscolhido = 0;
+    private int idDistritoEscolhido = 0;
+    private bool aCarregarPostos = false;
+
+    // Evolução
+    private HashSet<string> tiposEvolucaoSelecionados = new();
+    private HashSet<string> combustiveisComDados = new();
+    private bool aCarregarCombustiveis = false;
+
     protected override async Task OnInitializedAsync()
     {
-        // 1. Subscrever aos eventos (Sucesso e Erro)
         Model.OnMediasProntas += GerarGraficoUI;
+        Model.OnTiposDistritos += AtualizarDropdownsUI;
+        Model.ReadyPostos += GerarGraficoDistritalUI;
         Controller.OnErroOcorrido += MostrarErroUI;
 
-        // 2. Pedir ao Controller para carregar as médias e AGUARDAR
         await Controller.OpcaoSelecionada(1);
+    }
+
+    private void MudarGrafico(string tipo)
+    {
+        tipoGrafico = tipo;
+        base64Grafico = "";
+        mensagemErro = null;
+
+        if (tipo == "distrital" || tipo == "evolucao")
+        {
+            if (listaTipos == null || listaDistritos == null)
+                _ = Controller.OpcaoSelecionada(2);
+
+            if (tipo == "evolucao" && combustiveisComDados.Count == 0)
+                _ = CarregarCombustiveisComDadosAsync();
+        }
+        else
+        {
+            GerarGraficoUI();
+        }
+    }
+
+   private async Task CarregarCombustiveisComDadosAsync()
+    {
+        aCarregarCombustiveis = true;
+        await InvokeAsync(StateHasChanged);
+
+        try
+        {
+            // CORREÇÃO: Usar as médias atuais em vez de pedir o dia de ontem (-1)
+            var dados = Model.ObterMedias(); 
+            
+            if (dados != null)
+            {
+                combustiveisComDados = dados
+                    .Where(d => ExtrairPreco(new List<PrecoMedioModel> { d }, d.combustivel) > 0)
+                    .Select(d => d.combustivel)
+                    .ToHashSet();
+            }
+        }
+        catch { }
+
+        aCarregarCombustiveis = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void ToggleTipoEvolucao(string nome, bool selecionado)
+    {
+        if (selecionado)
+            tiposEvolucaoSelecionados.Add(nome);
+        else
+            tiposEvolucaoSelecionados.Remove(nome);
+    }
+
+    private void AtualizarDropdownsUI()
+    {
+        listaTipos = Model.ObterTipos();
+        listaDistritos = Model.ObterDistritos();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void AcionarPesquisaDistrital()
+    {
+        aCarregarPostos = true;
+        base64Grafico = "";
+        mensagemErro = null;
+        Controller.PesquisaDistrital(idTipoEscolhido, idDistritoEscolhido);
+    }
+
+    private void GerarGraficoDistritalUI()
+    {
+        aCarregarPostos = false;
+        var postos = Model.ObterPostos();
+
+        if (postos == null || !postos.Any())
+        {
+            mensagemErro = "Nenhum posto encontrado para os filtros selecionados.";
+            InvokeAsync(StateHasChanged);
+            return;
+        }
+
+        try
+        {
+            var postosValidos = postos
+                .Where(p => !string.IsNullOrWhiteSpace(p.nome) && p.preco > 0)
+                .OrderBy(p => p.preco)
+                .Take(4)
+                .ToList();
+
+            if (!postosValidos.Any())
+            {
+                mensagemErro = "Os dados dos postos não têm preços válidos para gerar o gráfico.";
+                InvokeAsync(StateHasChanged);
+                return;
+            }
+
+            double[] valores = postosValidos.Select(p => (double)p.preco).ToArray();
+            string[] labels = postosValidos.Select(p => p.nome).ToArray();
+
+            var plot = new ScottPlot.Plot();
+            plot.Add.Bars(valores);
+
+            double[] posicoes = Enumerable.Range(0, labels.Length).Select(i => (double)i).ToArray();
+            plot.Axes.Bottom.SetTicks(posicoes, labels);
+            plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Bottom.TickLabelStyle.FontSize = 9;
+            plot.Axes.Bottom.TickLabelStyle.Rotation = 0;
+            plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Left.TickLabelStyle.FontSize = 9;
+            plot.Axes.Margins(bottom: 0);
+
+            double min = valores.Min();
+            double max = valores.Max();
+            double margem = (max - min) * 0.5;
+            if (margem < 0.05) margem = 0.05;
+            plot.Axes.SetLimitsY(min - margem, max + margem);
+
+            plot.Title("Top 4 Postos mais Baratos (DGEG)");
+            plot.YLabel("Preço (€)");
+
+            byte[] imageBytes = plot.GetImage(800, 500).GetImageBytes();
+            base64Grafico = Convert.ToBase64String(imageBytes);
+            mensagemErro = null;
+        }
+        catch (Exception ex)
+        {
+            mensagemErro = $"Erro ao gerar gráfico distrital: {ex.Message}";
+        }
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    private async Task GerarGraficoEvolucaoAsync()
+    {
+        try
+        {
+            base64Grafico = "";
+            await InvokeAsync(StateHasChanged);
+
+            List<PrecoMedioModel> hoje = new();
+            List<PrecoMedioModel> semana = new();
+            List<PrecoMedioModel> duasSem = new();
+
+            // CORREÇÃO: Usar médias atuais, há 7 dias e há 14 dias
+            try { hoje = Model.ObterMedias() ?? new(); } catch { }
+            try { semana = await Model.ObterMediasDataAsync(-7); } catch { }
+            try { duasSem = await Model.ObterMediasDataAsync(-14); } catch { }
+
+            if (!hoje.Any() && !semana.Any() && !duasSem.Any())
+            {
+                mensagemErro = "Não foi possível obter dados históricos da DGEG.";
+                await InvokeAsync(StateHasChanged);
+                return;
+            }
+
+            var plot = new ScottPlot.Plot();
+            double[] xs = { 0, 1, 2 };
+            // Atualizámos a label de Ontem para Atual
+            string[] eixoX = { "Há 2 semanas", "Há 1 semana", "Atual" }; 
+
+            foreach (var nome in tiposEvolucaoSelecionados)
+            {
+                double[] ys = new double[3];
+                ys[0] = ExtrairPreco(duasSem, nome);
+                ys[1] = ExtrairPreco(semana, nome);
+                ys[2] = ExtrairPreco(hoje, nome);
+
+                if (ys.Any(v => v > 0))
+                {
+                    var linha = plot.Add.Scatter(xs, ys);
+                    linha.LegendText = nome;
+                    linha.MarkerSize = 8;
+                }
+            }
+
+            plot.Axes.Bottom.SetTicks(xs, eixoX);
+            plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+            plot.Title("Evolução de Preços — Últimas 2 Semanas (DGEG)");
+            plot.YLabel("Preço (€)");
+            plot.ShowLegend();
+
+            byte[] imageBytes = plot.GetImage(800, 500).GetImageBytes();
+            base64Grafico = Convert.ToBase64String(imageBytes);
+            mensagemErro = null;
+        }
+        catch (Exception ex)
+        {
+            mensagemErro = $"Erro ao gerar gráfico de evolução: {ex.Message}";
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private double ExtrairPreco(List<PrecoMedioModel> lista, string nomeCombustivel)
+    {
+        var item = lista.FirstOrDefault(d =>
+            d.combustivel.Equals(nomeCombustivel, StringComparison.OrdinalIgnoreCase));
+
+        if (item == null) return 0;
+
+        string limpo = item.valor.ToString().Replace("€", "").Replace(",", ".").Trim();
+        return double.TryParse(limpo, System.Globalization.NumberStyles.Any,
+            System.Globalization.CultureInfo.InvariantCulture, out double result) ? result : 0;
     }
 
     private void GerarGraficoUI()
@@ -62,33 +389,32 @@
         {
             var plot = new ScottPlot.Plot();
 
-            // A SOLUÇÃO ESTÁ AQUI: Limpar a string antes de converter!
-            double[] valores = dados.Select(d => 
+            double[] valores = dados.Select(d =>
             {
                 string numeroLimpo = d.valor.ToString()
-                                            .Replace("€", "")    // Tira o símbolo do Euro
-                                            .Replace(",", ".")   // Troca a vírgula por ponto
-                                            .Trim();             // Tira os espaços em branco
-                                            
+                                            .Replace("€", "")
+                                            .Replace(",", ".")
+                                            .Trim();
                 return double.Parse(numeroLimpo, System.Globalization.CultureInfo.InvariantCulture);
             }).ToArray();
 
             string[] labels = dados.Select(d => d.combustivel).ToArray();
 
             plot.Add.Bars(valores);
-
             double[] posicoes = Enumerable.Range(0, labels.Length).Select(i => (double)i).ToArray();
             plot.Axes.Bottom.SetTicks(posicoes, labels);
             plot.Axes.Bottom.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Bottom.TickLabelStyle.FontSize = 9;
             plot.Axes.Left.TickLabelStyle.FontName = "Noto Sans";
+            plot.Axes.Left.TickLabelStyle.FontSize = 9;
             plot.Axes.Margins(bottom: 0);
             plot.Title("Preços Médios de Combustível (DGEG)");
             plot.YLabel("Preço (€)");
 
             byte[] imageBytes = plot.GetImage(800, 500).GetImageBytes();
             base64Grafico = Convert.ToBase64String(imageBytes);
-            mensagemErro = null; 
-            
+            mensagemErro = null;
+
             InvokeAsync(StateHasChanged);
         }
     }
@@ -96,12 +422,15 @@
     private void MostrarErroUI(string erro)
     {
         mensagemErro = erro;
+        aCarregarPostos = false;
         InvokeAsync(StateHasChanged);
     }
 
     public void Dispose()
     {
         Model.OnMediasProntas -= GerarGraficoUI;
+        Model.OnTiposDistritos -= AtualizarDropdownsUI;
+        Model.ReadyPostos -= GerarGraficoDistritalUI;
         Controller.OnErroOcorrido -= MostrarErroUI;
     }
 }

@@ -77,7 +77,7 @@ public class CombustivelApiService : ICombustivelService
                 // este GetProperty vai disparar uma KeyNotFoundException
                 bool status = response["status"]?.Value<bool>() ?? false;
                 if (!status)
-                    throw new Exception($"Não foi possível obter uma resposta válida da API da DGEG. Tente novamente mais tarde ou modifique as informações requisitadas.");
+                    throw new Exception($"Nenhum posto encontrado.");
                 
                 JToken resultado = response["resultado"];
                 
@@ -199,9 +199,9 @@ public class CombustivelApiService : ICombustivelService
         return listaDistritos;
     }
 
-    public async Task<List<PostoModel>> ObterPostosAsync(int posto, int distrito)
+    public async Task<List<PostoModel>> ObterPostosAsync(int tipo, int distrito)
     {
-        String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+posto+"&idDistrito="+distrito;
+        String url = baseUrl + "PrecoComb/PesquisarPostos?idsTiposComb="+tipo+"&idDistrito="+distrito;
         List<PostoModel> listaPostos = await chamarDGEG<PostoModel>(url)
                                        ?? new List<PostoModel>();
         return listaPostos;
