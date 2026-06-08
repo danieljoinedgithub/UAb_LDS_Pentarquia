@@ -31,7 +31,7 @@
             <div class="caixa-medias">
                @foreach (var media in listaMedias)
                 {
-                    var diferencaReal = media.GetDiferencaPreco() / 1000m;
+                    var diferencaReal = media.GetDiferencaPreco();
                     var culturaPT = new System.Globalization.CultureInfo("pt-PT");
 
                     <div>
